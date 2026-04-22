@@ -1,22 +1,24 @@
 // app/api/rdv/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
+
 export const dynamic = 'force-dynamic'
 const prisma = new PrismaClient()
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id   = parseInt(params.id)
+    const { id: idStr } = await params
+    const id = parseInt(idStr)
     const body = await req.json()
     const { statut, noteAdmin } = body
 
     const demande = await prisma.demandeRDV.update({
       where: { id },
       data: {
-        ...(statut    && { statut }),
+        ...(statut && { statut }),
         ...(noteAdmin !== undefined && { noteAdmin }),
         lu: true,
       },
