@@ -1,0 +1,255 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// CATALOGUE PRODUITS
+// ============================================
+
+model Categorie {
+  id          Int       @id @default(autoincrement())
+  nom         String
+  slug        String    @unique
+  description String?
+  image       String?
+  ordre       Int       @default(0)
+  actif       Boolean   @default(true)
+  produits    Produit[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Produit {
+  id                Int            @id @default(autoincrement())
+  nom               String
+  slug              String         @unique
+  description       String?
+  descriptionLongue String?
+  prix              Float?
+  reference         String?        @unique
+  marque            String?
+  disponible        Boolean        @default(true)
+  featured          Boolean        @default(false)
+  categorieId       Int
+  categorie         Categorie      @relation(fields: [categorieId], references: [id])
+  images            ProduitImage[]
+  specifications    Specification[]
+  documents         Document[]
+  demandesDevis     DevisLigne[]
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+}
+
+model ProduitImage {
+  id         Int     @id @default(autoincrement())
+  url        String
+  alt        String?
+  principale Boolean @default(false)
+  ordre      Int     @default(0)
+  produitId  Int
+  produit    Produit @relation(fields: [produitId], references: [id], onDelete: Cascade)
+}
+
+model Specification {
+  id        Int     @id @default(autoincrement())
+  cle       String
+  valeur    String
+  unite     String?
+  produitId Int
+  produit   Produit @relation(fields: [produitId], references: [id], onDelete: Cascade)
+}
+
+model Document {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  url       String
+  type      String   // PDF, FICHE_TECHNIQUE, MANUEL
+  produitId Int
+  produit   Produit  @relation(fields: [produitId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+// ============================================
+// DEVIS & CONTACTS
+// ============================================
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  email     String
+  telephone String?
+  societe   String?
+  ville     String?
+  sujet     String?
+  message   String
+  lu        Boolean  @default(false)
+  repondu   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Devis {
+  id        Int         @id @default(autoincrement())
+  reference String      @unique
+  nom       String
+  email     String
+  telephone String?
+  societe   String?
+  ville     String?
+  message   String?
+  statut    StatutDevis @default(EN_ATTENTE)
+  lignes    DevisLigne[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model DevisLigne {
+  id        Int     @id @default(autoincrement())
+  quantite  Int     @default(1)
+  note      String?
+  devisId   Int
+  devis     Devis   @relation(fields: [devisId], references: [id], onDelete: Cascade)
+  produitId Int
+  produit   Produit @relation(fields: [produitId], references: [id])
+}
+
+enum StatutDevis {
+  EN_ATTENTE
+  VU
+  EN_COURS
+  ENVOYE
+  ACCEPTE
+  REFUSE
+}
+
+// ============================================
+// DEMANDES RDV — SERVICE APRÈS-VENTE
+// ============================================
+
+model DemandeRDV {
+  id        Int          @id @default(autoincrement())
+  // Infos client
+  nom       String
+  telephone String
+  // Véhicule
+  marque    String       // isuzu | karry | greatwall
+  vehicule  String?      // modèle / immatriculation
+  // Intervention
+  type      String       // revision | reparation | garantie | diagnostic | pieces | autre
+  atelier   String       // ouarzazate | agadir | tinghir | mobile
+  message   String?
+  // Suivi
+  statut    StatutRDV    @default(NOUVEAU)
+  noteAdmin String?      // note interne de l'équipe SAV
+  lu        Boolean      @default(false)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+enum StatutRDV {
+  NOUVEAU      // vient d'arriver
+  CONFIRME     // RDV confirmé par le SAV
+  EN_COURS     // véhicule en atelier
+  TERMINE      // intervention terminée
+  ANNULE       // annulé
+}
+
+// ============================================
+// SEO — PAGES LOCALES PAR VILLE
+// ============================================
+
+model Ville {
+  id          Int      @id @default(autoincrement())
+  nom         String
+  slug        String   @unique
+  region      String?
+  description String?
+  metaTitle   String?
+  metaDesc    String?
+  actif       Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+// ============================================
+// CONTENU DU SITE
+// ============================================
+
+model PageContenu {
+  id        Int      @id @default(autoincrement())
+  page      String   @unique // home, about, services
+  titre     String
+  sousTitre String?
+  contenu   String?
+  metaTitle String?
+  metaDesc  String?
+  updatedAt DateTime @updatedAt
+}
+
+model Temoignage {
+  id        Int      @id @default(autoincrement())
+  nom       String
+  societe   String?
+  ville     String?
+  texte     String
+  note      Int      @default(5)
+  actif     Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Partenaire {
+  id    Int     @id @default(autoincrement())
+  nom   String
+  logo  String?
+  site  String?
+  ordre Int     @default(0)
+  actif Boolean @default(true)
+}
+
+model Actualite {
+  id          Int       @id @default(autoincrement())
+  titre       String
+  slug        String    @unique
+  resume      String?
+  contenu     String?
+  image       String?
+  publie      Boolean   @default(false)
+  metaTitle   String?
+  metaDesc    String?
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ============================================
+// ADMIN
+// ============================================
+
+model Admin {
+  id        Int       @id @default(autoincrement())
+  nom       String
+  email     String    @unique
+  password  String
+  role      RoleAdmin @default(EDITEUR)
+  actif     Boolean   @default(true)
+  lastLogin DateTime?
+  createdAt DateTime  @default(now())
+}
+
+enum RoleAdmin {
+  SUPER_ADMIN
+  ADMIN
+  EDITEUR
+}
+
+model Visite {
+  id        Int      @id @default(autoincrement())
+  page      String
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}
