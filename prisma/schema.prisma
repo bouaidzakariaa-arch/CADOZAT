@@ -132,31 +132,48 @@ enum StatutDevis {
 // ============================================
 
 model DemandeRDV {
-  id        Int          @id @default(autoincrement())
-  // Infos client
+  id        Int       @id @default(autoincrement())
   nom       String
   telephone String
-  // Véhicule
-  marque    String       // isuzu | karry | greatwall
-  vehicule  String?      // modèle / immatriculation
-  // Intervention
-  type      String       // revision | reparation | garantie | diagnostic | pieces | autre
-  atelier   String       // ouarzazate | agadir | tinghir | mobile
+  marque    String
+  vehicule  String?
+  type      String
+  atelier   String
   message   String?
-  // Suivi
-  statut    StatutRDV    @default(NOUVEAU)
-  noteAdmin String?      // note interne de l'équipe SAV
-  lu        Boolean      @default(false)
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  statut    StatutRDV @default(NOUVEAU)
+  noteAdmin String?
+  lu        Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum StatutRDV {
-  NOUVEAU      // vient d'arriver
-  CONFIRME     // RDV confirmé par le SAV
-  EN_COURS     // véhicule en atelier
-  TERMINE      // intervention terminée
-  ANNULE       // annulé
+  NOUVEAU
+  CONFIRME
+  EN_COURS
+  TERMINE
+  ANNULE
+}
+
+// ============================================
+// LEADS BROCHURES
+// ============================================
+
+model LeadBrochure {
+  id        Int      @id @default(autoincrement())
+  // Infos contact
+  nom       String
+  prenom    String
+  email     String
+  telephone String?
+  societe   String?
+  // Brochure demandée
+  modele    String   // ex: dmax-tfr, nmr-77e, poer...
+  marque    String   // isuzu | karry | greatwall
+  brochure  String   // chemin du PDF : /brochures/dmax-tfr.pdf
+  // Suivi
+  lu        Boolean  @default(false)
+  createdAt DateTime @default(now())
 }
 
 // ============================================
@@ -181,7 +198,7 @@ model Ville {
 
 model PageContenu {
   id        Int      @id @default(autoincrement())
-  page      String   @unique // home, about, services
+  page      String   @unique
   titre     String
   sousTitre String?
   contenu   String?
