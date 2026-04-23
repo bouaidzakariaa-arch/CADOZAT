@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import BrochureForm from '@/components/BrochureForm'
+import BrochureForm from '../../../components/BrochureForm'
 const variantes = [
   {
     nom: 'Pick-up SC 4×2',
