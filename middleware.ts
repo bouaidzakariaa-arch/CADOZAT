@@ -1,26 +1,25 @@
 // middleware.ts
 import { NextRequest, NextResponse } from 'next/server'
+import { jwtVerify } from 'jose'
 
-const SECRET_KEY = 'cadozat-secret-key-2024'
-
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Protéger toutes les routes /admin sauf /admin/login
   if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
-    const token = request.cookies.get('admin-token')?.value
+    const token     = request.cookies.get('admin-token')?.value
+    const JWT_SECRET = process.env.JWT_SECRET
 
-    if (!token) {
+    if (!token || !JWT_SECRET) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
 
     try {
-      const payload = JSON.parse(Buffer.from(token, 'base64').toString())
-      // Vérifier la clé et l'expiration
-      if (payload.key !== SECRET_KEY || payload.exp < Date.now()) {
-        return NextResponse.redirect(new URL('/admin/login', request.url))
-      }
+      // Vérifier le JWT avec jose (compatible Edge Runtime)
+      await jwtVerify(token, new TextEncoder().encode(JWT_SECRET))
+      return NextResponse.next()
     } catch {
+      // Token invalide ou expiré
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
   }
