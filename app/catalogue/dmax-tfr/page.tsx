@@ -1,8 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import BrochureForm from '@/components/BrochureForm'
-
+import BrochureForm from '@/app/components/BrochureForm'
 
 const variantes = [
   {
