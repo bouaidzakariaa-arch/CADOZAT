@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -57,8 +57,6 @@ const vehiculesData = [
   },
 ]
 
-// ── Mapping value → nom de fichier réel dans /public/images/vehicules/ ──
-// Noms vus dans VS Code après renommage
 const imageMap: Record<string, string> = {
   'dmax-tfr-sc-4x2':      '/images/vehicules/dmax-tfr-sc-4x2.jpg',
   'dmax-tfr-sc-4x2-clim': '/images/vehicules/dmax-tfr-sc-4x2-clim.jpg',
@@ -74,7 +72,7 @@ const imageMap: Record<string, string> = {
   'fvr-34p':              '/images/vehicules/fvr-34p.jpg',
   'karry-22b':            '/images/vehicules/karry-22b.jpg',
   'karry-22q':            '/images/vehicules/karry-22q.jpg',
-  // À ajouter quand les images seront uploadées :
+  // À décommenter au fur et à mesure :
   // 'nmr-85h':           '/images/vehicules/nmr-85h.jpg',
   // 'nnr-85h':           '/images/vehicules/nnr-85h.jpg',
   // 'nqr-90k':           '/images/vehicules/nqr-90k.jpg',
@@ -83,7 +81,8 @@ const imageMap: Record<string, string> = {
   // 'great-wall-dc':     '/images/vehicules/great-wall-dc.jpg',
 }
 
-export default function DevisPage() {
+// ── Composant interne qui utilise useSearchParams ──
+function DevisForm() {
   const searchParams = useSearchParams()
 
   const [formData, setFormData] = useState({
@@ -94,7 +93,6 @@ export default function DevisPage() {
   const [success, setSuccess] = useState(false)
   const [error,   setError]   = useState('')
 
-  // ── Pré-sélection + image automatique depuis l'URL ──
   useEffect(() => {
     const param = searchParams.get('vehicule')
     if (!param) return
@@ -136,36 +134,18 @@ export default function DevisPage() {
   const preselected     = !!formData.vehicule && searchParams.get('vehicule') === formData.vehicule
 
   return (
-    <main className="min-h-screen bg-gray-50">
-
-      {/* ── Header ── */}
-      <div className="bg-[#1B2B6B] pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <span className="text-white">Demande de devis</span>
-          </nav>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Demande de <span className="text-[#CC0000]">devis</span>
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl">
-            Remplissez le formulaire ci-dessous et notre équipe commerciale vous contactera dans les plus brefs délais.
-          </p>
-
-          {/* Badge véhicule pré-sélectionné */}
-          {preselected && selectedVehicle && (
-            <div className="inline-flex items-center gap-2 mt-5 bg-white/10 border border-white/20 text-white text-sm font-semibold px-4 py-2 rounded-full">
-              <svg className="w-4 h-4 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd"/>
-              </svg>
-              Véhicule pré-sélectionné :&nbsp;<span className="text-[#C9A84C]">{selectedVehicle.nom}</span>
-            </div>
-          )}
+    <>
+      {/* Badge header */}
+      {preselected && selectedVehicle && (
+        <div className="inline-flex items-center gap-2 mt-5 bg-white/10 border border-white/20 text-white text-sm font-semibold px-4 py-2 rounded-full">
+          <svg className="w-4 h-4 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd"/>
+          </svg>
+          Véhicule pré-sélectionné :&nbsp;<span className="text-[#C9A84C]">{selectedVehicle.nom}</span>
         </div>
-      </div>
+      )}
 
-      {/* ── Formulaire ── */}
+      {/* Formulaire card */}
       <div className="max-w-7xl mx-auto px-6 -mt-8">
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           <div className="h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
@@ -197,16 +177,11 @@ export default function DevisPage() {
                     <h2 className="text-xl font-black text-[#1B2B6B]">Sélectionnez votre véhicule</h2>
                   </div>
 
-                  {/* ── Zone image ── */}
                   <div className={`rounded-2xl mb-6 min-h-[240px] flex items-center justify-center relative overflow-hidden transition-all duration-300 ${
-                    formData.vehicule
-                      ? 'bg-gray-50 border-2 border-gray-100'
-                      : 'bg-gray-50 border-2 border-dashed border-gray-200'
+                    formData.vehicule ? 'bg-gray-50 border-2 border-gray-100' : 'bg-gray-50 border-2 border-dashed border-gray-200'
                   }`}>
                     {formData.vehicule ? (
                       <div className="w-full text-center px-6 py-6">
-
-                        {/* Badge pré-sélectionné */}
                         {preselected && (
                           <span className="absolute top-3 right-3 bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
                             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -215,16 +190,9 @@ export default function DevisPage() {
                             Pré-sélectionné
                           </span>
                         )}
-
                         <div className="relative w-full h-48 mx-auto mb-4">
                           {imageSrc ? (
-                            <Image
-                              key={formData.vehicule}
-                              src={imageSrc}
-                              alt={selectedVehicle?.nom || 'Véhicule'}
-                              fill
-                              className="object-contain drop-shadow-md"
-                            />
+                            <Image key={formData.vehicule} src={imageSrc} alt={selectedVehicle?.nom || 'Véhicule'} fill className="object-contain drop-shadow-md"/>
                           ) : (
                             <div className="w-full h-full flex flex-col items-center justify-center text-gray-300">
                               <svg className="w-16 h-16 mb-2" fill="currentColor" viewBox="0 0 24 24">
@@ -234,7 +202,6 @@ export default function DevisPage() {
                             </div>
                           )}
                         </div>
-
                         <p className="font-bold text-gray-800 text-sm">{selectedVehicle?.nom}</p>
                         {selectedSerie && (
                           <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-bold text-white" style={{ background: selectedSerie.couleur }}>
@@ -252,15 +219,9 @@ export default function DevisPage() {
                     )}
                   </div>
 
-                  {/* Select véhicule */}
                   <div className="relative">
-                    <select
-                      name="vehicule"
-                      value={formData.vehicule}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-gray-700 font-medium appearance-none cursor-pointer hover:border-[#CC0000] focus:border-[#CC0000] focus:outline-none transition-colors"
-                    >
+                    <select name="vehicule" value={formData.vehicule} onChange={handleChange} required
+                      className="w-full px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-gray-700 font-medium appearance-none cursor-pointer hover:border-[#CC0000] focus:border-[#CC0000] focus:outline-none transition-colors">
                       <option value="">Sélectionnez votre véhicule</option>
                       {vehiculesData.map((serie) => (
                         <optgroup key={serie.serie} label={`━━ ${serie.serie} ━━`}>
@@ -283,7 +244,6 @@ export default function DevisPage() {
                     <div className="w-10 h-10 bg-[#CC0000] text-white rounded-full flex items-center justify-center font-black text-lg">2</div>
                     <h2 className="text-xl font-black text-[#1B2B6B]">Vos coordonnées</h2>
                   </div>
-
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -389,6 +349,62 @@ export default function DevisPage() {
           </div>
         </div>
       </div>
+    </>
+  )
+}
+
+// ── Page principale — useSearchParams enveloppé dans Suspense ──
+export default function DevisPage() {
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <div className="bg-[#1B2B6B] pt-32 pb-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+            <span>/</span>
+            <span className="text-white">Demande de devis</span>
+          </nav>
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
+            Demande de <span className="text-[#CC0000]">devis</span>
+          </h1>
+          <p className="text-white/80 text-lg max-w-2xl">
+            Remplissez le formulaire ci-dessous et notre équipe commerciale vous contactera dans les plus brefs délais.
+          </p>
+
+          {/* Le badge pré-sélectionné est dans DevisForm (a besoin de searchParams) */}
+          <Suspense fallback={null}>
+            <DevisFormBadge />
+          </Suspense>
+        </div>
+      </div>
+
+      {/* Formulaire enveloppé dans Suspense */}
+      <Suspense fallback={
+        <div className="max-w-7xl mx-auto px-6 -mt-8 pb-16">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 h-96 flex items-center justify-center">
+            <div className="text-gray-400 text-sm">Chargement...</div>
+          </div>
+        </div>
+      }>
+        <DevisForm />
+      </Suspense>
     </main>
+  )
+}
+
+// Badge séparé pour le header (nécessite aussi searchParams)
+function DevisFormBadge() {
+  const searchParams = useSearchParams()
+  const param = searchParams.get('vehicule')
+  if (!param) return null
+  const vehicle = vehiculesData.flatMap(s => s.modeles).find(m => m.value === param)
+  if (!vehicle) return null
+  return (
+    <div className="inline-flex items-center gap-2 mt-5 bg-white/10 border border-white/20 text-white text-sm font-semibold px-4 py-2 rounded-full">
+      <svg className="w-4 h-4 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd"/>
+      </svg>
+      Véhicule pré-sélectionné :&nbsp;<span className="text-[#C9A84C]">{vehicle.nom}</span>
+    </div>
   )
 }
