@@ -419,7 +419,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════
           HERO
       ══════════════════════════════════ */}
-      <section className="relative overflow-hidden" style={{ height: '100vh', minHeight: '600px', maxHeight: '900px' }}>
+      <section className="relative overflow-hidden" style={{ height: '75vh', minHeight: '500px', maxHeight: '800px' }}>
 
         {/* Slides backgrounds */}
         {heroSlides.map((s, i) => (

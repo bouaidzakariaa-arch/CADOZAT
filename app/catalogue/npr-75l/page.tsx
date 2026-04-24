@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import BrochureForm from '@/app/components/BrochureForm' 
 
 const images = [
   '/images/camions/serie-n/img1.jpg',
@@ -284,7 +285,7 @@ export default function NPR75LPage() {
           </div>
         </div>
       </section>
-
+      <BrochureForm modele="npr-75ll" marque="isuzu" nomModele="NPR 75L"/>
       <section className="py-16 bg-[#1B2B6B] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
         <div className="relative max-w-4xl mx-auto px-6 text-center">

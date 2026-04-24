@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-/* ══════════════════════════════════════════════
-   PALETTE PAR MARQUE
-   ══════════════════════════════════════════════ */
 const BRANDS = {
   isuzu: {
     primary:      '#CC0000',
@@ -28,41 +25,21 @@ const BRANDS = {
     headerW: 160, headerH: 64,
     footerW: 80, footerH: 40,
   },
-  marche: {
-    primary:      '#CC0000',
-    primaryDark:  '#2D6A4F',
-    primaryLight: '#fdf8f5',
-    primaryFaint: 'rgba(204,0,0,0.05)',
-    gradient:     'linear-gradient(135deg, #CC0000, #2D6A4F)',
-    logo: '/images/logos/marche.png',
-    tabW: 100, tabH: 48,
-    headerW: 160, headerH: 64,
-    footerW: 80, footerH: 40,
-  },
 } as const
 
 type BrandId = keyof typeof BRANDS
 
-/* ══════════════════════════════════════════════
-   MOTIF ZELLIGE
-   ══════════════════════════════════════════════ */
 const ZELLIGE = `data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23CC0000' fill-opacity='0.025'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5L30 0zm0 40l8.66 5v10L30 60l-8.66-5V45L30 40zM0 20l8.66 5v10L0 40l-8.66-5V25L0 20zm60 0l8.66 5v10L60 40l-8.66-5V25L60 20zM15 10l8.66 5v10L15 30l-8.66-5V15L15 10zm30 0l8.66 5v10L45 30l-8.66-5V15L45 10zm-30 30l8.66 5v10L15 60l-8.66-5V45L15 40zm30 0l8.66 5v10L45 60l-8.66-5V45L45 40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E`
 
-/* ══════════════════════════════════════════════
-   TICKER
-   ══════════════════════════════════════════════ */
 const TICKER = [
   { icon: '🚛', text: 'Concessionnaire officiel Isuzu · Karry au Maroc' },
   { icon: '📞', text: 'Service après-vente 6j/7 — Lundi au Samedi, 8h à 18h' },
   { icon: '📍', text: 'Présents à Ouarzazate · Agadir · Tinghir' },
   { icon: '🏆', text: 'Leader des véhicules utilitaires & industriels au Sud du Maroc' },
-  { icon: '📋', text: 'Marchés publics & appels d\'offres — Solutions sur mesure pour collectivités' },
+  { icon: '📋', text: "Marchés publics & appels d'offres — Solutions sur mesure pour collectivités" },
   { icon: '✉️', text: 'contact@cadozat.com · 0524 885 025' },
 ]
 
-/* ══════════════════════════════════════════════
-   CATALOGUE — sans Great Wall
-   ══════════════════════════════════════════════ */
 const menuMarques = [
   {
     id: 'isuzu' as BrandId,
@@ -119,55 +96,30 @@ const menuMarques = [
       },
     ],
   },
-  {
-    id: 'marche' as BrandId,
-    nom: 'Marché public',
-    tag: "Bons de commande & Appels d'offres",
-    sections: [
-      {
-        titre: 'Solutions', subtitle: 'Secteur public', href: '/marche-public',
-        items: [
-          { nom: 'Véhicules municipaux', href: '/marche-public' },
-          { nom: 'Camions bennes', href: '/marche-public' },
-          { nom: 'Véhicules de voirie', href: '/marche-public' },
-          { nom: 'Flotte administrative', href: '/marche-public' },
-        ],
-      },
-    ],
-  },
 ]
 
-/* ══════════════════════════════════════════════
-   COMPOSANT LOGO
-   ══════════════════════════════════════════════ */
 function BrandLogo({ id, zone, className = '' }: { id: BrandId; zone: 'tab' | 'header' | 'footer'; className?: string }) {
   const [imgError, setImgError] = useState(false)
   const b = BRANDS[id]
   const w = zone === 'tab' ? b.tabW : zone === 'header' ? b.headerW : b.footerW
   const h = zone === 'tab' ? b.tabH : zone === 'header' ? b.headerH : b.footerH
-  const gradient = 'gradient' in b ? b.gradient : `linear-gradient(135deg, ${b.primary}, ${b.primaryDark})`
+  const gradient = `linear-gradient(135deg, ${b.primary}, ${b.primaryDark})`
   const fontSize = zone === 'header' ? 11 : zone === 'tab' ? 9 : 8
-
   return (
-    <div
-      className={`relative flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg ${className}`}
-      style={{ width: w, height: h, background: imgError ? gradient : 'transparent' }}
-    >
+    <div className={`relative flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg ${className}`}
+      style={{ width: w, height: h, background: imgError ? gradient : 'transparent' }}>
       {!imgError && (
         <Image src={b.logo} alt={`Logo ${id}`} fill className="object-contain p-1" onError={() => setImgError(true)} />
       )}
       {imgError && (
         <span className="font-black text-white text-center leading-none px-1 select-none" style={{ fontSize, letterSpacing: '0.05em' }}>
-          {id === 'marche' ? 'M.P.' : id.toUpperCase()}
+          {id.toUpperCase()}
         </span>
       )}
     </div>
   )
 }
 
-/* ══════════════════════════════════════════════
-   NAVBAR
-   ══════════════════════════════════════════════ */
 export default function Navbar() {
   const [ouvert, setOuvert]             = useState(false)
   const [gammeOuverte, setGammeOuverte] = useState(false)
@@ -187,10 +139,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  const grad = (id: BrandId) =>
-    'gradient' in BRANDS[id]
-      ? (BRANDS[id] as typeof BRANDS['marche']).gradient
-      : `linear-gradient(135deg, ${BRANDS[id].primary}, ${BRANDS[id].primaryDark})`
+  const grad = (id: BrandId) => `linear-gradient(135deg, ${BRANDS[id].primary}, ${BRANDS[id].primaryDark})`
 
   const CSS = `
     @keyframes ticker-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
@@ -203,7 +152,6 @@ export default function Navbar() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
-
       <header className="w-full fixed top-0 z-50 transition-all duration-300"
         style={{ filter: scrolled ? 'drop-shadow(0 4px 24px rgba(0,0,0,0.13))' : 'none' }}>
 
@@ -222,11 +170,9 @@ export default function Navbar() {
           <div className="absolute right-0 top-0 bottom-0 z-10 w-16"
             style={{ background: 'linear-gradient(270deg,#0f2419 60%,transparent)' }} />
           <div className="flex items-center h-full pl-24">
-            <div
-              className={`ticker-track${tickerPaused ? ' paused' : ''}`}
+            <div className={`ticker-track${tickerPaused ? ' paused' : ''}`}
               onMouseEnter={() => setTickerPaused(true)}
-              onMouseLeave={() => setTickerPaused(false)}
-            >
+              onMouseLeave={() => setTickerPaused(false)}>
               {[...TICKER, ...TICKER].map((item, i) => (
                 <span key={i} className="flex items-center gap-2 px-8 whitespace-nowrap font-medium"
                   style={{ color: 'rgba(255,255,255,.82)' }}>
@@ -257,11 +203,11 @@ export default function Navbar() {
             <div className="flex justify-between items-center transition-all duration-300"
               style={{ height: scrolled ? '60px' : '72px' }}>
 
-              {/* Logo CADOZAT */}
+              {/* Logo */}
               <Link href="/" className="flex items-center gap-3 flex-shrink-0 group" onClick={fermer}>
                 <div className="relative transition-all duration-300 overflow-hidden rounded-xl"
                   style={{ width: scrolled ? 40 : 48, height: scrolled ? 40 : 48 }}>
-                  <Image src="/images/logo.png" alt="CADOZAT" fill className="object-contain" priority />
+                  <Image src="/images/logo.png" alt="CADOZAT" fill className="object-contain" sizes="48px" priority />
                 </div>
                 <div className="hidden sm:block">
                   <div className="font-black tracking-tight leading-none transition-all duration-300 group-hover:opacity-75"
@@ -289,17 +235,17 @@ export default function Navbar() {
                   </li>
                 ))}
 
-                {/* Bouton Notre gamme */}
+                {/* Notre gamme */}
                 <li onMouseEnter={() => setGammeOuverte(true)}>
-                  <button
-                    onClick={() => setGammeOuverte(!gammeOuverte)}
+                  <button onClick={() => setGammeOuverte(!gammeOuverte)}
                     className="flex items-center gap-1.5 px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg relative overflow-hidden group/gamme"
                     style={{
                       color: gammeOuverte ? 'white' : '#374151',
                       background: gammeOuverte ? 'linear-gradient(135deg,#CC0000,#2D6A4F)' : 'transparent',
                     }}>
                     {!gammeOuverte && (
-                      <span className="absolute inset-0 opacity-0 group-hover/gamme:opacity-100 transition-opacity duration-200 rounded-lg" style={{ background: 'rgba(204,0,0,.06)' }} />
+                      <span className="absolute inset-0 opacity-0 group-hover/gamme:opacity-100 transition-opacity duration-200 rounded-lg"
+                        style={{ background: 'rgba(204,0,0,.06)' }} />
                     )}
                     <span className="relative">Notre gamme</span>
                     <svg className={`w-3.5 h-3.5 relative transition-transform duration-200 ${gammeOuverte ? 'rotate-180' : ''}`}
@@ -309,7 +255,19 @@ export default function Navbar() {
                   </button>
                 </li>
 
-                {[{ label: 'Services', href: '/services' }, { label: 'Contact', href: '/contact' }].map(item => (
+                {/* Marché public */}
+                <li>
+                  <Link href="/marche-public"
+                    className="relative flex items-center px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg"
+                    style={{ color: '#374151' }}
+                    onClick={fermer}
+                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'white'; el.style.background = 'linear-gradient(135deg,#CC0000,#2D6A4F)' }}
+                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = '#374151'; el.style.background = 'transparent' }}>
+                    Marché public
+                  </Link>
+                </li>
+
+                {[{ label: 'Services après-vente', href: '/services' }, { label: 'Contact', href: '/contact' }].map(item => (
                   <li key={item.label}>
                     <Link href={item.href}
                       className="relative flex items-center px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg"
@@ -323,28 +281,34 @@ export default function Navbar() {
                 ))}
               </ul>
 
-              {/* CTAs */}
+              {/* ── CTAs desktop ── */}
               <div className="hidden lg:flex items-center gap-2">
-                <a href="tel:0524885025"
+
+                {/* Bouton Admin — SÉPARÉ du bouton Appeler */}
+                <Link href="/admin"
                   className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
                   style={{ color: '#2D6A4F', border: '1.5px solid rgba(45,106,79,.4)' }}
                   onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#2D6A4F'; el.style.color = 'white' }}
                   onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; el.style.color = '#2D6A4F' }}>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                  </svg>
+                  Admin
+                </Link>
+
+                {/* Bouton Appeler */}
+                <a href="tel:0524885025"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
+                  style={{ color: '#374151', border: '1.5px solid rgba(0,0,0,.15)' }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#374151'; el.style.color = 'white' }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; el.style.color = '#374151' }}>
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
-                  <Link href="/admin"
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
-                      style={{ color: '#2D6A4F', border: '1.5px solid rgba(45,106,79,.4)' }}
-                      onMouseEnter={e=>{ const el=e.currentTarget as HTMLElement; el.style.background='#2D6A4F'; el.style.color='white' }}
-                      onMouseLeave={e=>{ const el=e.currentTarget as HTMLElement; el.style.background=''; el.style.color='#2D6A4F' }}>
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                      </svg>
-                      Admin
-                  </Link>
                   Appeler
                 </a>
+
+                {/* Bouton Devis */}
                 <Link href="/devis"
                   className="flex items-center gap-2 px-5 py-2 text-sm font-extrabold text-white rounded-lg transition-all hover:scale-[1.02] active:scale-[.98]"
                   onClick={fermer}
@@ -356,7 +320,7 @@ export default function Navbar() {
                 </Link>
               </div>
 
-              {/* Burger */}
+              {/* Burger mobile */}
               <button className="lg:hidden p-2 rounded-lg transition-all"
                 style={{ background: ouvert ? 'rgba(204,0,0,.06)' : 'transparent' }}
                 onClick={() => { setOuvert(!ouvert); setGammeOuverte(false) }}>
@@ -370,9 +334,7 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* ══════════════════════════════════════════════
-            MEGA MENU DESKTOP
-            ══════════════════════════════════════════════ */}
+        {/* ══ MEGA MENU DESKTOP ══ */}
         {gammeOuverte && (
           <div className="hidden lg:block w-full bg-white z-40 megamenu-enter"
             style={{ boxShadow: '0 16px 60px rgba(0,0,0,.14)', backgroundImage: `url("${ZELLIGE}")`, backgroundSize: '60px 60px' }}
@@ -380,11 +342,9 @@ export default function Navbar() {
             <div className="absolute inset-0 bg-white/96 pointer-events-none" />
             <div className="relative max-w-7xl mx-auto flex flex-col" style={{ minHeight: '420px' }}>
 
-              {/* Onglets marques */}
-              <div className="flex border-b" style={{ borderColor: 'rgba(0,0,0,.07)', background: 'rgba(250,248,248,.95)' }}>
-                <div className="flex items-center px-6 border-r" style={{ borderColor: 'rgba(0,0,0,.07)' }}>
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-[.25em] whitespace-nowrap">Nos marques</p>
-                </div>
+              {/* Onglets marques — centrés */}
+              <div className="flex border-b justify-center gap-8"
+                style={{ borderColor: 'rgba(0,0,0,.07)', background: 'rgba(250,248,248,.95)' }}>
                 {menuMarques.map(marque => {
                   const isActive = activeMarque === marque.id
                   const b = BRANDS[marque.id]
@@ -397,7 +357,7 @@ export default function Navbar() {
                       <span className="absolute bottom-0 left-0 right-0 transition-all duration-300"
                         style={{
                           height: '3px',
-                          background: 'gradient' in b ? b.gradient : `linear-gradient(to right,${b.primary},${b.primaryDark})`,
+                          background: `linear-gradient(to right,${b.primary},${b.primaryDark})`,
                           transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
                           transformOrigin: 'left',
                         }} />
@@ -414,7 +374,7 @@ export default function Navbar() {
                         <div className="text-sm font-extrabold leading-none mb-0.5 transition-colors duration-200"
                           style={{ color: isActive ? b.primary : '#374151' }}>{marque.nom}</div>
                         <div className="text-[10px] font-bold leading-none transition-colors duration-200"
-                          style={{ color: isActive ? b.primaryDark : '#9ca3af' }}>{marque.tag.split('·')[0].trim()}</div>
+                          style={{ color: isActive ? b.primaryDark : '#9ca3af' }}>{marque.tag}</div>
                       </div>
                     </button>
                   )
@@ -528,9 +488,7 @@ export default function Navbar() {
           </div>
         )}
 
-        {/* ══════════════════════════════════════════════
-            MENU MOBILE
-            ══════════════════════════════════════════════ */}
+        {/* ══ MENU MOBILE ══ */}
         {ouvert && (
           <div className="lg:hidden bg-white border-t max-h-[85vh] overflow-y-auto relative z-50"
             style={{ borderColor: 'rgba(0,0,0,.07)', boxShadow: '0 12px 40px rgba(0,0,0,.12)', backgroundImage: `url("${ZELLIGE}")`, backgroundSize: '60px 60px' }}>
@@ -541,20 +499,24 @@ export default function Navbar() {
                 <div className="flex-1" style={{ background: '#2D6A4F' }} />
               </div>
               <div className="px-4 py-4 space-y-1">
-                {['/', '/societe'].map((href, i) => (
-                  <Link key={i} href={href}
+                {[{ label: 'Accueil', href: '/' }, { label: 'Société', href: '/societe' }].map(item => (
+                  <Link key={item.href} href={item.href}
                     className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] rounded-lg hover:bg-red-50/60 transition-all"
                     onClick={() => setOuvert(false)}>
-                    {href === '/' ? 'Accueil' : 'Société'}
+                    {item.label}
                   </Link>
                 ))}
 
                 {/* Gamme mobile */}
                 <div>
                   <div className="flex items-center justify-between">
-                    <Link href="/catalogue" className="flex-1 py-3 px-4 text-sm font-bold text-gray-700 rounded-l-lg" onClick={() => setOuvert(false)}>Notre gamme</Link>
-                    <button onClick={() => setMobileGamme(!mobileGamme)} className="py-3 px-4 transition-colors" style={{ color: mobileGamme ? '#CC0000' : '#9ca3af' }}>
-                      <svg className={`w-4 h-4 transition-transform ${mobileGamme ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <Link href="/catalogue" className="flex-1 py-3 px-4 text-sm font-bold text-gray-700 rounded-l-lg"
+                      onClick={() => setOuvert(false)}>Notre gamme</Link>
+                    <button onClick={() => setMobileGamme(!mobileGamme)}
+                      className="py-3 px-4 transition-colors"
+                      style={{ color: mobileGamme ? '#CC0000' : '#9ca3af' }}>
+                      <svg className={`w-4 h-4 transition-transform ${mobileGamme ? 'rotate-180' : ''}`}
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
@@ -570,11 +532,11 @@ export default function Navbar() {
                               className="w-full flex items-center justify-between px-4 py-3 text-left"
                               style={{ background: b.primaryLight }}>
                               <div className="flex items-center gap-3">
-                                <div className="overflow-hidden rounded-lg flex-shrink-0" style={{ width: b.tabW * 0.75, height: b.tabH * 0.75 }}>
+                                <div className="overflow-hidden rounded-lg flex-shrink-0"
+                                  style={{ width: b.tabW * 0.75, height: b.tabH * 0.75 }}>
                                   <BrandLogo id={marque.id} zone="tab" />
                                 </div>
                                 <span className="text-sm font-extrabold text-gray-800">{marque.nom}</span>
-                                <span className="text-xs font-bold" style={{ color: b.primaryDark }}>{marque.tag.split('·')[0].trim()}</span>
                               </div>
                               <svg className={`w-4 h-4 transition-transform ${mobileMarque === marque.id ? 'rotate-180' : ''}`}
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -593,7 +555,8 @@ export default function Navbar() {
                                         <Link key={ii} href={item.href}
                                           className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all"
                                           onClick={() => { setOuvert(false); setMobileGamme(false); setMobileMarque(null) }}>
-                                          <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: b.primaryDark }}>
+                                          <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            style={{ color: b.primaryDark }}>
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                           </svg>
                                           {item.nom}
@@ -611,20 +574,35 @@ export default function Navbar() {
                   )}
                 </div>
 
-                {['/services', '/contact'].map((href, i) => (
-                  <Link key={i} href={href}
+                {/* Marché public mobile */}
+                <Link href="/marche-public"
+                  className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] hover:bg-red-50/60 rounded-lg transition-all"
+                  onClick={() => setOuvert(false)}>
+                  Marché public
+                </Link>
+
+                {[{ label: 'Services après-vente', href: '/services' }, { label: 'Contact', href: '/contact' }].map(item => (
+                  <Link key={item.href} href={item.href}
                     className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] hover:bg-red-50/60 rounded-lg transition-all"
                     onClick={() => setOuvert(false)}>
-                    {href === '/services' ? 'Services après-vente' : 'Contact'}
+                    {item.label}
                   </Link>
                 ))}
 
+                {/* CTAs mobile */}
                 <div className="pt-3 space-y-2 border-t" style={{ borderColor: 'rgba(0,0,0,.07)' }}>
-                  <a href="tel:0524885025"
+                  <Link href="/admin"
                     className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold rounded-xl transition-all"
                     style={{ color: '#2D6A4F', border: '1.5px solid rgba(45,106,79,.4)' }}
-                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#2D6A4F'; el.style.color = 'white' }}
-                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; el.style.color = '#2D6A4F' }}>
+                    onClick={() => setOuvert(false)}>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    Admin
+                  </Link>
+                  <a href="tel:0524885025"
+                    className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold rounded-xl transition-all"
+                    style={{ color: '#374151', border: '1.5px solid rgba(0,0,0,.15)' }}>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
@@ -644,7 +622,6 @@ export default function Navbar() {
             </div>
           </div>
         )}
-
       </header>
     </>
   )

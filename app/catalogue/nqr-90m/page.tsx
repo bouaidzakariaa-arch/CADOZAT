@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import BrochureForm from '@/app/components/BrochureForm'
 
 const images = [
   '/images/camions/serie-n/img1.jpg',
@@ -118,6 +119,8 @@ const modeles_nseries = [
 export default function NQR90MPage() {
   return (
     <main className="bg-white">
+
+      {/* HERO */}
       <section className="relative bg-[#1B2B6B] py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC0000] rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
@@ -148,7 +151,7 @@ export default function NQR90MPage() {
                 <div className="w-6 h-1 bg-[#C9A84C] rounded-full"></div>
               </div>
               <p className="text-white/70 text-lg leading-relaxed mb-8">
-                Le NQR 90M est un camion moyen 9.5T sur châssis long. La version longue du NQR avec 4 475mm d'empattement. Moteur EURO 5 190 ch et ASC pour une sécurité maximale sur longue distance.
+                Le NQR 90M est un camion moyen 9.5T sur châssis long. La version longue du NQR avec 4 475mm d&apos;empattement. Moteur EURO 5 190 ch et ASC pour une sécurité maximale sur longue distance.
                 <span className="text-[#C9A84C] font-bold"> Garantie 3 ans SDAMA.</span>
               </p>
               <a href="tel:0524885025" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-full border border-white/30 transition-all">
@@ -176,6 +179,7 @@ export default function NQR90MPage() {
         </div>
       </section>
 
+      {/* GALERIE */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
@@ -196,6 +200,7 @@ export default function NQR90MPage() {
         </div>
       </section>
 
+      {/* FICHE TECHNIQUE */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -227,6 +232,7 @@ export default function NQR90MPage() {
         </div>
       </section>
 
+      {/* DIMENSIONS */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -249,6 +255,7 @@ export default function NQR90MPage() {
         </div>
       </section>
 
+      {/* ÉQUIPEMENTS */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -274,6 +281,7 @@ export default function NQR90MPage() {
         </div>
       </section>
 
+      {/* AUTRES MODÈLES */}
       <section className="py-12 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Autres modèles N-Series</p>
@@ -285,6 +293,10 @@ export default function NQR90MPage() {
         </div>
       </section>
 
+      {/* BROCHURE */}
+      <BrochureForm modele="nqr-90m" marque="isuzu" nomModele="NQR 90M" />
+
+      {/* CTA FINAL */}
       <section className="py-16 bg-[#1B2B6B] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
         <div className="relative max-w-4xl mx-auto px-6 text-center">
@@ -301,6 +313,7 @@ export default function NQR90MPage() {
           </div>
         </div>
       </section>
+
     </main>
   )
 }

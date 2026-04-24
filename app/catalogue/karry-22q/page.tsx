@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import BrochureForm from '@/app/components/BrochureForm'
 
 // ── Composant Galerie (identique Q22B) ─────────
 function GaleriePhotos() {
@@ -379,7 +380,7 @@ export default function KarryQ22QPage() {
           </div>
         </div>
       </section>
-
+      <BrochureForm modele="karry-q22d" marque="karry" nomModele="Karry Q22Q" />
       {/* ── CTA FINAL ── */}
       <section className="py-20" style={{ background: 'linear-gradient(135deg, #003d78, #0057A8)' }}>
         <div className="max-w-2xl mx-auto px-6 text-center">

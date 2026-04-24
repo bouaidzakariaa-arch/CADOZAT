@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import BrochureForm from '@/app/components/BrochureForm'
 
 const imagesExt = [
   '/images/camions/nmr-77e/ext1.jpg',
@@ -416,7 +417,7 @@ export default function NMR77EPage() {
           </div>
         </div>
       </section>
-
+      <BrochureForm modele="nmr-77e" marque="isuzu" nomModele="NMR 77E" />
       {/* CTA */}
       <section className="py-20 bg-[#1B2B6B] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
