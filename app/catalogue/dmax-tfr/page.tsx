@@ -7,16 +7,18 @@ const variantes = [
   {
     nom: 'Pick-up SC 4×2',
     badge: 'Simple Cabine',
-    badgeColor: 'bg-[#CC0000]',
+    badgeColor: 'bg-red-600',
     description: 'Pick-up simple cabine 4×2 — La solution idéale pour les professionnels exigeant robustesse et polyvalence. Motorisation diesel puissante et économique.',
     points: ['2 portes · 2 sièges', 'Transmission 4×2', 'Moteur 1 898 cc Diesel', '164 cv @ 3 800 tr/min'],
+    accent: '#CC0000',
   },
   {
     nom: 'Pick-up SC 4×2 Clim',
     badge: 'Climatisation',
-    badgeColor: 'bg-[#C9A84C]',
+    badgeColor: 'bg-amber-500',
     description: 'Pick-up simple cabine 4×2 avec climatisation — Tout le confort pour les longues missions. Idéal pour les régions chaudes du Sud marocain.',
     points: ['2 portes · 2 sièges', 'Transmission 4×2', 'Climatisation de série', '164 cv @ 3 800 tr/min'],
+    accent: '#C9A84C',
   },
   {
     nom: 'Pick-up DC 4×2',
@@ -24,6 +26,7 @@ const variantes = [
     badgeColor: 'bg-[#1B2B6B]',
     description: 'Pick-up double cabine 4×2 — 5 places pour transporter votre équipe. Confort premium et équipements de sécurité complets.',
     points: ['4 portes · 5 sièges', 'Transmission 4×2', '7 airbags de série', 'AEB + TCS inclus'],
+    accent: '#1B2B6B',
   },
 ]
 
@@ -124,47 +127,60 @@ const equipements = [
   'Fermeture télécommande',
 ]
 
+const quickSpecs = [
+  { icon: '⚡', label: 'Puissance', valeur: '164 cv' },
+  { icon: '🔄', label: 'Couple', valeur: '360 Nm' },
+  { icon: '⛽', label: 'Consommation', valeur: '8,1 L/100km' },
+  { icon: '📏', label: 'Cylindrée', valeur: '1 898 cc' },
+  { icon: '🛡️', label: 'Airbags', valeur: '7 airbags' },
+  { icon: '🔧', label: 'Transmission', valeur: '4×2' },
+]
+
 export default function DMaxTFRPage() {
   return (
-    <main className="bg-white">
+    <main className="bg-white font-sans">
 
-      {/* HERO */}
-      <section className="relative bg-[#1B2B6B] py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC0000] opacity-10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
-          <div className="absolute inset-0 opacity-5" style={{backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '60px 60px'}}></div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
+      {/* ── HERO ── light, open, professional */}
+      <section className="bg-white border-b border-gray-100 py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-6">
 
-        <div className="relative max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-white/40 text-sm mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href="/catalogue" className="hover:text-white transition-colors">Notre gamme</Link>
-            <span>/</span>
-            <span className="text-[#C9A84C] font-semibold">D-MAX TFR</span>
-          </div>
+          <nav className="flex items-center gap-2 text-gray-400 text-sm mb-10">
+            <Link href="/" className="hover:text-gray-700 transition-colors">Accueil</Link>
+            <span className="text-gray-300">/</span>
+            <Link href="/catalogue" className="hover:text-gray-700 transition-colors">Notre gamme</Link>
+            <span className="text-gray-300">/</span>
+            <span className="text-[#CC0000] font-semibold">D-MAX TFR</span>
+          </nav>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left — Title & intro */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="bg-[#CC0000] text-white text-xs font-bold px-3 py-1 rounded-full">Isuzu</span>
-                <span className="bg-white/10 text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">Pick-up</span>
+              <div className="flex items-center gap-2 mb-5">
+                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full tracking-wide">Isuzu</span>
+                <span className="border border-gray-200 text-gray-500 text-xs font-medium px-3 py-1 rounded-full">Pick-up</span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-black text-white mb-2">
+
+              <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-none mb-3 tracking-tight">
                 D-MAX <span className="text-[#CC0000]">TFR</span>
               </h1>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-1 bg-[#CC0000] rounded-full"></div>
-                <div className="w-6 h-1 bg-[#C9A84C] rounded-full"></div>
+
+              {/* Underline accent */}
+              <div className="flex items-center gap-2 mb-7">
+                <div className="w-10 h-[3px] bg-[#CC0000] rounded-full"></div>
+                <div className="w-5 h-[3px] bg-[#C9A84C] rounded-full"></div>
               </div>
-              <p className="text-white/70 text-lg leading-relaxed mb-8">
-                La gamme D-MAX TFR d&apos;Isuzu — robustesse légendaire, fiabilité
-                prouvée et technologies de sécurité avancées. Disponible en
-                3 variantes adaptées à tous vos besoins professionnels.
+
+              <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">
+                Robustesse légendaire, fiabilité prouvée et technologies de sécurité avancées.
+                Disponible en 3 variantes adaptées à tous vos besoins professionnels.
               </p>
-              <a href="tel:0524885025" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-full border border-white/30 transition-all">
+
+              <a
+                href="tel:0524885025"
+                className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full transition-colors text-sm shadow-sm"
+              >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                 </svg>
@@ -172,20 +188,13 @@ export default function DMaxTFRPage() {
               </a>
             </div>
 
-            {/* Specs rapides */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: '⚡', label: 'Puissance', valeur: '164 cv' },
-                { icon: '🔄', label: 'Couple', valeur: '360 Nm' },
-                { icon: '⛽', label: 'Consommation', valeur: '8,1 L/100km' },
-                { icon: '📏', label: 'Cylindrée', valeur: '1 898 cc' },
-                { icon: '🛡️', label: 'Airbags', valeur: '7 airbags' },
-                { icon: '🔧', label: 'Transmission', valeur: '4×2' },
-              ].map((s, i) => (
-                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:border-[#CC0000]/50 transition-all">
-                  <div className="text-2xl mb-2">{s.icon}</div>
-                  <div className="text-white/50 text-xs mb-0.5">{s.label}</div>
-                  <div className="text-white font-black text-lg">{s.valeur}</div>
+            {/* Right — Quick specs grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {quickSpecs.map((s, i) => (
+                <div key={i} className="bg-gray-50 border border-gray-100 rounded-2xl p-5 hover:border-red-200 hover:bg-red-50/30 transition-all">
+                  <div className="text-xl mb-3">{s.icon}</div>
+                  <div className="text-gray-400 text-xs mb-1">{s.label}</div>
+                  <div className="text-gray-900 font-bold text-base">{s.valeur}</div>
                 </div>
               ))}
             </div>
@@ -193,47 +202,47 @@ export default function DMaxTFRPage() {
         </div>
       </section>
 
-      {/* 3 VARIANTES */}
-      <section className="py-16 bg-gray-50">
+      {/* ── SECTION LABEL helper ── */}
+      {/* reusable pattern below */}
+
+      {/* ── 3 VARIANTES ── */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Choisissez votre version</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">3 variantes disponibles</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-            </div>
+
+          <div className="mb-12">
+            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-2">Versions disponibles</p>
+            <h2 className="text-3xl font-black text-gray-900">3 variantes pour chaque besoin</h2>
+            <div className="w-12 h-[3px] bg-[#C9A84C] mt-3 rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {variantes.map((v, i) => (
-              <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border-2 border-gray-100 hover:border-[#CC0000]/30 group">
-                {/* Header */}
-                <div className="bg-[#1B2B6B] p-6 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full translate-x-4 -translate-y-4"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C9A84C]"></div>
-                  <span className={`inline-block ${v.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full mb-3`}>
+              <div key={i} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all flex flex-col">
+
+                {/* Top bar */}
+                <div className="h-1 w-full" style={{ background: v.accent }}></div>
+
+                <div className="p-6 flex-1 flex flex-col">
+                  <span className={`inline-block ${v.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full mb-4 self-start`}>
                     {v.badge}
                   </span>
-                  <h3 className="text-white font-black text-lg">{v.nom}</h3>
-                </div>
-                {/* Contenu */}
-                <div className="p-6">
-                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{v.description}</p>
-                  <div className="space-y-2 mb-5">
+                  <h3 className="text-gray-900 font-bold text-lg mb-3">{v.nom}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-1">{v.description}</p>
+
+                  <ul className="space-y-2 mb-6">
                     {v.points.map((pt, j) => (
-                      <div key={j} className="flex items-center gap-2 text-sm text-gray-600">
-                        <span className="w-1.5 h-1.5 bg-[#CC0000] rounded-full flex-shrink-0"></span>
+                      <li key={j} className="flex items-center gap-2 text-sm text-gray-600">
+                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: v.accent }}></span>
                         {pt}
-                      </div>
+                      </li>
                     ))}
-                  </div>
-                  {/* Bouton contact uniquement */}
+                  </ul>
+
                   <a
                     href="tel:0524885025"
-                    className="flex items-center justify-center gap-2 border-2 border-[#1B2B6B] text-[#1B2B6B] hover:bg-[#1B2B6B] hover:text-white text-sm font-bold py-3 rounded-full transition-all"
+                    className="flex items-center justify-center gap-2 border border-gray-200 text-gray-700 hover:bg-gray-50 text-sm font-semibold py-3 rounded-xl transition-colors"
                   >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                     </svg>
                     Nous contacter pour infos
@@ -245,31 +254,31 @@ export default function DMaxTFRPage() {
         </div>
       </section>
 
-      {/* FICHE TECHNIQUE COMPLÈTE */}
-      <section className="py-16 bg-white">
+      {/* ── FICHE TECHNIQUE ── */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Spécifications</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">Fiche technique complète</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-            </div>
-            <p className="text-gray-400 text-sm mt-3">Caractéristiques communes aux 3 variantes TFR</p>
+
+          <div className="mb-12">
+            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-2">Spécifications</p>
+            <h2 className="text-3xl font-black text-gray-900">Fiche technique complète</h2>
+            <div className="w-12 h-[3px] bg-[#C9A84C] mt-3 rounded-full"></div>
+            <p className="text-gray-400 text-sm mt-4">Caractéristiques communes aux 3 variantes TFR</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {specs.map((cat, i) => (
-              <div key={i} className="bg-white rounded-3xl border-2 border-gray-100 hover:border-[#CC0000]/20 hover:shadow-lg transition-all overflow-hidden">
-                <div className="bg-gray-50 border-b-2 border-gray-100 px-6 py-4 flex items-center gap-3">
-                  <span className="text-2xl">{cat.icon}</span>
-                  <h3 className="font-black text-[#1B2B6B] text-sm uppercase tracking-wide">{cat.categorie}</h3>
+              <div key={i} className="rounded-2xl border border-gray-100 overflow-hidden hover:shadow-sm transition-all">
+                {/* Category header */}
+                <div className="flex items-center gap-3 px-5 py-4 bg-gray-50 border-b border-gray-100">
+                  <span className="text-xl">{cat.icon}</span>
+                  <h3 className="font-bold text-gray-700 text-xs uppercase tracking-wider">{cat.categorie}</h3>
                 </div>
-                <div className="p-4">
+                {/* Rows */}
+                <div className="divide-y divide-gray-50">
                   {cat.items.map((item, j) => (
-                    <div key={j} className={`flex items-center justify-between py-2.5 ${j < cat.items.length - 1 ? 'border-b border-gray-100' : ''}`}>
-                      <span className="text-gray-500 text-xs font-medium">{item.label}</span>
-                      <span className="text-[#1B2B6B] text-xs font-bold text-right ml-4 max-w-[55%]">{item.valeur}</span>
+                    <div key={j} className="flex items-center justify-between px-5 py-3">
+                      <span className="text-gray-400 text-xs">{item.label}</span>
+                      <span className="text-gray-800 text-xs font-semibold text-right ml-4 max-w-[55%]">{item.valeur}</span>
                     </div>
                   ))}
                 </div>
@@ -279,60 +288,70 @@ export default function DMaxTFRPage() {
         </div>
       </section>
 
-      {/* ÉQUIPEMENTS DE SÉRIE */}
-      <section className="py-16 bg-gray-50">
+      {/* ── ÉQUIPEMENTS DE SÉRIE ── */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Inclus de série</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">Équipements de série</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-            </div>
+
+          <div className="mb-12">
+            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-2">Inclus de série</p>
+            <h2 className="text-3xl font-black text-gray-900">Équipements de série</h2>
+            <div className="w-12 h-[3px] bg-[#C9A84C] mt-3 rounded-full"></div>
           </div>
-          <div className="bg-white rounded-3xl border-2 border-gray-100 p-8">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div className="bg-white rounded-2xl border border-gray-100 p-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {equipements.map((eq, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 transition-colors group">
-                  <div className="w-6 h-6 bg-[#CC0000] rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/>
+                <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors">
+                  <div className="w-5 h-5 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 text-[#CC0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/>
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm font-medium">{eq}</span>
+                  <span className="text-gray-600 text-sm">{eq}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </section>
+
+      {/* ── BROCHURE FORM ── */}
       <BrochureForm modele="dmax-tfr" marque="isuzu" nomModele="D-MAX TFR" />
-      {/* CTA CONTACT UNIQUEMENT */}
-      <section className="py-16 bg-[#1B2B6B] relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC0000] rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black text-white mb-2">
-            Intéressé par le <span className="text-[#CC0000]">D-MAX TFR</span> ?
+
+      {/* ── CTA FINAL ── light version */}
+      <section className="py-20 bg-white border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+
+          <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-3">Intéressé ?</p>
+          <h2 className="text-3xl font-black text-gray-900 mb-2">
+            Parlez-nous du <span className="text-[#CC0000]">D-MAX TFR</span>
           </h2>
-          <div className="w-16 h-0.5 bg-[#C9A84C] mx-auto my-4"></div>
-          <p className="text-white/60 mb-8">
+          <div className="w-12 h-[3px] bg-[#C9A84C] mx-auto mt-3 mb-6 rounded-full"></div>
+          <p className="text-gray-400 text-base mb-10">
             Contactez notre équipe dans l&apos;une de nos 3 agences pour
             plus d&apos;informations sur le D-MAX TFR.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a href="tel:0524885025" className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-8 py-4 rounded-full transition-all shadow-lg">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a
+              href="tel:0524885025"
+              className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-full transition-colors text-sm shadow-sm"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
               </svg>
               0524 885 025
             </a>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full border border-white/30 transition-all">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 hover:bg-gray-50 font-semibold px-7 py-3.5 rounded-full transition-colors text-sm"
+            >
               Nous contacter
             </Link>
-            <Link href="/catalogue" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full border border-white/30 transition-all">
+            <Link
+              href="/catalogue"
+              className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 hover:bg-gray-50 font-semibold px-7 py-3.5 rounded-full transition-colors text-sm"
+            >
               Voir toute la gamme
             </Link>
           </div>
