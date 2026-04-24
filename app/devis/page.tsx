@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
+/* ─── données ─────────────────────────────────────────────────────────── */
 const vehiculesData = [
   {
     serie: 'D-MAX', couleur: '#CC0000',
@@ -17,13 +18,13 @@ const vehiculesData = [
   {
     serie: 'N-Series', couleur: '#1B2B6B',
     modeles: [
-      { nom: 'NMR 77E — 3.5T Châssis court',  value: 'nmr-77e' },
-      { nom: 'NMR 85H — 3.5T Châssis long',   value: 'nmr-85h' },
-      { nom: 'NNR 85H — 3.5T Châssis long',   value: 'nnr-85h' },
-      { nom: 'NPR 75K — 7.5T Châssis court',  value: 'npr-75k' },
-      { nom: 'NPR 75L — 7.5T Châssis long',   value: 'npr-75l' },
-      { nom: 'NQR 90K — 9.5T Châssis court',  value: 'nqr-90k' },
-      { nom: 'NQR 90M — 9.5T Châssis long',   value: 'nqr-90m' },
+      { nom: 'NMR 77E — 3.5T Châssis court', value: 'nmr-77e' },
+      { nom: 'NMR 85H — 3.5T Châssis long',  value: 'nmr-85h' },
+      { nom: 'NNR 85H — 3.5T Châssis long',  value: 'nnr-85h' },
+      { nom: 'NPR 75K — 7.5T Châssis court', value: 'npr-75k' },
+      { nom: 'NPR 75L — 7.5T Châssis long',  value: 'npr-75l' },
+      { nom: 'NQR 90K — 9.5T Châssis court', value: 'nqr-90k' },
+      { nom: 'NQR 90M — 9.5T Châssis long',  value: 'nqr-90m' },
     ],
   },
   {
@@ -57,82 +58,328 @@ const imageMap: Record<string, string> = {
   'dmax-tfr-sc-4x2-clim': '/images/vehicules/dmax-tfr-sc-4x2-clim.jpg',
   'dmax-tfr-dc-4x2':      '/images/vehicules/dmax-tfr-dc-4x2.jpg',
   'dmax-tfs-dc-4x4':      '/images/vehicules/dmax-tfs-dc-4x4.jpg',
-  'nmr-77e':              '/images/vehicules/nmr-77e.jpg',
-  'npr-75k':              '/images/vehicules/npr-75k.jpg',
-  'npr-75l':              '/images/vehicules/npr-75l.jpg',
-  'ftr-34k':              '/images/vehicules/ftr-34k.jpg',
-  'ftr-34m':              '/images/vehicules/ftr-34m.jpg',
-  'ftr-34p':              '/images/vehicules/ftr-34p.jpg',
-  'fvr-34k':              '/images/vehicules/fvr-34k.jpg',
-  'fvr-34p':              '/images/vehicules/fvr-34p.jpg',
-  'karry-22b':            '/images/vehicules/karry-22b.jpg',
-  'karry-22q':            '/images/vehicules/karry-22q.jpg',
-  // 'nmr-85h':           '/images/vehicules/nmr-85h.jpg',
-  // 'nnr-85h':           '/images/vehicules/nnr-85h.jpg',
-  // 'nqr-90k':           '/images/vehicules/nqr-90k.jpg',
-  // 'nqr-90m':           '/images/vehicules/nqr-90m.jpg',
-  // 'great-wall-sc':     '/images/vehicules/great-wall-sc.jpg',
-  // 'great-wall-dc':     '/images/vehicules/great-wall-dc.jpg',
+  'nmr-77e':  '/images/vehicules/nmr-77e.jpg',
+  'npr-75k':  '/images/vehicules/npr-75k.jpg',
+  'npr-75l':  '/images/vehicules/npr-75l.jpg',
+  'ftr-34k':  '/images/vehicules/ftr-34k.jpg',
+  'ftr-34m':  '/images/vehicules/ftr-34m.jpg',
+  'ftr-34p':  '/images/vehicules/ftr-34p.jpg',
+  'fvr-34k':  '/images/vehicules/fvr-34k.jpg',
+  'fvr-34p':  '/images/vehicules/fvr-34p.jpg',
+  'karry-22b': '/images/vehicules/karry-22b.jpg',
+  'karry-22q': '/images/vehicules/karry-22q.jpg',
 }
 
-// ── Blobs animés en arrière-plan ──────────────────────────────────────────
-function AnimatedBackground() {
-  return (
-    <div className="pointer-events-none fixed inset-0 overflow-hidden -z-10">
-      <div
-        className="absolute rounded-full"
-        style={{
-          width: 500, height: 500,
-          background: '#CC0000',
-          opacity: 0.08,
-          filter: 'blur(80px)',
-          top: -100, right: -80,
-          animation: 'blobFloat1 14s ease-in-out infinite',
-        }}
-      />
-      <div
-        className="absolute rounded-full"
-        style={{
-          width: 380, height: 380,
-          background: '#1B2B6B',
-          opacity: 0.07,
-          filter: 'blur(70px)',
-          bottom: 80, left: -60,
-          animation: 'blobFloat2 18s ease-in-out infinite',
-        }}
-      />
-      <div
-        className="absolute rounded-full"
-        style={{
-          width: 260, height: 260,
-          background: '#C9A84C',
-          opacity: 0.09,
-          filter: 'blur(60px)',
-          top: '45%', left: '35%',
-          animation: 'blobFloat3 12s ease-in-out infinite',
-        }}
-      />
-      <style>{`
-        @keyframes blobFloat1 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          33%      { transform: translate(50px,-40px) scale(1.07); }
-          66%      { transform: translate(-25px,25px) scale(0.95); }
-        }
-        @keyframes blobFloat2 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          33%      { transform: translate(-45px,35px) scale(1.05); }
-          66%      { transform: translate(35px,-50px) scale(0.97); }
-        }
-        @keyframes blobFloat3 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          50%      { transform: translate(40px,30px) scale(1.08); }
-        }
-      `}</style>
-    </div>
-  )
-}
+/* ─── CSS animations injecté une seule fois ───────────────────────────── */
+const globalStyles = `
+  @keyframes cadBlob1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(60px,-50px) scale(1.12); }
+    66%      { transform: translate(-30px,40px) scale(0.92); }
+  }
+  @keyframes cadBlob2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    40%      { transform: translate(-70px,50px) scale(1.08); }
+    80%      { transform: translate(40px,-60px) scale(0.94); }
+  }
+  @keyframes cadBlob3 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%      { transform: translate(50px,40px) scale(1.1); }
+  }
+  @keyframes cadFadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .cad-page {
+    min-height: 100vh;
+    background: #f5f6f8;
+    position: relative;
+    overflow-x: hidden;
+  }
+  .cad-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cad-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+  }
+  .cad-blob-1 {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, #CC0000 0%, transparent 70%);
+    opacity: 0.10;
+    top: -140px; right: -120px;
+    animation: cadBlob1 16s ease-in-out infinite;
+  }
+  .cad-blob-2 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, #1B2B6B 0%, transparent 70%);
+    opacity: 0.09;
+    bottom: 40px; left: -100px;
+    animation: cadBlob2 20s ease-in-out infinite;
+  }
+  .cad-blob-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #C9A84C 0%, transparent 70%);
+    opacity: 0.10;
+    top: 42%; left: 38%;
+    animation: cadBlob3 13s ease-in-out infinite;
+  }
+  .cad-content {
+    position: relative;
+    z-index: 1;
+  }
+  .cad-hero {
+    padding: 52px 0 36px;
+    animation: cadFadeUp 0.6s ease both;
+  }
+  .cad-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e8e6e1;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+    overflow: hidden;
+    animation: cadFadeUp 0.7s 0.08s ease both;
+  }
+  .cad-topbar {
+    height: 3px;
+    background: linear-gradient(90deg, #CC0000 0%, #C9A84C 50%, #1B2B6B 100%);
+  }
+  .cad-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cad-left {
+    padding: 36px;
+    border-right: 1px solid #f0ede8;
+  }
+  .cad-right {
+    padding: 36px;
+  }
+  .cad-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .cad-step-num {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #CC0000;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cad-step-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.2px;
+  }
+  .cad-vehicle-box {
+    border-radius: 14px;
+    border: 1px solid #ece9e4;
+    overflow: hidden;
+    background: #fafaf9;
+  }
+  .cad-vehicle-img {
+    height: 210px;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .cad-vehicle-footer {
+    padding: 14px 18px;
+    border-top: 1px solid #ece9e4;
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fafaf9;
+  }
+  .cad-vehicle-name { font-size: 13px; font-weight: 700; color: #111; }
+  .cad-vehicle-badge {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cad-change {
+    font-size: 11px;
+    color: #ccc;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .cad-change:hover { color: #CC0000; }
+  .cad-empty {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 200px;
+    color: #ddd;
+    text-align: center;
+  }
+  .cad-empty p { font-size: 13px; margin-top: 8px; }
+  .cad-select-wrap { position: relative; margin-top: 16px; }
+  .cad-select {
+    width: 100%;
+    padding: 12px 42px 12px 14px;
+    border: 1.5px solid #e5e2dd;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #333;
+    background: #fff;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .cad-select:focus, .cad-select:hover { border-color: #CC0000; }
+  .cad-select-arrow {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; color: #aaa;
+  }
+  .cad-field { margin-bottom: 14px; }
+  .cad-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .cad-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .cad-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e5e2dd;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #111;
+    background: #fff;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .cad-input:focus {
+    border-color: #CC0000;
+    box-shadow: 0 0 0 3px rgba(204,0,0,0.06);
+  }
+  .cad-textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e5e2dd;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #111;
+    background: #fff;
+    outline: none;
+    font-family: inherit;
+    resize: none;
+    height: 88px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .cad-textarea:focus {
+    border-color: #CC0000;
+    box-shadow: 0 0 0 3px rgba(204,0,0,0.06);
+  }
+  .cad-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+  .cad-check input { margin-top: 2px; accent-color: #CC0000; flex-shrink: 0; }
+  .cad-check span { font-size: 12px; color: #999; line-height: 1.5; }
+  .cad-btn {
+    width: 100%;
+    padding: 14px;
+    background: #CC0000;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s, transform 0.1s;
+    font-family: inherit;
+  }
+  .cad-btn:hover { background: #aa0000; }
+  .cad-btn:active { transform: scale(0.99); }
+  .cad-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .cad-legal { font-size: 11px; color: #ccc; text-align: center; margin-top: 10px; }
+  .cad-legal a { color: #CC0000; }
+  .cad-contacts {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 14px;
+    margin-top: 20px;
+    animation: cadFadeUp 0.7s 0.16s ease both;
+  }
+  .cad-contact-item {
+    background: #fff;
+    border: 1px solid #e8e6e1;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .cad-contact-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cad-contact-label { font-size: 11px; color: #aaa; margin-bottom: 2px; }
+  .cad-contact-value { font-size: 13px; font-weight: 700; color: #111; }
+  .cad-badge-pre {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px;
+    background: #fff;
+    border: 1px solid #e5e2dd;
+    border-radius: 99px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .cad-badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    flex-shrink: 0;
+  }
+  .cad-error {
+    padding: 12px 14px;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    color: #dc2626;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .cad-success {
+    padding: 64px 32px;
+    text-align: center;
+  }
+  .cad-note { font-size: 11px; color: #ccc; margin-top: 8px; }
+  @media (max-width: 768px) {
+    .cad-form-grid { grid-template-columns: 1fr; }
+    .cad-left { border-right: none; border-bottom: 1px solid #f0ede8; }
+    .cad-field-row { grid-template-columns: 1fr; }
+    .cad-contacts { grid-template-columns: 1fr; }
+    .cad-blob-1 { width: 280px; height: 280px; }
+    .cad-blob-2 { width: 220px; height: 220px; }
+    .cad-blob-3 { width: 160px; height: 160px; }
+  }
+`
 
-// ── Badge header ─────────────────────────────────────────────────────────
+/* ─── Badge pré-sélection (header) ───────────────────────────────────── */
 function DevisFormBadge() {
   const searchParams = useSearchParams()
   const param = searchParams.get('vehicule')
@@ -140,14 +387,14 @@ function DevisFormBadge() {
   const vehicle = vehiculesData.flatMap(s => s.modeles).find(m => m.value === param)
   if (!vehicle) return null
   return (
-    <div className="inline-flex items-center gap-2 mt-5 bg-white/80 border border-gray-200 text-gray-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm backdrop-blur-sm">
-      <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
-      Véhicule pré-sélectionné :&nbsp;<span className="text-[#CC0000]">{vehicle.nom}</span>
+    <div className="cad-badge-pre">
+      <span className="cad-badge-dot" />
+      Véhicule sélectionné :&nbsp;<strong style={{ color: '#CC0000' }}>{vehicle.nom}</strong>
     </div>
   )
 }
 
-// ── Formulaire ───────────────────────────────────────────────────────────
+/* ─── Formulaire principal ────────────────────────────────────────────── */
 function DevisForm() {
   const searchParams  = useSearchParams()
   const vehiculeParam = searchParams.get('vehicule')
@@ -177,8 +424,7 @@ function DevisForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
-    setError('')
+    setLoading(true); setError('')
     try {
       const res = await fetch('/api/devis', {
         method: 'POST',
@@ -187,123 +433,104 @@ function DevisForm() {
       })
       if (!res.ok) throw new Error()
       setSuccess(true)
-      setFormData({ nom: '', prenom: '', societe: '', telephone: '', email: '', ville: '', vehicule: '', message: '', newsletter: false })
-    } catch {
-      setError('Une erreur est survenue. Veuillez réessayer.')
-    } finally {
-      setLoading(false)
-    }
+      setFormData({ nom:'', prenom:'', societe:'', telephone:'', email:'', ville:'', vehicule:'', message:'', newsletter:false })
+    } catch { setError('Une erreur est survenue. Veuillez réessayer.') }
+    finally { setLoading(false) }
   }
 
   const selectedVehicle = allModeles.find(m => m.value === formData.vehicule)
   const selectedSerie   = vehiculesData.find(s => s.modeles.some(m => m.value === formData.vehicule))
   const imageSrc        = formData.vehicule ? imageMap[formData.vehicule] ?? null : null
 
-  const inputClass = "w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-800 bg-white/80 backdrop-blur-sm focus:border-[#CC0000] focus:outline-none focus:ring-2 focus:ring-[#CC0000]/10 transition-all placeholder:text-gray-400"
-
   return (
-    <div className="max-w-5xl mx-auto px-6 -mt-4 pb-20">
-
-      {/* Card */}
-      <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-white shadow-xl shadow-gray-200/60 overflow-hidden">
-        {/* Top gradient bar */}
-        <div className="h-[3px]" style={{ background: 'linear-gradient(90deg, #CC0000, #C9A84C, #1B2B6B)' }}></div>
+    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 60px' }}>
+      <div className="cad-card">
+        <div className="cad-topbar" />
 
         {success ? (
-          <div className="p-16 text-center">
-            <div className="w-16 h-16 bg-green-50 border border-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
+          <div className="cad-success">
+            <div style={{ width:64, height:64, borderRadius:'50%', background:'#f0fdf4', border:'1px solid #bbf7d0', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px' }}>
+              <svg width="28" height="28" fill="none" stroke="#22c55e" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
               </svg>
             </div>
-            <h2 className="text-2xl font-black text-gray-900 mb-3">Demande envoyée !</h2>
-            <p className="text-gray-400 mb-8">Notre équipe vous contactera dans les plus brefs délais.</p>
-            <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[#CC0000] text-white font-semibold rounded-full hover:bg-red-700 transition-colors text-sm">
+            <h2 style={{ fontSize:22, fontWeight:800, color:'#111', marginBottom:8 }}>Demande envoyée !</h2>
+            <p style={{ color:'#aaa', fontSize:14, marginBottom:28 }}>Notre équipe vous contactera dans les plus brefs délais.</p>
+            <Link href="/" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'10px 24px', background:'#CC0000', color:'#fff', borderRadius:99, fontWeight:700, fontSize:13, textDecoration:'none' }}>
               Retour à l&apos;accueil
             </Link>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            <div className="grid lg:grid-cols-2">
+            <div className="cad-form-grid">
 
-              {/* ── Gauche : véhicule ── */}
-              <div className="p-8 border-r border-gray-100">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#CC0000] text-white text-sm font-black flex items-center justify-center">1</div>
-                  <h2 className="text-base font-bold text-gray-800">
-                    {isPreselected ? 'Votre véhicule' : 'Sélectionnez votre véhicule'}
-                  </h2>
+              {/* ── Gauche ── */}
+              <div className="cad-left">
+                <div className="cad-step">
+                  <div className="cad-step-num">1</div>
+                  <div className="cad-step-title">{isPreselected ? 'Votre véhicule' : 'Sélectionnez votre véhicule'}</div>
                 </div>
 
-                {/* Pré-sélectionné : grande image, pas de select */}
                 {isPreselected ? (
-                  <div className="rounded-xl border border-gray-100 overflow-hidden bg-white">
-                    <div className="relative h-52 bg-white flex items-center justify-center">
+                  /* Véhicule fixe — grande image */
+                  <div className="cad-vehicle-box">
+                    <div className="cad-vehicle-img">
                       {imageSrc ? (
-                        <Image src={imageSrc} alt={selectedVehicle?.nom || ''} fill className="object-contain p-5 drop-shadow"/>
+                        <Image src={imageSrc} alt={selectedVehicle?.nom || ''} fill style={{ objectFit:'contain', padding:20 }} />
                       ) : (
-                        <div className="text-gray-200 text-center">
-                          <svg className="w-14 h-14 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="cad-empty">
+                          <svg width="48" height="48" fill="#e5e5e5" viewBox="0 0 24 24">
                             <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/>
                           </svg>
-                          <p className="text-xs">Image bientôt disponible</p>
+                          <p>Image bientôt disponible</p>
                         </div>
                       )}
                     </div>
-                    <div className="px-5 py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50/50">
+                    <div className="cad-vehicle-footer">
                       <div>
-                        <p className="font-semibold text-gray-800 text-sm">{selectedVehicle?.nom}</p>
+                        <div className="cad-vehicle-name">{selectedVehicle?.nom}</div>
                         {selectedSerie && (
-                          <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold text-white" style={{ background: selectedSerie.couleur }}>
-                            {selectedSerie.serie}
-                          </span>
+                          <span className="cad-vehicle-badge" style={{ background: selectedSerie.couleur }}>{selectedSerie.serie}</span>
                         )}
                       </div>
-                      <Link href="/devis" className="text-xs text-gray-300 hover:text-[#CC0000] underline underline-offset-2 transition-colors">
-                        Changer
-                      </Link>
+                      <Link href="/devis" className="cad-change">Changer</Link>
                     </div>
                   </div>
                 ) : (
-                  /* Pas de pré-sélection : select + aperçu */
+                  /* Select + aperçu */
                   <>
-                    <div className={`rounded-xl mb-5 min-h-[200px] flex items-center justify-center relative overflow-hidden transition-all ${
-                      formData.vehicule ? 'bg-white border border-gray-100' : 'bg-gray-50/80 border border-dashed border-gray-200'
-                    }`}>
+                    <div style={{
+                      borderRadius:14, border: formData.vehicule ? '1px solid #ece9e4' : '1.5px dashed #e5e2dd',
+                      minHeight:190, display:'flex', alignItems:'center', justifyContent:'center',
+                      background: formData.vehicule ? '#fff' : '#fafaf9', overflow:'hidden', position:'relative',
+                    }}>
                       {formData.vehicule ? (
-                        <div className="w-full text-center p-5">
-                          <div className="relative w-full h-36 mb-3">
+                        <div style={{ width:'100%', textAlign:'center', padding:'20px 16px' }}>
+                          <div style={{ position:'relative', width:'100%', height:130 }}>
                             {imageSrc ? (
-                              <Image key={formData.vehicule} src={imageSrc} alt={selectedVehicle?.nom || ''} fill className="object-contain drop-shadow"/>
+                              <Image key={formData.vehicule} src={imageSrc} alt={selectedVehicle?.nom || ''} fill style={{ objectFit:'contain' }}/>
                             ) : (
-                              <div className="flex flex-col items-center justify-center h-full text-gray-200">
-                                <svg className="w-10 h-10 mb-1" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/>
-                                </svg>
-                                <p className="text-xs">Image bientôt disponible</p>
-                              </div>
+                              <div className="cad-empty"><p>Image bientôt disponible</p></div>
                             )}
                           </div>
-                          <p className="font-semibold text-gray-800 text-sm">{selectedVehicle?.nom}</p>
+                          <p style={{ fontSize:13, fontWeight:700, color:'#111', marginTop:10 }}>{selectedVehicle?.nom}</p>
                           {selectedSerie && (
-                            <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold text-white" style={{ background: selectedSerie.couleur }}>
-                              {selectedSerie.serie}
-                            </span>
+                            <span className="cad-vehicle-badge" style={{ background: selectedSerie.couleur, marginTop:6 }}>{selectedSerie.serie}</span>
                           )}
                         </div>
                       ) : (
-                        <div className="text-center text-gray-300 py-10">
-                          <svg className="w-14 h-14 mx-auto mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="cad-empty">
+                          <svg width="52" height="52" fill="#e0ddd8" viewBox="0 0 24 24">
                             <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/>
                           </svg>
-                          <p className="text-sm">Sélectionnez un véhicule</p>
+                          <p>Sélectionnez un véhicule<br/>pour voir son image</p>
                         </div>
                       )}
                     </div>
 
-                    <div className="relative">
-                      <select name="vehicule" value={formData.vehicule} onChange={handleChange} required className={inputClass + ' appearance-none cursor-pointer'}>
-                        <option value="">Sélectionnez votre véhicule</option>
+                    <div className="cad-select-wrap">
+                      <select name="vehicule" value={formData.vehicule} onChange={handleChange} required className="cad-select">
+                        <option value="">Choisissez un véhicule</option>
                         {vehiculesData.map(serie => (
                           <optgroup key={serie.serie} label={`━━ ${serie.serie} ━━`}>
                             {serie.modeles.map(m => (
@@ -312,92 +539,89 @@ function DevisForm() {
                           </optgroup>
                         ))}
                       </select>
-                      <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/>
+                      <svg className="cad-select-arrow" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                       </svg>
                     </div>
-                    <p className="text-xs text-gray-300 mt-2">* Photos non contractuelles.</p>
+                    <p className="cad-note">* Photos non contractuelles</p>
                   </>
                 )}
               </div>
 
-              {/* ── Droite : coordonnées ── */}
-              <div className="p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-[#CC0000] text-white text-sm font-black flex items-center justify-center">2</div>
-                  <h2 className="text-base font-bold text-gray-800">Vos coordonnées</h2>
+              {/* ── Droite ── */}
+              <div className="cad-right">
+                <div className="cad-step">
+                  <div className="cad-step-num">2</div>
+                  <div className="cad-step-title">Vos coordonnées</div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Nom *</label>
-                      <input type="text" name="nom" value={formData.nom} onChange={handleChange} required placeholder="Votre nom" className={inputClass}/>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Prénom *</label>
-                      <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} required placeholder="Votre prénom" className={inputClass}/>
-                    </div>
-                  </div>
-
+                <div className="cad-field-row">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-1.5">Société</label>
-                    <input type="text" name="societe" value={formData.societe} onChange={handleChange} placeholder="Optionnel" className={inputClass}/>
+                    <label className="cad-label">Nom *</label>
+                    <input type="text" name="nom" value={formData.nom} onChange={handleChange} required placeholder="Votre nom" className="cad-input"/>
                   </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Téléphone *</label>
-                      <input type="tel" name="telephone" value={formData.telephone} onChange={handleChange} required placeholder="06 00 00 00 00" className={inputClass}/>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-500 mb-1.5">Email *</label>
-                      <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="votre@email.com" className={inputClass}/>
-                    </div>
-                  </div>
-
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-1.5">Ville *</label>
-                    <input type="text" name="ville" value={formData.ville} onChange={handleChange} required placeholder="Votre ville" className={inputClass}/>
+                    <label className="cad-label">Prénom *</label>
+                    <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} required placeholder="Votre prénom" className="cad-input"/>
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-1.5">Message</label>
-                    <textarea name="message" value={formData.message} onChange={handleChange} rows={3} placeholder="Précisez vos besoins, délais..." className={inputClass + ' resize-none'}/>
-                  </div>
-
-                  <label className="flex items-start gap-2.5 cursor-pointer pt-1">
-                    <input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleChange} className="mt-0.5 w-4 h-4 accent-[#CC0000] flex-shrink-0"/>
-                    <span className="text-xs text-gray-400 leading-relaxed">J&apos;accepte de recevoir les offres commerciales de CADOZAT par email.</span>
-                  </label>
-
-                  {error && <div className="p-3 bg-red-50 border border-red-100 rounded-xl text-red-600 text-xs">{error}</div>}
-
-                  <button type="submit" disabled={loading}
-                    className="w-full py-3.5 bg-[#CC0000] hover:bg-red-700 text-white font-bold text-sm rounded-xl transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm shadow-red-200 mt-2">
-                    {loading ? (
-                      <>
-                        <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                        </svg>
-                        Envoi en cours...
-                      </>
-                    ) : (
-                      <>
-                        Envoyer ma demande
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                      </>
-                    )}
-                  </button>
-
-                  <p className="text-xs text-gray-300 text-center">
-                    En soumettant, vous acceptez notre{' '}
-                    <Link href="/mentions-legales" className="text-[#CC0000] hover:underline">politique de confidentialité</Link>.
-                  </p>
                 </div>
+
+                <div className="cad-field">
+                  <label className="cad-label">Société</label>
+                  <input type="text" name="societe" value={formData.societe} onChange={handleChange} placeholder="Optionnel" className="cad-input"/>
+                </div>
+
+                <div className="cad-field-row">
+                  <div>
+                    <label className="cad-label">Téléphone *</label>
+                    <input type="tel" name="telephone" value={formData.telephone} onChange={handleChange} required placeholder="06 00 00 00 00" className="cad-input"/>
+                  </div>
+                  <div>
+                    <label className="cad-label">Email *</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="votre@email.com" className="cad-input"/>
+                  </div>
+                </div>
+
+                <div className="cad-field">
+                  <label className="cad-label">Ville *</label>
+                  <input type="text" name="ville" value={formData.ville} onChange={handleChange} required placeholder="Votre ville" className="cad-input"/>
+                </div>
+
+                <div className="cad-field">
+                  <label className="cad-label">Message</label>
+                  <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Précisez vos besoins, options souhaitées, délais..." className="cad-textarea"/>
+                </div>
+
+                <div className="cad-check">
+                  <input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleChange}/>
+                  <span>J&apos;accepte de recevoir les offres commerciales et actualités de CADOZAT par email.</span>
+                </div>
+
+                {error && <div className="cad-error">{error}</div>}
+
+                <button type="submit" disabled={loading} className="cad-btn">
+                  {loading ? (
+                    <>
+                      <svg style={{ animation:'spin 1s linear infinite' }} width="16" height="16" fill="none" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" strokeWidth="4"/>
+                        <path fill="rgba(255,255,255,0.9)" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
+                      </svg>
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      Envoyer ma demande
+                      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                      </svg>
+                    </>
+                  )}
+                </button>
+
+                <p className="cad-legal">
+                  En soumettant, vous acceptez notre{' '}
+                  <Link href="/mentions-legales">politique de confidentialité</Link>.
+                </p>
               </div>
             </div>
           </form>
@@ -405,21 +629,20 @@ function DevisForm() {
       </div>
 
       {/* Contact bar */}
-      <div className="mt-8 grid md:grid-cols-3 gap-4">
+      <div className="cad-contacts">
         {[
-          { icon: 'M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z', label: 'Appelez-nous', value: '0524 885 025', color: '#CC0000', bg: '#fff0f0' },
-          { icon: 'M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z', label: 'Écrivez-nous', value: 'contact@cadozat.com', color: '#1B2B6B', bg: '#f0f2ff' },
-          { icon: 'M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z', label: 'Horaires', value: 'Lun–Sam 8h–18h', color: '#C9A84C', bg: '#fdf8ed' },
-        ].map((item, i) => (
-          <div key={i} className="bg-white/70 backdrop-blur-sm border border-white rounded-xl p-4 flex items-center gap-3 shadow-sm">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: item.bg }}>
-              <svg className="w-5 h-5" fill={item.color} viewBox="0 0 20 20">
-                <path fillRule="evenodd" d={item.icon} clipRule="evenodd"/>
-              </svg>
-            </div>
+          { bg:'#fff5f5', color:'#CC0000', label:'Appelez-nous', value:'0524 885 025',
+            icon:<svg width="20" height="20" fill="#CC0000" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg> },
+          { bg:'#eff2ff', color:'#1B2B6B', label:'Écrivez-nous', value:'contact@cadozat.com',
+            icon:<svg width="20" height="20" fill="#1B2B6B" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg> },
+          { bg:'#fdf8ed', color:'#C9A84C', label:'Horaires', value:'Lun–Sam  8h–18h',
+            icon:<svg width="20" height="20" fill="#C9A84C" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/></svg> },
+        ].map((c, i) => (
+          <div key={i} className="cad-contact-item">
+            <div className="cad-contact-icon" style={{ background: c.bg }}>{c.icon}</div>
             <div>
-              <p className="text-xs text-gray-400">{item.label}</p>
-              <p className="text-sm font-bold text-gray-800">{item.value}</p>
+              <div className="cad-contact-label">{c.label}</div>
+              <div className="cad-contact-value">{c.value}</div>
             </div>
           </div>
         ))}
@@ -428,46 +651,63 @@ function DevisForm() {
   )
 }
 
-// ── Page ─────────────────────────────────────────────────────────────────
+/* ─── Page export ─────────────────────────────────────────────────────── */
 export default function DevisPage() {
   return (
-    <main className="min-h-screen" style={{ background: '#f8f7f5' }}>
-      <AnimatedBackground />
+    <>
+      {/* CSS global injecté dans le <head> */}
+      <style dangerouslySetInnerHTML={{ __html: globalStyles }}/>
 
-      {/* Header */}
-      <div className="pt-32 pb-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
-            <Link href="/" className="hover:text-gray-600 transition-colors">Accueil</Link>
-            <span>/</span>
-            <span className="text-[#CC0000] font-semibold">Demande de devis</span>
-          </nav>
+      <main className="cad-page">
+        {/* Blobs animés */}
+        <div className="cad-bg">
+          <div className="cad-blob cad-blob-1"/>
+          <div className="cad-blob cad-blob-2"/>
+          <div className="cad-blob cad-blob-3"/>
+        </div>
 
-          <h1 className="text-5xl font-black text-gray-900 tracking-tight leading-none mb-3">
-            Demande de <span className="text-[#CC0000]">devis</span>
-          </h1>
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-[3px] bg-[#CC0000] rounded-full"></div>
-            <div className="w-4 h-[3px] bg-[#C9A84C] rounded-full"></div>
+        {/* Contenu */}
+        <div className="cad-content">
+          {/* Hero */}
+          <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 24px' }}>
+            <div className="cad-hero">
+              <nav style={{ display:'flex', alignItems:'center', gap:6, fontSize:12, color:'#aaa', marginBottom:20 }}>
+                <Link href="/" style={{ color:'#aaa', textDecoration:'none' }}>Accueil</Link>
+                <span>/</span>
+                <span style={{ color:'#CC0000', fontWeight:600 }}>Demande de devis</span>
+              </nav>
+
+              <h1 style={{ fontSize:44, fontWeight:900, color:'#111', letterSpacing:'-1px', lineHeight:1.1, marginBottom:12 }}>
+                Demande de <span style={{ color:'#CC0000' }}>devis</span>
+              </h1>
+
+              <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:14 }}>
+                <div style={{ width:32, height:3, background:'#CC0000', borderRadius:99 }}/>
+                <div style={{ width:16, height:3, background:'#C9A84C', borderRadius:99 }}/>
+              </div>
+
+              <p style={{ fontSize:15, color:'#888', maxWidth:480, lineHeight:1.7 }}>
+                Remplissez le formulaire et notre équipe commerciale vous contactera dans les plus brefs délais.
+              </p>
+
+              <Suspense fallback={null}>
+                <DevisFormBadge/>
+              </Suspense>
+            </div>
           </div>
-          <p className="text-gray-400 text-base mt-4 max-w-lg">
-            Remplissez le formulaire et notre équipe commerciale vous contactera dans les plus brefs délais.
-          </p>
-          <Suspense fallback={null}>
-            <DevisFormBadge />
+
+          {/* Formulaire */}
+          <Suspense fallback={
+            <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 24px 60px' }}>
+              <div style={{ background:'#fff', borderRadius:20, height:400, display:'flex', alignItems:'center', justifyContent:'center', border:'1px solid #e8e6e1' }}>
+                <p style={{ color:'#ccc', fontSize:14 }}>Chargement…</p>
+              </div>
+            </div>
+          }>
+            <DevisForm/>
           </Suspense>
         </div>
-      </div>
-
-      <Suspense fallback={
-        <div className="max-w-5xl mx-auto px-6 pb-20">
-          <div className="bg-white/70 rounded-2xl h-96 flex items-center justify-center border border-white">
-            <p className="text-gray-300 text-sm">Chargement...</p>
-          </div>
-        </div>
-      }>
-        <DevisForm />
-      </Suspense>
-    </main>
+      </main>
+    </>
   )
 }
