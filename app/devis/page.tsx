@@ -4,53 +4,38 @@ import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
-/* ─── données ─────────────────────────────────────────────────────────── */
+/* ── données ────────────────────────────────────────────────────────── */
 const vehiculesData = [
-  {
-    serie: 'D-MAX', couleur: '#CC0000',
-    modeles: [
-      { nom: 'D-MAX TFR — Pick-up SC 4×2',      value: 'dmax-tfr-sc-4x2' },
-      { nom: 'D-MAX TFR — Pick-up SC 4×2 Clim', value: 'dmax-tfr-sc-4x2-clim' },
-      { nom: 'D-MAX TFR — Pick-up DC 4×2',      value: 'dmax-tfr-dc-4x2' },
-      { nom: 'D-MAX TFS — Pick-up DC 4×4',      value: 'dmax-tfs-dc-4x4' },
-    ],
-  },
-  {
-    serie: 'N-Series', couleur: '#1B2B6B',
-    modeles: [
-      { nom: 'NMR 77E — 3.5T Châssis court', value: 'nmr-77e' },
-      { nom: 'NMR 85H — 3.5T Châssis long',  value: 'nmr-85h' },
-      { nom: 'NNR 85H — 3.5T Châssis long',  value: 'nnr-85h' },
-      { nom: 'NPR 75K — 7.5T Châssis court', value: 'npr-75k' },
-      { nom: 'NPR 75L — 7.5T Châssis long',  value: 'npr-75l' },
-      { nom: 'NQR 90K — 9.5T Châssis court', value: 'nqr-90k' },
-      { nom: 'NQR 90M — 9.5T Châssis long',  value: 'nqr-90m' },
-    ],
-  },
-  {
-    serie: 'F-Series', couleur: '#333333',
-    modeles: [
-      { nom: 'FTR 34K — 16T Châssis court',         value: 'ftr-34k' },
-      { nom: 'FTR 34M — 16T Châssis intermédiaire', value: 'ftr-34m' },
-      { nom: 'FTR 34P — 16T Châssis long',          value: 'ftr-34p' },
-      { nom: 'FVR 34K — 18T Châssis court',         value: 'fvr-34k' },
-      { nom: 'FVR 34P — 18T Châssis long',          value: 'fvr-34p' },
-    ],
-  },
-  {
-    serie: 'Karry', couleur: '#0057A8',
-    modeles: [
-      { nom: 'Karry 22B — Fourgon utilitaire', value: 'karry-22b' },
-      { nom: 'Karry 22Q — Fourgon utilitaire', value: 'karry-22q' },
-    ],
-  },
-  {
-    serie: 'Great Wall', couleur: '#C9A84C',
-    modeles: [
-      { nom: 'Great Wall Pick-up SC — Simple cabine', value: 'great-wall-sc' },
-      { nom: 'Great Wall Pick-up DC — Double cabine', value: 'great-wall-dc' },
-    ],
-  },
+  { serie: 'D-MAX', couleur: '#CC0000', modeles: [
+    { nom: 'D-MAX TFR — Pick-up SC 4×2',      value: 'dmax-tfr-sc-4x2' },
+    { nom: 'D-MAX TFR — Pick-up SC 4×2 Clim', value: 'dmax-tfr-sc-4x2-clim' },
+    { nom: 'D-MAX TFR — Pick-up DC 4×2',      value: 'dmax-tfr-dc-4x2' },
+    { nom: 'D-MAX TFS — Pick-up DC 4×4',      value: 'dmax-tfs-dc-4x4' },
+  ]},
+  { serie: 'N-Series', couleur: '#1B2B6B', modeles: [
+    { nom: 'NMR 77E — 3.5T Châssis court', value: 'nmr-77e' },
+    { nom: 'NMR 85H — 3.5T Châssis long',  value: 'nmr-85h' },
+    { nom: 'NNR 85H — 3.5T Châssis long',  value: 'nnr-85h' },
+    { nom: 'NPR 75K — 7.5T Châssis court', value: 'npr-75k' },
+    { nom: 'NPR 75L — 7.5T Châssis long',  value: 'npr-75l' },
+    { nom: 'NQR 90K — 9.5T Châssis court', value: 'nqr-90k' },
+    { nom: 'NQR 90M — 9.5T Châssis long',  value: 'nqr-90m' },
+  ]},
+  { serie: 'F-Series', couleur: '#333333', modeles: [
+    { nom: 'FTR 34K — 16T Châssis court',         value: 'ftr-34k' },
+    { nom: 'FTR 34M — 16T Châssis intermédiaire', value: 'ftr-34m' },
+    { nom: 'FTR 34P — 16T Châssis long',          value: 'ftr-34p' },
+    { nom: 'FVR 34K — 18T Châssis court',         value: 'fvr-34k' },
+    { nom: 'FVR 34P — 18T Châssis long',          value: 'fvr-34p' },
+  ]},
+  { serie: 'Karry', couleur: '#0057A8', modeles: [
+    { nom: 'Karry 22B — Fourgon utilitaire', value: 'karry-22b' },
+    { nom: 'Karry 22Q — Fourgon utilitaire', value: 'karry-22q' },
+  ]},
+  { serie: 'Great Wall', couleur: '#C9A84C', modeles: [
+    { nom: 'Great Wall Pick-up SC — Simple cabine', value: 'great-wall-sc' },
+    { nom: 'Great Wall Pick-up DC — Double cabine', value: 'great-wall-dc' },
+  ]},
 ]
 
 const imageMap: Record<string, string> = {
@@ -70,543 +55,452 @@ const imageMap: Record<string, string> = {
   'karry-22q': '/images/vehicules/karry-22q.jpg',
 }
 
-/* ─── CSS animations injecté une seule fois ───────────────────────────── */
-const globalStyles = `
-  @keyframes cadBlob1 {
-    0%,100% { transform: translate(0,0) scale(1); }
-    33%      { transform: translate(60px,-50px) scale(1.12); }
-    66%      { transform: translate(-30px,40px) scale(0.92); }
-  }
-  @keyframes cadBlob2 {
-    0%,100% { transform: translate(0,0) scale(1); }
-    40%      { transform: translate(-70px,50px) scale(1.08); }
-    80%      { transform: translate(40px,-60px) scale(0.94); }
-  }
-  @keyframes cadBlob3 {
-    0%,100% { transform: translate(0,0) scale(1); }
-    50%      { transform: translate(50px,40px) scale(1.1); }
-  }
-  @keyframes cadFadeUp {
-    from { opacity:0; transform:translateY(24px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  .cad-page {
-    min-height: 100vh;
-    background: #f5f6f8;
-    position: relative;
-    overflow-x: hidden;
-  }
-  .cad-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
+/* ── CSS complet ─────────────────────────────────────────────────────── */
+const CSS = `
+  /* ── Reset page background ── */
+  body { background: #f4f5f7 !important; }
+
+  /* ── Blobs fixes ── */
+  .dv-blob {
+    position: fixed;
+    border-radius: 50%;
     pointer-events: none;
     z-index: 0;
   }
-  .cad-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
+  .dv-blob-red {
+    width: 600px; height: 600px;
+    background: #CC0000;
+    opacity: 0.07;
+    filter: blur(100px);
+    top: -150px; right: -150px;
+    animation: dvBlob1 18s ease-in-out infinite;
   }
-  .cad-blob-1 {
-    width: 520px; height: 520px;
-    background: radial-gradient(circle, #CC0000 0%, transparent 70%);
-    opacity: 0.10;
-    top: -140px; right: -120px;
-    animation: cadBlob1 16s ease-in-out infinite;
+  .dv-blob-blue {
+    width: 500px; height: 500px;
+    background: #1B2B6B;
+    opacity: 0.06;
+    filter: blur(100px);
+    bottom: -100px; left: -120px;
+    animation: dvBlob2 22s ease-in-out infinite;
   }
-  .cad-blob-2 {
-    width: 420px; height: 420px;
-    background: radial-gradient(circle, #1B2B6B 0%, transparent 70%);
-    opacity: 0.09;
-    bottom: 40px; left: -100px;
-    animation: cadBlob2 20s ease-in-out infinite;
+  .dv-blob-gold {
+    width: 350px; height: 350px;
+    background: #C9A84C;
+    opacity: 0.07;
+    filter: blur(80px);
+    top: 40%; left: 30%;
+    animation: dvBlob3 15s ease-in-out infinite;
   }
-  .cad-blob-3 {
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, #C9A84C 0%, transparent 70%);
-    opacity: 0.10;
-    top: 42%; left: 38%;
-    animation: cadBlob3 13s ease-in-out infinite;
+  @keyframes dvBlob1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(80px,-60px) scale(1.15); }
+    66%      { transform: translate(-40px,50px) scale(0.9); }
   }
-  .cad-content {
+  @keyframes dvBlob2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    40%      { transform: translate(-80px,60px) scale(1.1); }
+    80%      { transform: translate(60px,-80px) scale(0.92); }
+  }
+  @keyframes dvBlob3 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%      { transform: translate(60px,50px) scale(1.12); }
+  }
+
+  /* ── Wrapper page ── */
+  .dv-page {
     position: relative;
     z-index: 1;
+    min-height: 100vh;
   }
-  .cad-hero {
-    padding: 52px 0 36px;
-    animation: cadFadeUp 0.6s ease both;
+
+  /* ── Hero ── */
+  .dv-hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px 32px;
+    animation: dvFadeUp 0.5s ease both;
   }
-  .cad-card {
-    background: #ffffff;
-    border-radius: 20px;
-    border: 1px solid #e8e6e1;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.07);
-    overflow: hidden;
-    animation: cadFadeUp 0.7s 0.08s ease both;
+  @keyframes dvFadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
   }
-  .cad-topbar {
-    height: 3px;
-    background: linear-gradient(90deg, #CC0000 0%, #C9A84C 50%, #1B2B6B 100%);
+  .dv-breadcrumb { font-size:12px; color:#bbb; margin-bottom:20px; display:flex; gap:6px; align-items:center; }
+  .dv-breadcrumb a { color:#bbb; text-decoration:none; }
+  .dv-breadcrumb a:hover { color:#CC0000; }
+  .dv-h1 { font-size:46px; font-weight:900; color:#111; letter-spacing:-1.5px; line-height:1; margin-bottom:14px; }
+  .dv-h1 em { color:#CC0000; font-style:normal; }
+  .dv-accent { display:flex; gap:8px; align-items:center; margin-bottom:16px; }
+  .dv-accent-red  { width:32px; height:3px; background:#CC0000; border-radius:99px; }
+  .dv-accent-gold { width:16px; height:3px; background:#C9A84C; border-radius:99px; }
+  .dv-subtitle { font-size:15px; color:#999; line-height:1.7; max-width:460px; }
+  .dv-prebadge {
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:16px; background:#fff; border:1px solid #e8e5e0;
+    border-radius:99px; padding:7px 16px;
+    font-size:13px; font-weight:600; color:#444;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06);
+    animation: dvFadeUp 0.5s 0.1s ease both;
   }
-  .cad-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  .dv-prebadge-dot { width:8px; height:8px; border-radius:50%; background:#22c55e; flex-shrink:0; }
+
+  /* ── Card principale ── */
+  .dv-wrap { max-width:1100px; margin:0 auto; padding:0 24px 64px; }
+  .dv-card {
+    background:#fff;
+    border-radius:22px;
+    border:1px solid #e8e5e0;
+    box-shadow:0 12px 48px rgba(0,0,0,0.07);
+    overflow:hidden;
+    animation: dvFadeUp 0.5s 0.05s ease both;
   }
-  .cad-left {
-    padding: 36px;
-    border-right: 1px solid #f0ede8;
+  .dv-topbar { height:3px; background:linear-gradient(90deg,#CC0000,#C9A84C,#1B2B6B); }
+  .dv-grid { display:grid; grid-template-columns:1fr 1fr; }
+  @media(max-width:768px){ .dv-grid { grid-template-columns:1fr; } }
+
+  /* ── Colonne gauche ── */
+  .dv-col-l { padding:36px; border-right:1px solid #f2efe9; }
+  @media(max-width:768px){ .dv-col-l { border-right:none; border-bottom:1px solid #f2efe9; } }
+
+  /* ── Colonne droite ── */
+  .dv-col-r { padding:36px; }
+
+  /* ── Step label ── */
+  .dv-step { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+  .dv-step-n {
+    width:34px; height:34px; border-radius:50%;
+    background:#CC0000; color:#fff;
+    font-weight:900; font-size:14px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
   }
-  .cad-right {
-    padding: 36px;
+  .dv-step-t { font-size:17px; font-weight:700; color:#111; }
+
+  /* ── Vehicle box ── */
+  .dv-vbox { border-radius:16px; border:1px solid #ede9e2; overflow:hidden; background:#fafaf8; }
+  .dv-vimg  { height:220px; background:#fff; display:flex; align-items:center; justify-content:center; position:relative; }
+  .dv-vfoot {
+    padding:14px 18px; border-top:1px solid #ede9e2;
+    display:flex; align-items:center; justify-content:space-between;
   }
-  .cad-step {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
+  .dv-vname { font-size:13px; font-weight:700; color:#111; }
+  .dv-vbadge {
+    display:inline-block; margin-top:5px;
+    padding:2px 10px; border-radius:99px;
+    font-size:11px; font-weight:700; color:#fff;
   }
-  .cad-step-num {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: #CC0000;
-    color: #fff;
-    font-weight: 800;
-    font-size: 14px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+  .dv-vchange { font-size:11px; color:#ccc; text-decoration:underline; cursor:pointer; transition:color 0.2s; }
+  .dv-vchange:hover { color:#CC0000; }
+
+  /* ── Aperçu vide ── */
+  .dv-empty {
+    min-height:190px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    border-radius:14px; color:#ddd;
+    border:1.5px dashed #e5e2dd; text-align:center;
+    font-size:13px; gap:10px;
   }
-  .cad-step-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: #111;
-    letter-spacing: -0.2px;
+  .dv-preview {
+    min-height:190px; border-radius:14px;
+    border:1px solid #ede9e2; background:#fff;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
   }
-  .cad-vehicle-box {
-    border-radius: 14px;
-    border: 1px solid #ece9e4;
-    overflow: hidden;
-    background: #fafaf9;
+  .dv-preview-inner { width:100%; text-align:center; padding:16px; }
+
+  /* ── Select ── */
+  .dv-sel-wrap { position:relative; margin-top:14px; }
+  .dv-sel {
+    width:100%; padding:12px 42px 12px 14px;
+    border:1.5px solid #e5e2dd; border-radius:12px;
+    font-size:13px; color:#333; background:#fff;
+    appearance:none; cursor:pointer; outline:none;
+    font-family:inherit; transition:border-color 0.2s;
   }
-  .cad-vehicle-img {
-    height: 210px;
-    background: #fff;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
+  .dv-sel:hover,.dv-sel:focus { border-color:#CC0000; }
+  .dv-arr { position:absolute; right:14px; top:50%; transform:translateY(-50%); pointer-events:none; color:#bbb; }
+
+  /* ── Inputs ── */
+  .dv-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  @media(max-width:768px){ .dv-row { grid-template-columns:1fr; } }
+  .dv-f { margin-bottom:14px; }
+  .dv-lbl {
+    display:block; font-size:11px; font-weight:700;
+    color:#aaa; letter-spacing:0.6px; text-transform:uppercase;
+    margin-bottom:6px;
   }
-  .cad-vehicle-footer {
-    padding: 14px 18px;
-    border-top: 1px solid #ece9e4;
-    display: flex; align-items: center; justify-content: space-between;
-    background: #fafaf9;
+  .dv-inp {
+    width:100%; padding:11px 14px;
+    border:1.5px solid #e5e2dd; border-radius:11px;
+    font-size:13px; color:#111; background:#fff;
+    outline:none; font-family:inherit;
+    transition:border-color 0.2s, box-shadow 0.2s;
   }
-  .cad-vehicle-name { font-size: 13px; font-weight: 700; color: #111; }
-  .cad-vehicle-badge {
-    display: inline-block;
-    margin-top: 5px;
-    padding: 2px 10px;
-    border-radius: 99px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #fff;
+  .dv-inp:focus { border-color:#CC0000; box-shadow:0 0 0 3px rgba(204,0,0,0.07); }
+  .dv-inp::placeholder { color:#ccc; }
+  .dv-ta {
+    width:100%; padding:11px 14px;
+    border:1.5px solid #e5e2dd; border-radius:11px;
+    font-size:13px; color:#111; background:#fff;
+    outline:none; font-family:inherit; resize:none; height:88px;
+    transition:border-color 0.2s, box-shadow 0.2s;
   }
-  .cad-change {
-    font-size: 11px;
-    color: #ccc;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: color 0.2s;
+  .dv-ta:focus { border-color:#CC0000; box-shadow:0 0 0 3px rgba(204,0,0,0.07); }
+  .dv-ta::placeholder { color:#ccc; }
+  .dv-check { display:flex; align-items:flex-start; gap:10px; margin-bottom:14px; }
+  .dv-check input { margin-top:2px; accent-color:#CC0000; flex-shrink:0; }
+  .dv-check span { font-size:12px; color:#aaa; line-height:1.6; }
+
+  /* ── Bouton ── */
+  .dv-btn {
+    width:100%; padding:14px; background:#CC0000; color:#fff;
+    border:none; border-radius:12px; font-size:14px; font-weight:700;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+    font-family:inherit; transition:background 0.2s, transform 0.1s;
+    box-shadow:0 4px 16px rgba(204,0,0,0.2);
   }
-  .cad-change:hover { color: #CC0000; }
-  .cad-empty {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    height: 200px;
-    color: #ddd;
-    text-align: center;
+  .dv-btn:hover { background:#aa0000; }
+  .dv-btn:active { transform:scale(0.99); }
+  .dv-btn:disabled { opacity:0.5; cursor:not-allowed; }
+  .dv-legal { font-size:11px; color:#ccc; text-align:center; margin-top:10px; }
+  .dv-legal a { color:#CC0000; text-decoration:none; }
+
+  /* ── Error ── */
+  .dv-err {
+    padding:12px 14px; background:#fff5f5;
+    border:1px solid #fecaca; border-radius:10px;
+    color:#dc2626; font-size:13px; margin-bottom:14px;
   }
-  .cad-empty p { font-size: 13px; margin-top: 8px; }
-  .cad-select-wrap { position: relative; margin-top: 16px; }
-  .cad-select {
-    width: 100%;
-    padding: 12px 42px 12px 14px;
-    border: 1.5px solid #e5e2dd;
-    border-radius: 12px;
-    font-size: 13px;
-    color: #333;
-    background: #fff;
-    appearance: none;
-    cursor: pointer;
-    outline: none;
-    font-family: inherit;
-    transition: border-color 0.2s;
+
+  /* ── Success ── */
+  .dv-ok { padding:64px 32px; text-align:center; }
+  .dv-ok h2 { font-size:24px; font-weight:900; color:#111; margin-bottom:8px; }
+  .dv-ok p  { color:#aaa; font-size:14px; margin-bottom:28px; }
+
+  /* ── Contact bar ── */
+  .dv-contacts {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:20px;
+    animation: dvFadeUp 0.5s 0.12s ease both;
   }
-  .cad-select:focus, .cad-select:hover { border-color: #CC0000; }
-  .cad-select-arrow {
-    position: absolute; right: 14px; top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none; color: #aaa;
+  @media(max-width:768px){ .dv-contacts { grid-template-columns:1fr; } }
+  .dv-ci {
+    background:#fff; border:1px solid #e8e5e0; border-radius:16px;
+    padding:16px 18px; display:flex; align-items:center; gap:12px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.04);
   }
-  .cad-field { margin-bottom: 14px; }
-  .cad-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-  .cad-label {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
+  .dv-ci-icon {
+    width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
-  .cad-input {
-    width: 100%;
-    padding: 11px 14px;
-    border: 1.5px solid #e5e2dd;
-    border-radius: 10px;
-    font-size: 13px;
-    color: #111;
-    background: #fff;
-    outline: none;
-    font-family: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .cad-input:focus {
-    border-color: #CC0000;
-    box-shadow: 0 0 0 3px rgba(204,0,0,0.06);
-  }
-  .cad-textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border: 1.5px solid #e5e2dd;
-    border-radius: 10px;
-    font-size: 13px;
-    color: #111;
-    background: #fff;
-    outline: none;
-    font-family: inherit;
-    resize: none;
-    height: 88px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .cad-textarea:focus {
-    border-color: #CC0000;
-    box-shadow: 0 0 0 3px rgba(204,0,0,0.06);
-  }
-  .cad-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
-  .cad-check input { margin-top: 2px; accent-color: #CC0000; flex-shrink: 0; }
-  .cad-check span { font-size: 12px; color: #999; line-height: 1.5; }
-  .cad-btn {
-    width: 100%;
-    padding: 14px;
-    background: #CC0000;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    transition: background 0.2s, transform 0.1s;
-    font-family: inherit;
-  }
-  .cad-btn:hover { background: #aa0000; }
-  .cad-btn:active { transform: scale(0.99); }
-  .cad-btn:disabled { opacity: 0.55; cursor: not-allowed; }
-  .cad-legal { font-size: 11px; color: #ccc; text-align: center; margin-top: 10px; }
-  .cad-legal a { color: #CC0000; }
-  .cad-contacts {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 14px;
-    margin-top: 20px;
-    animation: cadFadeUp 0.7s 0.16s ease both;
-  }
-  .cad-contact-item {
-    background: #fff;
-    border: 1px solid #e8e6e1;
-    border-radius: 14px;
-    padding: 16px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .cad-contact-icon {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .cad-contact-label { font-size: 11px; color: #aaa; margin-bottom: 2px; }
-  .cad-contact-value { font-size: 13px; font-weight: 700; color: #111; }
-  .cad-badge-pre {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 16px;
-    background: #fff;
-    border: 1px solid #e5e2dd;
-    border-radius: 99px;
-    padding: 7px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #444;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-  .cad-badge-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #22c55e;
-    flex-shrink: 0;
-  }
-  .cad-error {
-    padding: 12px 14px;
-    background: #fff5f5;
-    border: 1px solid #fecaca;
-    border-radius: 10px;
-    color: #dc2626;
-    font-size: 13px;
-    margin-bottom: 14px;
-  }
-  .cad-success {
-    padding: 64px 32px;
-    text-align: center;
-  }
-  .cad-note { font-size: 11px; color: #ccc; margin-top: 8px; }
-  @media (max-width: 768px) {
-    .cad-form-grid { grid-template-columns: 1fr; }
-    .cad-left { border-right: none; border-bottom: 1px solid #f0ede8; }
-    .cad-field-row { grid-template-columns: 1fr; }
-    .cad-contacts { grid-template-columns: 1fr; }
-    .cad-blob-1 { width: 280px; height: 280px; }
-    .cad-blob-2 { width: 220px; height: 220px; }
-    .cad-blob-3 { width: 160px; height: 160px; }
-  }
+  .dv-ci-lbl { font-size:11px; color:#bbb; margin-bottom:3px; }
+  .dv-ci-val { font-size:13px; font-weight:700; color:#111; }
+
+  /* ── Note ── */
+  .dv-note { font-size:11px; color:#ccc; margin-top:8px; }
+
+  @keyframes spin { to { transform:rotate(360deg); } }
 `
 
-/* ─── Badge pré-sélection (header) ───────────────────────────────────── */
+/* ── Badge pré-sélection ─────────────────────────────────────────────── */
 function DevisFormBadge() {
-  const searchParams = useSearchParams()
-  const param = searchParams.get('vehicule')
+  const sp    = useSearchParams()
+  const param = sp.get('vehicule')
   if (!param) return null
-  const vehicle = vehiculesData.flatMap(s => s.modeles).find(m => m.value === param)
-  if (!vehicle) return null
+  const v = vehiculesData.flatMap(s => s.modeles).find(m => m.value === param)
+  if (!v) return null
   return (
-    <div className="cad-badge-pre">
-      <span className="cad-badge-dot" />
-      Véhicule sélectionné :&nbsp;<strong style={{ color: '#CC0000' }}>{vehicle.nom}</strong>
+    <div className="dv-prebadge">
+      <span className="dv-prebadge-dot"/>
+      Véhicule sélectionné :&nbsp;<strong style={{ color:'#CC0000' }}>{v.nom}</strong>
     </div>
   )
 }
 
-/* ─── Formulaire principal ────────────────────────────────────────────── */
+/* ── Formulaire ──────────────────────────────────────────────────────── */
 function DevisForm() {
-  const searchParams  = useSearchParams()
-  const vehiculeParam = searchParams.get('vehicule')
+  const sp            = useSearchParams()
+  const vehiculeParam = sp.get('vehicule')
   const allModeles    = vehiculesData.flatMap(s => s.modeles)
   const validParam    = vehiculeParam && allModeles.some(m => m.value === vehiculeParam) ? vehiculeParam : null
   const isPreselected = !!validParam
 
-  const [formData, setFormData] = useState({
-    nom: '', prenom: '', societe: '', telephone: '',
-    email: '', ville: '', vehicule: validParam ?? '', message: '', newsletter: false,
+  const [fd, setFd] = useState({
+    nom:'', prenom:'', societe:'', telephone:'',
+    email:'', ville:'', vehicule: validParam ?? '', message:'', newsletter:false,
   })
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error,   setError]   = useState('')
 
   useEffect(() => {
-    if (validParam) setFormData(prev => ({ ...prev, vehicule: validParam }))
+    if (validParam) setFd(p => ({ ...p, vehicule: validParam }))
   }, [validParam])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-    }))
+    setFd(p => ({ ...p, [name]: type==='checkbox' ? (e.target as HTMLInputElement).checked : value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true); setError('')
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); setLoading(true); setError('')
     try {
-      const res = await fetch('/api/devis', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, date: new Date().toISOString(), statut: 'nouveau' }),
+      const r = await fetch('/api/devis', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ ...fd, date:new Date().toISOString(), statut:'nouveau' }),
       })
-      if (!res.ok) throw new Error()
+      if (!r.ok) throw new Error()
       setSuccess(true)
-      setFormData({ nom:'', prenom:'', societe:'', telephone:'', email:'', ville:'', vehicule:'', message:'', newsletter:false })
+      setFd({ nom:'', prenom:'', societe:'', telephone:'', email:'', ville:'', vehicule:'', message:'', newsletter:false })
     } catch { setError('Une erreur est survenue. Veuillez réessayer.') }
     finally { setLoading(false) }
   }
 
-  const selectedVehicle = allModeles.find(m => m.value === formData.vehicule)
-  const selectedSerie   = vehiculesData.find(s => s.modeles.some(m => m.value === formData.vehicule))
-  const imageSrc        = formData.vehicule ? imageMap[formData.vehicule] ?? null : null
+  const selV  = allModeles.find(m => m.value === fd.vehicule)
+  const selS  = vehiculesData.find(s => s.modeles.some(m => m.value === fd.vehicule))
+  const imgSrc = fd.vehicule ? imageMap[fd.vehicule] ?? null : null
+
+  const VehicleIcon = () => (
+    <svg width="52" height="52" fill="#e0ddd8" viewBox="0 0 24 24">
+      <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+    </svg>
+  )
 
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 60px' }}>
-      <div className="cad-card">
-        <div className="cad-topbar" />
+    <div className="dv-wrap">
+      <div className="dv-card">
+        <div className="dv-topbar"/>
 
         {success ? (
-          <div className="cad-success">
-            <div style={{ width:64, height:64, borderRadius:'50%', background:'#f0fdf4', border:'1px solid #bbf7d0', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px' }}>
+          <div className="dv-ok">
+            <div style={{ width:64,height:64,borderRadius:'50%',background:'#f0fdf4',border:'1px solid #bbf7d0',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px' }}>
               <svg width="28" height="28" fill="none" stroke="#22c55e" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
               </svg>
             </div>
-            <h2 style={{ fontSize:22, fontWeight:800, color:'#111', marginBottom:8 }}>Demande envoyée !</h2>
-            <p style={{ color:'#aaa', fontSize:14, marginBottom:28 }}>Notre équipe vous contactera dans les plus brefs délais.</p>
-            <Link href="/" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'10px 24px', background:'#CC0000', color:'#fff', borderRadius:99, fontWeight:700, fontSize:13, textDecoration:'none' }}>
+            <h2>Demande envoyée !</h2>
+            <p>Notre équipe vous contactera dans les plus brefs délais.</p>
+            <Link href="/" style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'11px 28px',background:'#CC0000',color:'#fff',borderRadius:99,fontWeight:700,fontSize:13,textDecoration:'none' }}>
               Retour à l&apos;accueil
             </Link>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <div className="cad-form-grid">
+          <form onSubmit={onSubmit}>
+            <div className="dv-grid">
 
               {/* ── Gauche ── */}
-              <div className="cad-left">
-                <div className="cad-step">
-                  <div className="cad-step-num">1</div>
-                  <div className="cad-step-title">{isPreselected ? 'Votre véhicule' : 'Sélectionnez votre véhicule'}</div>
+              <div className="dv-col-l">
+                <div className="dv-step">
+                  <div className="dv-step-n">1</div>
+                  <div className="dv-step-t">{isPreselected ? 'Votre véhicule' : 'Sélectionnez votre véhicule'}</div>
                 </div>
 
                 {isPreselected ? (
-                  /* Véhicule fixe — grande image */
-                  <div className="cad-vehicle-box">
-                    <div className="cad-vehicle-img">
-                      {imageSrc ? (
-                        <Image src={imageSrc} alt={selectedVehicle?.nom || ''} fill style={{ objectFit:'contain', padding:20 }} />
-                      ) : (
-                        <div className="cad-empty">
-                          <svg width="48" height="48" fill="#e5e5e5" viewBox="0 0 24 24">
-                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/>
-                          </svg>
-                          <p>Image bientôt disponible</p>
-                        </div>
-                      )}
+                  <div className="dv-vbox">
+                    <div className="dv-vimg">
+                      {imgSrc
+                        ? <Image src={imgSrc} alt={selV?.nom||''} fill style={{ objectFit:'contain', padding:20 }}/>
+                        : <div style={{ color:'#ddd', textAlign:'center' }}><VehicleIcon/><p style={{ fontSize:13,marginTop:8 }}>Image bientôt disponible</p></div>
+                      }
                     </div>
-                    <div className="cad-vehicle-footer">
+                    <div className="dv-vfoot">
                       <div>
-                        <div className="cad-vehicle-name">{selectedVehicle?.nom}</div>
-                        {selectedSerie && (
-                          <span className="cad-vehicle-badge" style={{ background: selectedSerie.couleur }}>{selectedSerie.serie}</span>
-                        )}
+                        <div className="dv-vname">{selV?.nom}</div>
+                        {selS && <span className="dv-vbadge" style={{ background:selS.couleur }}>{selS.serie}</span>}
                       </div>
-                      <Link href="/devis" className="cad-change">Changer</Link>
+                      <Link href="/devis" className="dv-vchange">Changer</Link>
                     </div>
                   </div>
                 ) : (
-                  /* Select + aperçu */
                   <>
-                    <div style={{
-                      borderRadius:14, border: formData.vehicule ? '1px solid #ece9e4' : '1.5px dashed #e5e2dd',
-                      minHeight:190, display:'flex', alignItems:'center', justifyContent:'center',
-                      background: formData.vehicule ? '#fff' : '#fafaf9', overflow:'hidden', position:'relative',
-                    }}>
-                      {formData.vehicule ? (
-                        <div style={{ width:'100%', textAlign:'center', padding:'20px 16px' }}>
-                          <div style={{ position:'relative', width:'100%', height:130 }}>
-                            {imageSrc ? (
-                              <Image key={formData.vehicule} src={imageSrc} alt={selectedVehicle?.nom || ''} fill style={{ objectFit:'contain' }}/>
-                            ) : (
-                              <div className="cad-empty"><p>Image bientôt disponible</p></div>
-                            )}
+                    {fd.vehicule ? (
+                      <div className="dv-preview">
+                        <div className="dv-preview-inner">
+                          <div style={{ position:'relative', width:'100%', height:140, marginBottom:12 }}>
+                            {imgSrc
+                              ? <Image key={fd.vehicule} src={imgSrc} alt={selV?.nom||''} fill style={{ objectFit:'contain' }}/>
+                              : <div style={{ color:'#ddd', textAlign:'center', paddingTop:30 }}><VehicleIcon/></div>
+                            }
                           </div>
-                          <p style={{ fontSize:13, fontWeight:700, color:'#111', marginTop:10 }}>{selectedVehicle?.nom}</p>
-                          {selectedSerie && (
-                            <span className="cad-vehicle-badge" style={{ background: selectedSerie.couleur, marginTop:6 }}>{selectedSerie.serie}</span>
-                          )}
+                          <p style={{ fontSize:13,fontWeight:700,color:'#111' }}>{selV?.nom}</p>
+                          {selS && <span className="dv-vbadge" style={{ background:selS.couleur, marginTop:6 }}>{selS.serie}</span>}
                         </div>
-                      ) : (
-                        <div className="cad-empty">
-                          <svg width="52" height="52" fill="#e0ddd8" viewBox="0 0 24 24">
-                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/>
-                          </svg>
-                          <p>Sélectionnez un véhicule<br/>pour voir son image</p>
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    ) : (
+                      <div className="dv-empty">
+                        <VehicleIcon/>
+                        <span>Sélectionnez un véhicule<br/>pour voir son image</span>
+                      </div>
+                    )}
 
-                    <div className="cad-select-wrap">
-                      <select name="vehicule" value={formData.vehicule} onChange={handleChange} required className="cad-select">
+                    <div className="dv-sel-wrap">
+                      <select name="vehicule" value={fd.vehicule} onChange={onChange} required className="dv-sel">
                         <option value="">Choisissez un véhicule</option>
-                        {vehiculesData.map(serie => (
-                          <optgroup key={serie.serie} label={`━━ ${serie.serie} ━━`}>
-                            {serie.modeles.map(m => (
-                              <option key={m.value} value={m.value}>{m.nom}</option>
-                            ))}
+                        {vehiculesData.map(s => (
+                          <optgroup key={s.serie} label={`━━ ${s.serie} ━━`}>
+                            {s.modeles.map(m => <option key={m.value} value={m.value}>{m.nom}</option>)}
                           </optgroup>
                         ))}
                       </select>
-                      <svg className="cad-select-arrow" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="dv-arr" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
                       </svg>
                     </div>
-                    <p className="cad-note">* Photos non contractuelles</p>
+                    <p className="dv-note">* Photos non contractuelles</p>
                   </>
                 )}
               </div>
 
               {/* ── Droite ── */}
-              <div className="cad-right">
-                <div className="cad-step">
-                  <div className="cad-step-num">2</div>
-                  <div className="cad-step-title">Vos coordonnées</div>
+              <div className="dv-col-r">
+                <div className="dv-step">
+                  <div className="dv-step-n">2</div>
+                  <div className="dv-step-t">Vos coordonnées</div>
                 </div>
 
-                <div className="cad-field-row">
+                <div className="dv-row">
                   <div>
-                    <label className="cad-label">Nom *</label>
-                    <input type="text" name="nom" value={formData.nom} onChange={handleChange} required placeholder="Votre nom" className="cad-input"/>
+                    <label className="dv-lbl">Nom *</label>
+                    <input name="nom" value={fd.nom} onChange={onChange} required placeholder="Votre nom" className="dv-inp"/>
                   </div>
                   <div>
-                    <label className="cad-label">Prénom *</label>
-                    <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} required placeholder="Votre prénom" className="cad-input"/>
+                    <label className="dv-lbl">Prénom *</label>
+                    <input name="prenom" value={fd.prenom} onChange={onChange} required placeholder="Votre prénom" className="dv-inp"/>
                   </div>
                 </div>
-
-                <div className="cad-field">
-                  <label className="cad-label">Société</label>
-                  <input type="text" name="societe" value={formData.societe} onChange={handleChange} placeholder="Optionnel" className="cad-input"/>
+                <div className="dv-f">
+                  <label className="dv-lbl">Société</label>
+                  <input name="societe" value={fd.societe} onChange={onChange} placeholder="Optionnel" className="dv-inp"/>
                 </div>
-
-                <div className="cad-field-row">
+                <div className="dv-row">
                   <div>
-                    <label className="cad-label">Téléphone *</label>
-                    <input type="tel" name="telephone" value={formData.telephone} onChange={handleChange} required placeholder="06 00 00 00 00" className="cad-input"/>
+                    <label className="dv-lbl">Téléphone *</label>
+                    <input type="tel" name="telephone" value={fd.telephone} onChange={onChange} required placeholder="06 00 00 00 00" className="dv-inp"/>
                   </div>
                   <div>
-                    <label className="cad-label">Email *</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="votre@email.com" className="cad-input"/>
+                    <label className="dv-lbl">Email *</label>
+                    <input type="email" name="email" value={fd.email} onChange={onChange} required placeholder="votre@email.com" className="dv-inp"/>
                   </div>
                 </div>
-
-                <div className="cad-field">
-                  <label className="cad-label">Ville *</label>
-                  <input type="text" name="ville" value={formData.ville} onChange={handleChange} required placeholder="Votre ville" className="cad-input"/>
+                <div className="dv-f">
+                  <label className="dv-lbl">Ville *</label>
+                  <input name="ville" value={fd.ville} onChange={onChange} required placeholder="Votre ville" className="dv-inp"/>
                 </div>
-
-                <div className="cad-field">
-                  <label className="cad-label">Message</label>
-                  <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Précisez vos besoins, options souhaitées, délais..." className="cad-textarea"/>
+                <div className="dv-f">
+                  <label className="dv-lbl">Message</label>
+                  <textarea name="message" value={fd.message} onChange={onChange} placeholder="Précisez vos besoins, délais..." className="dv-ta"/>
                 </div>
-
-                <div className="cad-check">
-                  <input type="checkbox" name="newsletter" checked={formData.newsletter} onChange={handleChange}/>
-                  <span>J&apos;accepte de recevoir les offres commerciales et actualités de CADOZAT par email.</span>
+                <div className="dv-check">
+                  <input type="checkbox" name="newsletter" checked={fd.newsletter} onChange={onChange}/>
+                  <span>J&apos;accepte de recevoir les offres commerciales de CADOZAT par email.</span>
                 </div>
-
-                {error && <div className="cad-error">{error}</div>}
-
-                <button type="submit" disabled={loading} className="cad-btn">
+                {error && <div className="dv-err">{error}</div>}
+                <button type="submit" disabled={loading} className="dv-btn">
                   {loading ? (
                     <>
-                      <svg style={{ animation:'spin 1s linear infinite' }} width="16" height="16" fill="none" viewBox="0 0 24 24">
+                      <svg style={{ animation:'spin 0.9s linear infinite' }} width="16" height="16" fill="none" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" strokeWidth="4"/>
-                        <path fill="rgba(255,255,255,0.9)" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
+                        <path fill="rgba(255,255,255,0.85)" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
                       </svg>
-                      Envoi en cours...
+                      Envoi en cours…
                     </>
                   ) : (
                     <>
@@ -617,8 +511,7 @@ function DevisForm() {
                     </>
                   )}
                 </button>
-
-                <p className="cad-legal">
+                <p className="dv-legal">
                   En soumettant, vous acceptez notre{' '}
                   <Link href="/mentions-legales">politique de confidentialité</Link>.
                 </p>
@@ -629,20 +522,17 @@ function DevisForm() {
       </div>
 
       {/* Contact bar */}
-      <div className="cad-contacts">
+      <div className="dv-contacts">
         {[
-          { bg:'#fff5f5', color:'#CC0000', label:'Appelez-nous', value:'0524 885 025',
-            icon:<svg width="20" height="20" fill="#CC0000" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg> },
-          { bg:'#eff2ff', color:'#1B2B6B', label:'Écrivez-nous', value:'contact@cadozat.com',
-            icon:<svg width="20" height="20" fill="#1B2B6B" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg> },
-          { bg:'#fdf8ed', color:'#C9A84C', label:'Horaires', value:'Lun–Sam  8h–18h',
-            icon:<svg width="20" height="20" fill="#C9A84C" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/></svg> },
-        ].map((c, i) => (
-          <div key={i} className="cad-contact-item">
-            <div className="cad-contact-icon" style={{ background: c.bg }}>{c.icon}</div>
+          { bg:'#fff5f5', icon:<svg width="20" height="20" fill="#CC0000" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>, label:'Appelez-nous', val:'0524 885 025' },
+          { bg:'#eff2ff', icon:<svg width="20" height="20" fill="#1B2B6B" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>, label:'Écrivez-nous', val:'contact@cadozat.com' },
+          { bg:'#fdf8ed', icon:<svg width="20" height="20" fill="#C9A84C" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/></svg>, label:'Horaires', val:'Lun–Sam  8h–18h' },
+        ].map((c,i) => (
+          <div key={i} className="dv-ci">
+            <div className="dv-ci-icon" style={{ background:c.bg }}>{c.icon}</div>
             <div>
-              <div className="cad-contact-label">{c.label}</div>
-              <div className="cad-contact-value">{c.value}</div>
+              <div className="dv-ci-lbl">{c.label}</div>
+              <div className="dv-ci-val">{c.val}</div>
             </div>
           </div>
         ))}
@@ -651,62 +541,49 @@ function DevisForm() {
   )
 }
 
-/* ─── Page export ─────────────────────────────────────────────────────── */
+/* ── Export ──────────────────────────────────────────────────────────── */
 export default function DevisPage() {
   return (
     <>
-      {/* CSS global injecté dans le <head> */}
-      <style dangerouslySetInnerHTML={{ __html: globalStyles }}/>
+      {/* CSS injecté — priorité haute grâce au !important sur body */}
+      <style dangerouslySetInnerHTML={{ __html: CSS }}/>
 
-      <main className="cad-page">
-        {/* Blobs animés */}
-        <div className="cad-bg">
-          <div className="cad-blob cad-blob-1"/>
-          <div className="cad-blob cad-blob-2"/>
-          <div className="cad-blob cad-blob-3"/>
-        </div>
+      {/* Blobs fixes — en dehors du flux normal, couvrent toute la fenêtre */}
+      <div className="dv-blob dv-blob-red"  aria-hidden="true"/>
+      <div className="dv-blob dv-blob-blue" aria-hidden="true"/>
+      <div className="dv-blob dv-blob-gold" aria-hidden="true"/>
 
-        {/* Contenu */}
-        <div className="cad-content">
-          {/* Hero */}
-          <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 24px' }}>
-            <div className="cad-hero">
-              <nav style={{ display:'flex', alignItems:'center', gap:6, fontSize:12, color:'#aaa', marginBottom:20 }}>
-                <Link href="/" style={{ color:'#aaa', textDecoration:'none' }}>Accueil</Link>
-                <span>/</span>
-                <span style={{ color:'#CC0000', fontWeight:600 }}>Demande de devis</span>
-              </nav>
-
-              <h1 style={{ fontSize:44, fontWeight:900, color:'#111', letterSpacing:'-1px', lineHeight:1.1, marginBottom:12 }}>
-                Demande de <span style={{ color:'#CC0000' }}>devis</span>
-              </h1>
-
-              <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:14 }}>
-                <div style={{ width:32, height:3, background:'#CC0000', borderRadius:99 }}/>
-                <div style={{ width:16, height:3, background:'#C9A84C', borderRadius:99 }}/>
-              </div>
-
-              <p style={{ fontSize:15, color:'#888', maxWidth:480, lineHeight:1.7 }}>
-                Remplissez le formulaire et notre équipe commerciale vous contactera dans les plus brefs délais.
-              </p>
-
-              <Suspense fallback={null}>
-                <DevisFormBadge/>
-              </Suspense>
-            </div>
+      <main className="dv-page">
+        {/* Hero */}
+        <div className="dv-hero">
+          <nav className="dv-breadcrumb">
+            <Link href="/">Accueil</Link>
+            <span>/</span>
+            <span style={{ color:'#CC0000', fontWeight:600 }}>Demande de devis</span>
+          </nav>
+          <h1 className="dv-h1">Demande de <em>devis</em></h1>
+          <div className="dv-accent">
+            <div className="dv-accent-red"/>
+            <div className="dv-accent-gold"/>
           </div>
-
-          {/* Formulaire */}
-          <Suspense fallback={
-            <div style={{ maxWidth:1100, margin:'0 auto', padding:'0 24px 60px' }}>
-              <div style={{ background:'#fff', borderRadius:20, height:400, display:'flex', alignItems:'center', justifyContent:'center', border:'1px solid #e8e6e1' }}>
-                <p style={{ color:'#ccc', fontSize:14 }}>Chargement…</p>
-              </div>
-            </div>
-          }>
-            <DevisForm/>
+          <p className="dv-subtitle">
+            Remplissez le formulaire et notre équipe commerciale vous contactera dans les plus brefs délais.
+          </p>
+          <Suspense fallback={null}>
+            <DevisFormBadge/>
           </Suspense>
         </div>
+
+        {/* Formulaire */}
+        <Suspense fallback={
+          <div className="dv-wrap">
+            <div style={{ background:'#fff', borderRadius:22, height:400, display:'flex', alignItems:'center', justifyContent:'center', border:'1px solid #e8e5e0' }}>
+              <p style={{ color:'#ccc', fontSize:14 }}>Chargement…</p>
+            </div>
+          </div>
+        }>
+          <DevisForm/>
+        </Suspense>
       </main>
     </>
   )
