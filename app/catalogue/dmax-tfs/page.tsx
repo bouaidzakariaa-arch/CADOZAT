@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import BrochureForm from '@/app/components/BrochureForm'
 
 const specs = [
   {
@@ -273,7 +274,7 @@ export default function DMaxTFSPage() {
           </div>
         </div>
       </section>
-
+      <BrochureForm modele="dmax-tfr" marque="isuzu" nomModele="D-MAX TFR"/>
       {/* CTA */}
       <section className="py-16 bg-[#1B2B6B] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
