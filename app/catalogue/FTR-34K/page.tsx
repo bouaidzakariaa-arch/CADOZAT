@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
@@ -117,6 +120,81 @@ const modeles_fseries = [
   { nom: 'FVR 34P 18T', href: '/catalogue/fvr-34p', actif: false },
 ]
 
+
+function GalerieSlider({ images, titre }: { images: string[]; titre: string }) {
+  const [active, setActive] = useState(0)
+
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-10">
+          <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Galerie</p>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-px w-10 bg-[#C9A84C]" />
+            <h2 className="text-3xl font-black text-gray-900">Photos du {titre}</h2>
+            <div className="h-px w-10 bg-[#C9A84C]" />
+          </div>
+        </div>
+
+        {/* Image principale */}
+        <div className="relative rounded-3xl overflow-hidden border border-gray-100 bg-white shadow-md mb-4" style={{ height: '480px' }}>
+          <img
+            key={active}
+            src={images[active]}
+            alt={`${titre} — Photo ${active + 1}`}
+            className="w-full h-full object-contain"
+            style={{ animation: 'fadeIn .3s ease' }}
+          />
+          {/* Numéro */}
+          <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs font-bold px-3 py-1 rounded-full">
+            {active + 1} / {images.length}
+          </div>
+          {/* Flèche gauche */}
+          {active > 0 && (
+            <button
+              onClick={() => setActive(active - 1)}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-md flex items-center justify-center transition-all hover:scale-110">
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+          )}
+          {/* Flèche droite */}
+          {active < images.length - 1 && (
+            <button
+              onClick={() => setActive(active + 1)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-md flex items-center justify-center transition-all hover:scale-110">
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          )}
+        </div>
+
+        {/* Miniatures */}
+        <div className="flex gap-3 overflow-x-auto pb-2">
+          {images.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className="flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all"
+              style={{
+                width: 120, height: 80,
+                borderColor: active === i ? '#CC0000' : 'transparent',
+                opacity: active === i ? 1 : 0.55,
+                transform: active === i ? 'scale(1.05)' : 'scale(1)',
+              }}>
+              <img src={src} alt={`Miniature ${i + 1}`} className="w-full h-full object-contain bg-white"/>
+            </button>
+          ))}
+        </div>
+
+        <style>{`@keyframes fadeIn { from{opacity:0} to{opacity:1} }`}</style>
+      </div>
+    </section>
+  )
+}
+
 export default function FTR34KPage() {
   return (
     <main className="bg-white">
@@ -194,29 +272,7 @@ export default function FTR34KPage() {
       </section>
 
       {/* ── GALERIE ── */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Galerie</p>
-            <div className="flex items-center justify-center gap-3">
-              <div className="h-px w-10 bg-[#C9A84C]" />
-              <h2 className="text-3xl font-black text-gray-900">Photos du FTR 34K</h2>
-              <div className="h-px w-10 bg-[#C9A84C]" />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {images.map((src, i) => (
-              <div key={i} className="aspect-video rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-sm hover:shadow-md transition-all">
-                <img
-                  src={src}
-                  alt={`FTR 34K — Photo ${i + 1}`}
-                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <GalerieSlider images={images} titre="FTR 34K" />
 
       {/* ── FICHE TECHNIQUE ── */}
       <section className="py-16 bg-white">
