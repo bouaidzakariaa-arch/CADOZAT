@@ -47,16 +47,10 @@ const menuMarques = [
     tag: 'Pick-up & Camions',
     sections: [
       {
-        titre: 'D-MAX TFR', subtitle: 'Pick-up 4×2', href: '/catalogue/dmax-tfr',
+        titre: 'D-MAX TFR', subtitle: 'Pick-up EURO 6', href: '/catalogue/dmax-tfr',
         items: [
-          { nom: 'Pick-up SC 4×2', href: '/catalogue/dmax-tfr' },
-          { nom: 'Pick-up SC 4×2 Clim', href: '/catalogue/dmax-tfr' },
-          { nom: 'Pick-up DC 4×2', href: '/catalogue/dmax-tfr' },
+          { nom: 'Pick-up SC 4×2 EURO 6', href: '/catalogue/dmax-tfr' },
         ],
-      },
-      {
-        titre: 'D-MAX TFS', subtitle: 'Pick-up 4×4', href: '/catalogue/dmax-tfs',
-        items: [{ nom: 'Pick-up DC 4×4', href: '/catalogue/dmax-tfs' }],
       },
       {
         titre: 'Série N', subtitle: '3.5T — 9.5T', href: '/catalogue',
@@ -159,7 +153,16 @@ export default function Navbar() {
     @keyframes megamenu-in { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
     .megamenu-enter { animation:megamenu-in .22s cubic-bezier(.16,1,.3,1) both; }
 
-    /* Hover simple pour les liens nav */
+    /* ── Animations liens navbar ── */
+    @keyframes navUnderline {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes navFadeIn {
+      from { opacity:0; transform:translateY(-4px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
     .nav-link {
       position: relative;
       color: #374151;
@@ -167,31 +170,66 @@ export default function Navbar() {
       font-weight: 700;
       padding: 6px 14px;
       border-radius: 8px;
-      transition: color .18s, background .18s;
+      transition: color .2s;
       white-space: nowrap;
+    }
+    /* Ligne animée en dessous */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: #CC0000;
+      border-radius: 99px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s cubic-bezier(.4,0,.2,1);
     }
     .nav-link:hover {
       color: #CC0000;
-      background: rgba(204,0,0,0.06);
     }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
     .nav-link-gamme {
       display: flex;
       align-items: center;
       gap: 5px;
+      position: relative;
       color: #374151;
       font-size: 14px;
       font-weight: 700;
       padding: 6px 14px;
       border-radius: 8px;
-      transition: color .18s, background .18s;
+      transition: color .2s;
       white-space: nowrap;
       border: none;
       background: transparent;
       cursor: pointer;
     }
-    .nav-link-gamme:hover, .nav-link-gamme.active {
+    .nav-link-gamme::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: #CC0000;
+      border-radius: 99px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-link-gamme:hover,
+    .nav-link-gamme.active {
       color: #CC0000;
-      background: rgba(204,0,0,0.06);
+    }
+    .nav-link-gamme:hover::after,
+    .nav-link-gamme.active::after {
+      transform: scaleX(1);
     }
   `
 

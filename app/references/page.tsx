@@ -7,9 +7,8 @@ const clients = [
     nom: 'Coca-Cola',
     secteur: 'Boissons',
     site: 'https://www.coca-cola.com/ma/fr',
-    logo: 'https://logo.clearbit.com/coca-cola.com',
+    logo: '/images/clients/coca-cola.png',
     initiales: 'CC',
-    couleur: '#CC0000',
   },
   {
     nom: 'Walmas',
@@ -17,39 +16,34 @@ const clients = [
     site: '#',
     logo: null,
     initiales: 'WA',
-    couleur: '#1B2B6B',
   },
   {
     nom: 'Rafi3',
     secteur: 'Boissons',
     site: '#',
-    logo: null,
+    logo: '/images/clients/Rafii.jpg',
     initiales: 'R3',
-    couleur: '#2E7D32',
   },
   {
     nom: 'HDS',
     secteur: 'Services',
     site: '#',
-    logo: null,
+    logo: '/images/clients/HDS.png',
     initiales: 'HDS',
-    couleur: '#E65100',
   },
   {
     nom: 'COPAG',
     secteur: 'Coopérative agricole',
     site: 'https://www.copag.ma',
-    logo: 'https://logo.clearbit.com/copag.ma',
+    logo: '/images/clients/Copag.png',
     initiales: 'CP',
-    couleur: '#1B5E20',
   },
   {
     nom: 'Soussia des Gaz',
     secteur: 'Énergie',
     site: '#',
-    logo: null,
+    logo: '/images/clients/soussiya-gaz.png',
     initiales: 'SG',
-    couleur: '#F57F17',
   },
   {
     nom: 'Al Ain (Dester)',
@@ -57,23 +51,20 @@ const clients = [
     site: 'https://www.alain.ae',
     logo: 'https://logo.clearbit.com/alain.ae',
     initiales: 'AA',
-    couleur: '#0277BD',
   },
   {
     nom: 'M2E — La Marocaine des Eaux',
     secteur: 'Eau minérale',
     site: '#',
-    logo: null,
+    logo: '/images/clients/m2ea.png',
     initiales: 'M2E',
-    couleur: '#00838F',
   },
   {
     nom: 'Aqwa Life',
     secteur: 'Eau minérale',
     site: '#',
-    logo: null,
+    logo: '/images/clients/acwa-life.jpg',
     initiales: 'AL',
-    couleur: '#0288D1',
   },
 ]
 
@@ -121,25 +112,26 @@ const CSS = `
     border-color: #CC0000;
   }
   .ref-logo-wrap {
-    width: 96px;
-    height: 96px;
-    border-radius: 20px;
-    background: #f8f7f5;
-    border: 1px solid #ece9e2;
+    width: 88px;
+    height: 88px;
+    border-radius: 16px;
+    background: #f4f5f7;
+    border: 1px solid #e8e6e1;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
     overflow: hidden;
-    transition: border-color .25s, transform .25s;
+    transition: border-color .25s, transform .25s, background .25s;
   }
   .ref-card:hover .ref-logo-wrap {
     border-color: #CC0000;
-    transform: scale(1.05);
+    background: #fff5f5;
+    transform: scale(1.04);
   }
   .ref-logo-wrap img {
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 64px;
     object-fit: contain;
   }
   .ref-nom {
@@ -277,15 +269,14 @@ export default function ReferencesPage() {
                           img.style.display = 'none'
                           const wrap = img.parentElement
                           if (wrap) {
-                            wrap.style.background = client.couleur
-                            wrap.innerHTML = `<span style="font-size:20px;font-weight:900;color:#fff;letter-spacing:-0.5px">${client.initiales}</span>`
+                            wrap.innerHTML = `<span style="font-size:18px;font-weight:800;color:#374151;letter-spacing:-0.5px">${client.initiales}</span>`
                           }
                         }}
                       />
                     ) : (
-                      <div style={{ width:'100%', height:'100%', background:client.couleur, display:'flex', alignItems:'center', justifyContent:'center', borderRadius:18 }}>
-                        <span style={{ fontSize:20, fontWeight:900, color:'#fff', letterSpacing:'-0.5px' }}>{client.initiales}</span>
-                      </div>
+                      <span style={{ fontSize:18, fontWeight:800, color:'#374151', letterSpacing:'-0.5px' }}>
+                        {client.initiales}
+                      </span>
                     )}
                   </div>
 
