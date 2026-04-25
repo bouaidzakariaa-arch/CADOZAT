@@ -5,6 +5,9 @@ const images = [
   '/images/camions/serie-f/fvr-34k/img1.jpg',
   '/images/camions/serie-f/fvr-34k/img2.jpg',
   '/images/camions/serie-f/fvr-34k/img3.jpg',
+  '/images/camions/serie-f/fvr-34k/img4.jpg',
+  '/images/camions/serie-f/fvr-34k/img5.jpg',
+  '/images/camions/serie-f/fvr-34k/img6.jpg',
 ]
 
 const specs = [

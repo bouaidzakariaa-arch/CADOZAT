@@ -5,6 +5,9 @@ const images = [
   '/images/camions/serie-f/ftr-34m/img1.jpg',
   '/images/camions/serie-f/ftr-34m/img2.jpg',
   '/images/camions/serie-f/ftr-34m/img3.jpg',
+  '/images/camions/serie-f/ftr-34m/img4.jpg',
+  '/images/camions/serie-f/ftr-34m/img5.jpg',
+  '/images/camions/serie-f/ftr-34m/img6.jpg',
 ]
 
 const specs = [
