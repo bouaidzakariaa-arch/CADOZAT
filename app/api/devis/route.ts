@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const ADMIN_EMAIL    = process.env.ADMIN_EMAIL || 'contact@cadozat.com'
-const FROM_EMAIL     = 'devis@cadozat.com' // doit correspondre à ton domaine vérifié sur Resend
+const FROM_EMAIL     = 'onboarding@resend.dev' // doit correspondre à ton domaine vérifié sur Resend
                                             // ou utilise: onboarding@resend.dev pour les tests
 
 // POST — Recevoir un devis et envoyer 2 emails
