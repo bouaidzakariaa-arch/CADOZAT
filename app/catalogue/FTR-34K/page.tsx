@@ -7,6 +7,8 @@ const images = [
   '/images/camions/serie-f/ftr-34k/img2.jpg',
   '/images/camions/serie-f/ftr-34k/img3.jpg',
   '/images/camions/serie-f/ftr-34k/img4.jpg',
+  '/images/camions/serie-f/ftr-34k/img5.jpg',
+  '/images/camions/serie-f/ftr-34k/img6.jpg',
 ]
 
 /* ── Fiche technique extraite du PDF officiel SDAMA ── */
