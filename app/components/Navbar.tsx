@@ -98,6 +98,17 @@ const menuMarques = [
   },
 ]
 
+// ── Liens simples de la navbar ──────────────────────────────────────
+const NAV_LINKS = [
+  { label: 'Accueil',            href: '/' },
+  { label: 'Société',            href: '/societe' },
+  // "Notre gamme" est géré séparément (mega menu)
+  { label: 'Marché public',      href: '/marche-public' },
+  { label: 'Services après-vente', href: '/services' },
+  { label: 'Références',         href: '/references' },
+  { label: 'Contact',            href: '/contact' },
+]
+
 function BrandLogo({ id, zone, className = '' }: { id: BrandId; zone: 'tab' | 'header' | 'footer'; className?: string }) {
   const [imgError, setImgError] = useState(false)
   const b = BRANDS[id]
@@ -147,6 +158,41 @@ export default function Navbar() {
     .ticker-track.paused { animation-play-state:paused; }
     @keyframes megamenu-in { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
     .megamenu-enter { animation:megamenu-in .22s cubic-bezier(.16,1,.3,1) both; }
+
+    /* Hover simple pour les liens nav */
+    .nav-link {
+      position: relative;
+      color: #374151;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: color .18s, background .18s;
+      white-space: nowrap;
+    }
+    .nav-link:hover {
+      color: #CC0000;
+      background: rgba(204,0,0,0.06);
+    }
+    .nav-link-gamme {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #374151;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: color .18s, background .18s;
+      white-space: nowrap;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .nav-link-gamme:hover, .nav-link-gamme.active {
+      color: #CC0000;
+      background: rgba(204,0,0,0.06);
+    }
   `
 
   return (
@@ -220,71 +266,40 @@ export default function Navbar() {
                 </div>
               </Link>
 
-              {/* Nav links */}
-              <ul className="hidden lg:flex items-center">
-                {[{ label: 'Accueil', href: '/' }, { label: 'Société', href: '/societe' }].map(item => (
-                  <li key={item.label}>
-                    <Link href={item.href}
-                      className="relative flex items-center px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg"
-                      style={{ color: '#374151' }}
-                      onClick={fermer}
-                      onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'white'; el.style.background = 'linear-gradient(135deg,#CC0000,#2D6A4F)' }}
-                      onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = '#374151'; el.style.background = 'transparent' }}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+              {/* ── Nav links desktop ── */}
+              <ul className="hidden lg:flex items-center gap-0.5">
 
-                {/* Notre gamme */}
+                {/* Accueil & Société */}
+                <li><Link href="/" className="nav-link" onClick={fermer}>Accueil</Link></li>
+                <li><Link href="/societe" className="nav-link" onClick={fermer}>Société</Link></li>
+
+                {/* Notre gamme — mega menu */}
                 <li onMouseEnter={() => setGammeOuverte(true)}>
-                  <button onClick={() => setGammeOuverte(!gammeOuverte)}
-                    className="flex items-center gap-1.5 px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg relative overflow-hidden group/gamme"
-                    style={{
-                      color: gammeOuverte ? 'white' : '#374151',
-                      background: gammeOuverte ? 'linear-gradient(135deg,#CC0000,#2D6A4F)' : 'transparent',
-                    }}>
-                    {!gammeOuverte && (
-                      <span className="absolute inset-0 opacity-0 group-hover/gamme:opacity-100 transition-opacity duration-200 rounded-lg"
-                        style={{ background: 'rgba(204,0,0,.06)' }} />
-                    )}
-                    <span className="relative">Notre gamme</span>
-                    <svg className={`w-3.5 h-3.5 relative transition-transform duration-200 ${gammeOuverte ? 'rotate-180' : ''}`}
+                  <button
+                    onClick={() => setGammeOuverte(!gammeOuverte)}
+                    className={`nav-link-gamme${gammeOuverte ? ' active' : ''}`}>
+                    Notre gamme
+                    <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${gammeOuverte ? 'rotate-180' : ''}`}
                       fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                 </li>
 
-                {/* Marché public */}
+                {/* Autres liens */}
+                <li><Link href="/marche-public" className="nav-link" onClick={fermer}>Marché public</Link></li>
+                <li><Link href="/services" className="nav-link" onClick={fermer}>Services après-vente</Link></li>
                 <li>
-                  <Link href="/marche-public"
-                    className="relative flex items-center px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg"
-                    style={{ color: '#374151' }}
-                    onClick={fermer}
-                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'white'; el.style.background = 'linear-gradient(135deg,#CC0000,#2D6A4F)' }}
-                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = '#374151'; el.style.background = 'transparent' }}>
-                    Marché public
+                  <Link href="/references" className="nav-link" onClick={fermer}
+                    style={{ color: '#CC0000', fontWeight: 800 }}>
+                    Références
                   </Link>
                 </li>
-
-                {[{ label: 'Services après-vente', href: '/services' }, { label: 'Contact', href: '/contact' }].map(item => (
-                  <li key={item.label}>
-                    <Link href={item.href}
-                      className="relative flex items-center px-4 py-2 text-sm font-extrabold transition-all whitespace-nowrap rounded-lg"
-                      style={{ color: '#374151' }}
-                      onClick={fermer}
-                      onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'white'; el.style.background = 'linear-gradient(135deg,#CC0000,#2D6A4F)' }}
-                      onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = '#374151'; el.style.background = 'transparent' }}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                <li><Link href="/contact" className="nav-link" onClick={fermer}>Contact</Link></li>
               </ul>
 
               {/* ── CTAs desktop ── */}
               <div className="hidden lg:flex items-center gap-2">
-
-                {/* Bouton Admin — SÉPARÉ du bouton Appeler */}
                 <Link href="/admin"
                   className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
                   style={{ color: '#2D6A4F', border: '1.5px solid rgba(45,106,79,.4)' }}
@@ -296,19 +311,17 @@ export default function Navbar() {
                   Admin
                 </Link>
 
-                {/* Bouton Appeler */}
                 <a href="tel:0524885025"
                   className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
                   style={{ color: '#374151', border: '1.5px solid rgba(0,0,0,.15)' }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#374151'; el.style.color = 'white' }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; el.style.color = '#374151' }}>
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#f3f4f6'; }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; }}>
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
                   Appeler
                 </a>
 
-                {/* Bouton Devis */}
                 <Link href="/devis"
                   className="flex items-center gap-2 px-5 py-2 text-sm font-extrabold text-white rounded-lg transition-all hover:scale-[1.02] active:scale-[.98]"
                   onClick={fermer}
@@ -342,7 +355,7 @@ export default function Navbar() {
             <div className="absolute inset-0 bg-white/96 pointer-events-none" />
             <div className="relative max-w-7xl mx-auto flex flex-col" style={{ minHeight: '420px' }}>
 
-              {/* Onglets marques — centrés */}
+              {/* Onglets marques */}
               <div className="flex border-b justify-center gap-8"
                 style={{ borderColor: 'rgba(0,0,0,.07)', background: 'rgba(250,248,248,.95)' }}>
                 {menuMarques.map(marque => {
@@ -499,7 +512,12 @@ export default function Navbar() {
                 <div className="flex-1" style={{ background: '#2D6A4F' }} />
               </div>
               <div className="px-4 py-4 space-y-1">
-                {[{ label: 'Accueil', href: '/' }, { label: 'Société', href: '/societe' }].map(item => (
+
+                {/* Liens simples mobile */}
+                {[
+                  { label: 'Accueil',   href: '/' },
+                  { label: 'Société',   href: '/societe' },
+                ].map(item => (
                   <Link key={item.href} href={item.href}
                     className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] rounded-lg hover:bg-red-50/60 transition-all"
                     onClick={() => setOuvert(false)}>
@@ -574,16 +592,16 @@ export default function Navbar() {
                   )}
                 </div>
 
-                {/* Marché public mobile */}
-                <Link href="/marche-public"
-                  className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] hover:bg-red-50/60 rounded-lg transition-all"
-                  onClick={() => setOuvert(false)}>
-                  Marché public
-                </Link>
-
-                {[{ label: 'Services après-vente', href: '/services' }, { label: 'Contact', href: '/contact' }].map(item => (
+                {/* Liens restants mobile */}
+                {[
+                  { label: 'Marché public',       href: '/marche-public' },
+                  { label: 'Services après-vente', href: '/services' },
+                  { label: 'Références',           href: '/references' },
+                  { label: 'Contact',              href: '/contact' },
+                ].map(item => (
                   <Link key={item.href} href={item.href}
-                    className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] hover:bg-red-50/60 rounded-lg transition-all"
+                    className="block py-3 px-4 text-sm font-bold rounded-lg transition-all"
+                    style={{ color: item.href === '/references' ? '#CC0000' : '#374151' }}
                     onClick={() => setOuvert(false)}>
                     {item.label}
                   </Link>
