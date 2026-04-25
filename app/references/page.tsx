@@ -112,9 +112,9 @@ const CSS = `
     border-color: #CC0000;
   }
   .ref-logo-wrap {
-    width: 120px;
-    height: 120px;
-    border-radius: 18px;
+    width: 160px;
+    height: 160px;
+    border-radius: 20px;
     background: #f4f5f7;
     border: 1px solid #e8e6e1;
     display: flex;
@@ -130,10 +130,10 @@ const CSS = `
     transform: scale(1.04);
   }
   .ref-logo-wrap img {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     object-fit: contain;
-    padding: 8px;
+    padding: 10px;
   }
   .ref-nom {
     font-size: 14px;
