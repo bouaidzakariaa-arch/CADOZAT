@@ -238,11 +238,11 @@ export default function FTR34KPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {images.map((src, i) => (
               <div key={i}
-                className="aspect-video rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-gradient-to-br from-[#1B2B6B] to-[#CC0000]">
-                <img
+              className="aspect-video rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-gray-50"> 
+              <img
                   src={src}
                   alt={`FTR 34K — Photo ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}

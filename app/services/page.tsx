@@ -66,7 +66,7 @@ const IcArrow = () => (
 const ENGAGEMENTS = [
   {
     icon: <IcWrench/>, color: '#CC0000', bg: '#fff5f5',
-    titre: 'Atelier fixe 300m²',
+    titre: 'Atelier fixe',
     desc: 'Atelier de réparation et d\'entretien de 300m² équipé de ponts élévateurs, station pneumatique et outillage aux normes constructeur.',
   },
   {
@@ -87,7 +87,7 @@ const ENGAGEMENTS = [
   {
     icon: <IcTruck/>, color: '#CC0000', bg: '#fff5f5',
     titre: 'Atelier mobile sur site',
-    desc: 'Atelier mobile Dacia Dokker (immat. 74443-13) équipé d\'outillage complet et pièces de rechange. Intervention directement chez vous.',
+    desc: 'Atelier mobile Dacia Dokker équipé d\'outillage complet et pièces de rechange. Intervention directement chez vous.',
   },
   {
     icon: <IcClip/>, color: '#2D6A4F', bg: '#f0faf5',
@@ -131,7 +131,7 @@ export default function ServicesPage() {
               </h1>
               <p className="text-base font-medium mb-8 max-w-lg leading-relaxed" style={{ color: 'rgba(255,255,255,.72)' }}>
                 3 ingénieurs, 3 techniciens électromécaniciens et 2 mécaniciens certifiés.
-                Atelier fixe 300m² + atelier mobile. Pièces d'origine. 6 jours sur 7.
+                Atelier fixe + atelier mobile. Pièces d'origine. 6 jours sur 7.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="tel:0524885025"
@@ -211,7 +211,7 @@ export default function ServicesPage() {
             <SectionLabel label="Nos ateliers"/>
             <h2 className="text-3xl font-black text-gray-900">Nos ateliers à votre service</h2>
             <p className="text-gray-500 mt-3 text-sm max-w-lg mx-auto">
-              Atelier fixe 300m² aux normes constructeur + atelier mobile pour les interventions sur site.
+              Atelier fixe aux normes constructeur + atelier mobile pour les interventions sur site.
               Ouarzazate · Agadir · Tinghir.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function ServicesPage() {
                 className="w-full h-full object-cover"/>
               <div className="absolute bottom-5 left-5 px-4 py-2 rounded-xl text-white text-sm font-extrabold"
                 style={{ background: 'linear-gradient(135deg,#CC0000,#990000)', boxShadow: '0 4px 16px rgba(204,0,0,.4)' }}>
-                🔧 Atelier fixe 300m² — normes constructeur
+                🔧 Atelier fixe — normes constructeur
               </div>
             </div>
 
@@ -278,14 +278,14 @@ export default function ServicesPage() {
                 Nous venons à vous — <span style={{ color: '#2D6A4F' }}>partout au Sud du Maroc</span>
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-7">
-                Notre atelier mobile Dacia Dokker (immat. 74443-13) est équipé de tous les outils
+                Notre atelier mobile Dacia Dokker est équipé de tous les outils
                 et pièces de rechange nécessaires. Il permet à nos techniciens d'intervenir efficacement
                 directement sur site — chez vous, dans votre dépôt ou sur chantier.
               </p>
 
               <div className="space-y-3 mb-7">
                 {[
-                  { label: 'Véhicule', val: 'Dacia Dokker — Immat. 74443-13' },
+                  { label: 'Véhicule', val: 'Dacia Dokker' },
                   { label: 'Équipement', val: 'Outillage complet + stock pièces de rechange' },
                   { label: 'Zone d\'intervention', val: 'Sud du Maroc — Ouarzazate, Agadir, Tinghir et environs' },
                 ].map((item, i) => (
@@ -314,7 +314,7 @@ export default function ServicesPage() {
                 className="w-full h-full object-cover"/>
               <div className="absolute bottom-5 left-5 px-4 py-2 rounded-xl text-white text-sm font-extrabold"
                 style={{ background: 'linear-gradient(135deg,#2D6A4F,#1a3d2b)', boxShadow: '0 4px 16px rgba(45,106,79,.4)' }}>
-                🚐 Atelier mobile ISUZU SERVICE — 74443-13
+                🚐 Atelier mobile ISUZU SERVICE
               </div>
             </div>
           </div>
