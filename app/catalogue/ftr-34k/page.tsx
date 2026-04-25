@@ -1,9 +1,11 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-/* ── Images du modèle ── */
 const images = [
-  'https://www.isuzu.co.ma/tmc_images/thumb_5892feb2aca61.jpg',
+  '/images/camions/serie-f/ftr-34k/img1.jpg',
   '/images/camions/serie-f/ftr-34k/img2.jpg',
   '/images/camions/serie-f/ftr-34k/img3.jpg',
   '/images/camions/serie-f/ftr-34k/img4.jpg',
@@ -11,23 +13,20 @@ const images = [
   '/images/camions/serie-f/ftr-34k/img6.jpg',
 ]
 
-/* ── Fiche technique extraite du PDF officiel SDAMA ── */
 const specs = [
   {
-    categorie: 'Dimensions & Poids',
-    icon: '📐',
+    categorie: 'Dimensions & Poids', icon: '📐',
     items: [
-      { label: 'Empattement',                   valeur: '3 900 mm' },
-      { label: 'Longueur carossable',            valeur: '4 870 mm' },
-      { label: 'Poids total en charge (PTAC)',   valeur: '16 000 kg' },
-      { label: 'Poids à vide — Avant',           valeur: '2 940 kg' },
-      { label: 'Poids à vide — Arrière',         valeur: '1 595 kg' },
-      { label: 'Poids à vide — Total',           valeur: '4 535 kg' },
+      { label: 'Empattement',                  valeur: '3 900 mm' },
+      { label: 'Longueur carossable',          valeur: '4 870 mm' },
+      { label: 'Poids total en charge (PTAC)', valeur: '16 000 kg' },
+      { label: 'Poids à vide — Avant',         valeur: '2 940 kg' },
+      { label: 'Poids à vide — Arrière',       valeur: '1 595 kg' },
+      { label: 'Poids à vide — Total',         valeur: '4 535 kg' },
     ],
   },
   {
-    categorie: 'Essieux & Pont',
-    icon: '🔩',
+    categorie: 'Essieux & Pont', icon: '🔩',
     items: [
       { label: 'Cabine',                  valeur: 'Large' },
       { label: 'Capacité essieu avant',   valeur: '6 500 kg' },
@@ -36,68 +35,62 @@ const specs = [
     ],
   },
   {
-    categorie: 'Moteur',
-    icon: '⚙️',
+    categorie: 'Moteur', icon: '⚙️',
     items: [
-      { label: 'Modèle',           valeur: '6HK1-TCN' },
-      { label: 'Type',             valeur: 'Turbo diesel intercooler Common Rail' },
-      { label: 'Émission',         valeur: 'EURO IV' },
+      { label: 'Modèle',              valeur: '6HK1-TCN' },
+      { label: 'Type',                valeur: 'Turbo diesel intercooler Common Rail' },
+      { label: 'Émission',           valeur: 'EURO IV' },
       { label: 'Nombre de cylindres', valeur: '6' },
-      { label: 'Cylindrée',        valeur: '7 790 cc' },
-      { label: 'Puissance maxi',   valeur: '240 ch (177 kw) / 2 400 tr/min' },
-      { label: 'Couple maxi',      valeur: '706 Nm / 1 450 tr/min' },
+      { label: 'Cylindrée',           valeur: '7 790 cc' },
+      { label: 'Puissance maxi',      valeur: '240 ch (177 kw) / 2 400 tr/min' },
+      { label: 'Couple maxi',         valeur: '706 Nm / 1 450 tr/min' },
     ],
   },
   {
-    categorie: 'Boîte de vitesse',
-    icon: '🔄',
+    categorie: 'Boîte de vitesse', icon: '🔄',
     items: [
-      { label: 'Modèle',            valeur: 'MZW6P' },
-      { label: 'Type',              valeur: 'Mécanique surmultipliée' },
-      { label: 'Nombre de rapports',valeur: '6 AV + 1 AR' },
+      { label: 'Modèle',             valeur: 'MZW6P' },
+      { label: 'Type',               valeur: 'Mécanique surmultipliée' },
+      { label: 'Nombre de rapports', valeur: '6 AV + 1 AR' },
     ],
   },
   {
-    categorie: 'Direction & Freinage',
-    icon: '🛡️',
+    categorie: 'Direction & Freinage', icon: '🛡️',
     items: [
-      { label: 'Direction',          valeur: 'Assistée — écrou bille recirculation' },
-      { label: 'Freinage service',   valeur: 'Frein pneumatique à tambours' },
-      { label: 'Frein stationnement',valeur: 'À ressort sur roues arrières' },
-      { label: 'Frein auxiliaire',   valeur: 'Frein sur échappement' },
-      { label: 'ABS',                valeur: 'Avec système antiblocage des freins' },
+      { label: 'Direction',           valeur: 'Assistée — écrou bille recirculation' },
+      { label: 'Freinage service',    valeur: 'Frein pneumatique à tambours' },
+      { label: 'Frein stationnement', valeur: 'À ressort sur roues arrières' },
+      { label: 'Frein auxiliaire',    valeur: 'Frein sur échappement' },
+      { label: 'ABS',                 valeur: 'Avec système antiblocage des freins' },
     ],
   },
   {
-    categorie: 'Suspension & Pneus',
-    icon: '🚛',
+    categorie: 'Suspension & Pneus', icon: '🚛',
     items: [
-      { label: 'Suspension',          valeur: 'Ressorts à lames AV et AR' },
-      { label: 'Dimension pneus',     valeur: '11R22,5-14' },
-      { label: 'Nombre de goujons',   valeur: '10' },
-      { label: 'Capacité réservoir',  valeur: '200 litres' },
-      { label: 'Alternateur',         valeur: '24V — 50A' },
+      { label: 'Suspension',         valeur: 'Ressorts à lames AV et AR' },
+      { label: 'Dimension pneus',    valeur: '11R22,5-14' },
+      { label: 'Nombre de goujons',  valeur: '10' },
+      { label: 'Capacité réservoir', valeur: '200 litres' },
+      { label: 'Alternateur',        valeur: '24V — 50A' },
     ],
   },
 ]
 
-/* ── Dimensions officielles (mm) ── */
 const dimensions = [
-  { code: 'OAL', valeur: '6 755',  label: 'Longueur totale' },
-  { code: 'WB',  valeur: '3 900',  label: 'Empattement' },
-  { code: 'FOH', valeur: '1 440',  label: 'Porte-à-faux avant' },
-  { code: 'ROH', valeur: '1 415',  label: 'Porte-à-faux arrière' },
-  { code: 'CA',  valeur: '3 274',  label: 'Long. cabine-essieu' },
-  { code: 'CE',  valeur: '4 689',  label: 'Longueur carossable' },
-  { code: 'OW',  valeur: '2 400',  label: 'Largeur totale' },
-  { code: 'OH',  valeur: '2 815',  label: 'Hauteur totale' },
-  { code: 'AW',  valeur: '1 965',  label: 'Voie avant' },
-  { code: 'BW',  valeur: '2 425',  label: 'Voie arrière ext.' },
-  { code: 'CW',  valeur: '1 820',  label: 'Voie arrière int.' },
-  { code: 'EH',  valeur: '1 054',  label: 'Hauteur châssis' },
+  { code: 'OAL', valeur: '6 755', label: 'Longueur totale' },
+  { code: 'WB',  valeur: '3 900', label: 'Empattement' },
+  { code: 'FOH', valeur: '1 440', label: 'Porte-à-faux avant' },
+  { code: 'ROH', valeur: '1 415', label: 'Porte-à-faux arrière' },
+  { code: 'CA',  valeur: '3 274', label: 'Long. cabine-essieu' },
+  { code: 'CE',  valeur: '4 689', label: 'Longueur carossable' },
+  { code: 'OW',  valeur: '2 400', label: 'Largeur totale' },
+  { code: 'OH',  valeur: '2 815', label: 'Hauteur totale' },
+  { code: 'AW',  valeur: '1 965', label: 'Voie avant' },
+  { code: 'BW',  valeur: '2 425', label: 'Voie arrière ext.' },
+  { code: 'CW',  valeur: '1 820', label: 'Voie arrière int.' },
+  { code: 'EH',  valeur: '1 054', label: 'Hauteur châssis' },
 ]
 
-/* ── Équipements de série ── */
 const equipements = [
   'Radio AM/FM avec lecteur de CD',
   'Système à 2 haut-parleurs',
@@ -119,7 +112,6 @@ const equipements = [
   'Prise de force (PTO)',
 ]
 
-/* ── Navigation F-Series ── */
 const modeles_fseries = [
   { nom: 'FTR 34K 16T', href: '/catalogue/ftr-34k', actif: true  },
   { nom: 'FTR 34M 16T', href: '/catalogue/ftr-34m', actif: false },
@@ -129,15 +121,13 @@ const modeles_fseries = [
 ]
 
 export default function FTR34KPage() {
+  const [activeImg, setActiveImg] = useState(0)
+
   return (
     <main className="bg-white">
 
-      {/* ════════════════════════════════════
-          HERO
-          ════════════════════════════════════ */}
+      {/* ── HERO ── */}
       <section className="relative bg-[#1B2B6B] py-20 overflow-hidden">
-
-        {/* Fond décoratif */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC0000] rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
           <div className="absolute inset-0 opacity-50"
@@ -150,8 +140,6 @@ export default function FTR34KPage() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-
-          {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-white/40 text-sm mb-8 flex-wrap">
             <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
             <span>/</span>
@@ -163,8 +151,6 @@ export default function FTR34KPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Infos */}
             <div>
               <div className="flex items-center gap-2 mb-4 flex-wrap">
                 <span className="bg-[#CC0000] text-white text-xs font-bold px-3 py-1 rounded-full">Isuzu</span>
@@ -200,7 +186,6 @@ export default function FTR34KPage() {
               </a>
             </div>
 
-            {/* Specs rapides */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 { icon: '⚡', label: 'Puissance',    valeur: '240 ch / 177 kw' },
@@ -222,9 +207,7 @@ export default function FTR34KPage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          GALERIE PHOTOS
-          ════════════════════════════════════ */}
+      {/* ── GALERIE INTERACTIVE ── */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
@@ -235,24 +218,62 @@ export default function FTR34KPage() {
               <div className="h-px w-12 bg-[#C9A84C]" />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          {/* Image principale */}
+          <div className="relative rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-md mb-4"
+            style={{ height: 480 }}>
+            <img
+              key={activeImg}
+              src={images[activeImg]}
+              alt={`FTR 34K — Photo ${activeImg + 1}`}
+              className="w-full h-full object-contain"
+              style={{ animation: 'fadeIn .3s ease' }}
+            />
+            {/* Compteur */}
+            <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs font-bold px-3 py-1 rounded-full">
+              {activeImg + 1} / {images.length}
+            </div>
+            {/* Flèche gauche */}
+            {activeImg > 0 && (
+              <button onClick={() => setActiveImg(activeImg - 1)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-md flex items-center justify-center transition-all hover:scale-110">
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+            )}
+            {/* Flèche droite */}
+            {activeImg < images.length - 1 && (
+              <button onClick={() => setActiveImg(activeImg + 1)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-md flex items-center justify-center transition-all hover:scale-110">
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            )}
+          </div>
+
+          {/* Miniatures */}
+          <div className="flex gap-3 overflow-x-auto pb-2">
             {images.map((src, i) => (
-              <div key={i}
-              className="aspect-video rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-gray-50"> 
-              <img
-                  src={src}
-                  alt={`FTR 34K — Photo ${i + 1}`}
-                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+              <button key={i} onClick={() => setActiveImg(i)}
+                className="flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all bg-white"
+                style={{
+                  width: 120, height: 80,
+                  borderColor: activeImg === i ? '#CC0000' : '#e5e7eb',
+                  opacity: activeImg === i ? 1 : 0.6,
+                  transform: activeImg === i ? 'scale(1.05)' : 'scale(1)',
+                }}>
+                <img src={src} alt={`Miniature ${i + 1}`} className="w-full h-full object-contain"/>
+              </button>
             ))}
           </div>
+
+          <style>{`@keyframes fadeIn { from{opacity:0} to{opacity:1} }`}</style>
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          FICHE TECHNIQUE COMPLÈTE
-          ════════════════════════════════════ */}
+      {/* ── FICHE TECHNIQUE ── */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -286,9 +307,7 @@ export default function FTR34KPage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          DIMENSIONS
-          ════════════════════════════════════ */}
+      {/* ── DIMENSIONS ── */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -312,9 +331,7 @@ export default function FTR34KPage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          ÉQUIPEMENTS
-          ════════════════════════════════════ */}
+      {/* ── ÉQUIPEMENTS ── */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -343,9 +360,7 @@ export default function FTR34KPage() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          NAVIGATION F-SERIES
-          ════════════════════════════════════ */}
+      {/* ── NAVIGATION F-SERIES ── */}
       <section className="py-12 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">
@@ -366,12 +381,9 @@ export default function FTR34KPage() {
         </div>
       </section>
 
-      {/* Formulaire brochure */}
       <BrochureForm modele="FTR34K" marque="isuzu" nomModele="FTR 34K" />
 
-      {/* ════════════════════════════════════
-          CTA FINAL
-          ════════════════════════════════════ */}
+      {/* ── CTA FINAL ── */}
       <section className="py-16 bg-[#1B2B6B] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
