@@ -37,41 +37,10 @@ const ACTIVITES = [
   { icon: '🚜', titre: 'Machines agricoles', desc: 'Vente et maintenance d\'équipements agricoles adaptés aux besoins du terrain' },
 ]
 
-const EQUIPE = [
-  { icon: '🎓', poste: 'Ingénieurs', desc: 'Spécialisés en mécanique et véhicules industriels' },
-  { icon: '⚙️', poste: 'Techniciens', desc: 'Experts en diagnostic et réparation électromécanique' },
-  { icon: '🤝', poste: 'Agents commerciaux', desc: 'Équipe dédiée à l\'accompagnement et la satisfaction client' },
-  { icon: '🚛', poste: 'Chauffeurs', desc: 'Livraison et transport sur l\'ensemble du territoire' },
-  { icon: '🔧', poste: 'Mécaniciens', desc: 'Maintenance et entretien dans nos ateliers' },
-  { icon: '🗂️', poste: 'Administration', desc: 'Gestion administrative et relation clientèle' },
-]
-
 const AGENCES = [
   { ville: 'Ouarzazate', role: 'Siège social', desc: 'Agence principale — showroom, atelier, administration', icon: '🏢', color: '#CC0000' },
   { ville: 'Agadir', role: 'Agence régionale', desc: 'Couverture du Souss-Massa et des provinces du Sud', icon: '🌊', color: '#0057A8' },
   { ville: 'Tinghir', role: 'Agence régionale', desc: 'Présence au cœur du Drâa-Tafilalet', icon: '🏔️', color: '#2D6A4F' },
-]
-
-const REFERENCES = [
-  { lieu: 'MIDELT', annee: '2021', nature: 'Engin pelle sur chenille + camion NPR — Conseil Provincial' },
-  { lieu: 'MIDELT', annee: '2021', nature: '2 camions benne 4×4 aménagés en chasse-neige — Conseil Provincial' },
-  { lieu: 'GUELMIM', annee: '2022', nature: '2 camions citernes pour abreuvement du cheptel — Direction Provinciale de l\'Agriculture' },
-  { lieu: 'GUELMIM', annee: '2022', nature: '2 camions citernes pour abreuvement du cheptel' },
-  { lieu: 'ZAGORA', annee: '2009', nature: '3 camions citernes eau potable pour population rurale — Province de Zagora' },
-  { lieu: 'TAGHBALTE', annee: '2017', nature: 'Camion benne pour collecte des déchets ménagers — Commune de Taghbalte' },
-  { lieu: "M'SSICI", annee: '2010', nature: 'Camion benne équipé d\'une citerne' },
-  { lieu: 'ES SIFA', annee: '2022', nature: 'Camion benne satellite avec bac à ordures 660L' },
-]
-
-const FICHE = [
-  { label: 'Dénomination', value: 'SOCIÉTÉ CADOZAT SARL' },
-  { label: 'Forme juridique', value: 'SARL' },
-  { label: 'Siège social', value: 'N° 189 Bd Maghreb Al Arabi, Ouarzazate' },
-  { label: 'Registre de commerce', value: '169/559' },
-  { label: 'Identification fiscale', value: '06590278' },
-  { label: 'N° CNSS', value: '225972' },
-  { label: 'Email', value: 'contact@cadozat.com' },
-  { label: 'Téléphone', value: '0524 885 025' },
 ]
 
 export default function SocietePage() {
@@ -80,7 +49,6 @@ export default function SocietePage() {
 
       {/* ══ HERO ══════════════════════════════════════ */}
       <section className="relative pt-32 pb-24 overflow-hidden bg-white">
-        {/* Accents couleur */}
         <div className="absolute top-0 left-0 right-0 h-1 flex">
           <div className="flex-1" style={{ background: '#CC0000' }} />
           <div className="flex-1" style={{ background: '#2D6A4F' }} />
@@ -89,7 +57,6 @@ export default function SocietePage() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-5 translate-y-1/2 -translate-x-1/3" style={{ background: '#2D6A4F' }} />
 
         <div className="relative max-w-6xl mx-auto px-6">
-          {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-gray-400 text-xs mb-10">
             <Link href="/" className="hover:text-gray-700 transition-colors">Accueil</Link>
             <span>/</span>
@@ -117,12 +84,11 @@ export default function SocietePage() {
             </p>
           </div>
 
-          {/* 3 chiffres clés */}
           <div className="flex flex-wrap gap-12 mt-16">
             {[
               { val: '28+', label: 'Années d\'expérience', color: '#CC0000' },
-              { val: '3', label: 'Agences au Maroc', color: '#0057A8' },
-              { val: '1996', label: 'Année de création', color: '#2D6A4F' },
+              { val: '3',   label: 'Agences au Maroc',    color: '#0057A8' },
+              { val: '1996', label: 'Année de création',  color: '#2D6A4F' },
             ].map((s, i) => (
               <div key={i}>
                 <div className="font-black text-5xl leading-none" style={{ color: s.color }}>{s.val}</div>
@@ -161,7 +127,6 @@ export default function SocietePage() {
                 </div>
               </div>
 
-              {/* Domaines d'activité */}
               <div className="space-y-4">
                 <p className="text-xs font-black uppercase tracking-widest mb-6" style={{ color: '#2D6A4F' }}>Domaines d'activité</p>
                 {ACTIVITES.map((a, i) => (
@@ -206,38 +171,8 @@ export default function SocietePage() {
         </div>
       </section>
 
-      {/* ══ ÉQUIPE ════════════════════════════════════ */}
-      <section className="py-24" style={{ background: '#fafafa' }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-              <div className="lg:col-span-1">
-                <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: '#CC0000' }}>Capital humain</p>
-                <h2 className="text-4xl font-black text-gray-900 mb-6">Notre équipe</h2>
-                <p className="text-gray-400 leading-relaxed">
-                  Une équipe pluridisciplinaire et qualifiée, mobilisée chaque jour pour offrir un service
-                  de qualité et répondre aux attentes de nos clients.
-                </p>
-              </div>
-
-              <div className="lg:col-span-2 grid grid-cols-2 gap-6">
-                {EQUIPE.map((h, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="text-2xl flex-shrink-0">{h.icon}</div>
-                    <div>
-                      <div className="font-black text-gray-900 text-sm mb-1">{h.poste}</div>
-                      <div className="text-gray-400 text-xs leading-relaxed">{h.desc}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ══ MOYENS TECHNIQUES ════════════════════════ */}
-      <section className="py-24 bg-white">
+      <section className="py-24" style={{ background: '#fafafa' }}>
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -262,7 +197,6 @@ export default function SocietePage() {
                 </div>
               </div>
 
-              {/* Capacités */}
               <div className="space-y-4">
                 {[
                   { icon: '🏢', titre: 'Espaces d\'exposition', desc: 'Showrooms dans chacune de nos 3 agences' },
@@ -286,58 +220,8 @@ export default function SocietePage() {
         </div>
       </section>
 
-      {/* ══ RÉFÉRENCES MARCHÉS PUBLICS ════════════════ */}
-      <section className="py-24" style={{ background: '#fafafa' }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: '#CC0000' }}>Références</p>
-              <h2 className="text-4xl font-black text-gray-900">Marchés publics réalisés</h2>
-              <div className="w-12 h-1 mx-auto mt-5 rounded-full" style={{ background: 'linear-gradient(to right, #CC0000, #2D6A4F)' }} />
-              <p className="text-gray-400 text-sm mt-6 max-w-xl mx-auto">
-                CADOZAT accompagne les collectivités territoriales et institutions publiques dans leurs appels d'offres depuis de nombreuses années.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {REFERENCES.map((r, i) => (
-                <div key={i} className="flex items-start gap-5 p-6 rounded-2xl border border-gray-100 bg-white hover:shadow-md transition-all duration-200">
-                  <div className="flex-shrink-0 text-center">
-                    <div className="font-black text-sm" style={{ color: '#CC0000' }}>{r.lieu}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">{r.annee}</div>
-                  </div>
-                  <div className="h-full w-px bg-gray-100 flex-shrink-0" />
-                  <p className="text-gray-500 text-sm leading-relaxed">{r.nature}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══ FICHE LÉGALE ══════════════════════════════ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: '#0057A8' }}>Informations légales</p>
-              <h2 className="text-3xl font-black text-gray-900">Fiche d'identité</h2>
-              <div className="w-10 h-1 mx-auto mt-4 rounded-full" style={{ background: '#0057A8' }} />
-            </div>
-            <div className="divide-y divide-gray-100">
-              {FICHE.map((row, i) => (
-                <div key={i} className="flex items-center justify-between py-4">
-                  <span className="text-gray-400 text-sm">{row.label}</span>
-                  <span className="font-bold text-gray-900 text-sm text-right">{row.value}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ══ CTA FINAL ═════════════════════════════════ */}
-      <section className="py-24" style={{ background: '#fafafa' }}>
+      <section className="py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal>
             <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: '#CC0000' }}>Votre partenaire de confiance</p>
@@ -364,7 +248,6 @@ export default function SocietePage() {
           </Reveal>
         </div>
       </section>
-
     </main>
   )
 }

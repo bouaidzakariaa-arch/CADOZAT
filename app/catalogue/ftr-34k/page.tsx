@@ -3,7 +3,7 @@ import BrochureForm from '@/app/components/BrochureForm'
 
 /* ── Images du modèle ── */
 const images = [
-  '/images/camions/serie-f/ftr-34k/img1.jpg',
+  'https://www.isuzu.co.ma/tmc_images/thumb_5892feb2aca61.jpg',
   '/images/camions/serie-f/ftr-34k/img2.jpg',
   '/images/camions/serie-f/ftr-34k/img3.jpg',
   '/images/camions/serie-f/ftr-34k/img4.jpg',
