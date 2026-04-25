@@ -6,12 +6,12 @@ const specs = [
     categorie: 'Dimensions & Poids',
     icon: '📐',
     items: [
-      { label: 'Empattement',                   valeur: '4 650 mm' },
-      { label: 'Longueur carossable',           valeur: '6 000 mm' },
+      { label: 'Empattement',                   valeur: '5 050 mm' },
+      { label: 'Longueur carossable',           valeur: '6 600 mm' },
       { label: 'Poids total en charge (PTAC)',  valeur: '16 000 kg' },
-      { label: 'Poids à vide — Avant',          valeur: '3 175 kg' },
-      { label: 'Poids à vide — Arrière',        valeur: '1 590 kg' },
-      { label: 'Poids à vide — Total',          valeur: '4 765 kg' },
+      { label: 'Poids à vide — Avant',          valeur: '3 230 kg' },
+      { label: 'Poids à vide — Arrière',        valeur: '1 625 kg' },
+      { label: 'Poids à vide — Total',          valeur: '4 855 kg' },
     ],
   },
   {
@@ -71,12 +71,12 @@ const specs = [
 ]
 
 const dimensions = [
-  { code: 'OAL', valeur: '7 955', label: 'Longueur totale' },
-  { code: 'WB',  valeur: '4 650', label: 'Empattement' },
+  { code: 'OAL', valeur: '8 505', label: 'Longueur totale' },
+  { code: 'WB',  valeur: '5 050', label: 'Empattement' },
   { code: 'FOH', valeur: '1 440', label: 'Porte-à-faux avant' },
-  { code: 'ROH', valeur: '1 865', label: 'Porte-à-faux arrière' },
-  { code: 'CA',  valeur: '4 020', label: 'Long. cabine-essieu' },
-  { code: 'CE',  valeur: '5 885', label: 'Longueur carossable' },
+  { code: 'ROH', valeur: '2 015', label: 'Porte-à-faux arrière' },
+  { code: 'CA',  valeur: '4 424', label: 'Long. cabine-essieu' },
+  { code: 'CE',  valeur: '6 439', label: 'Longueur carossable' },
   { code: 'OW',  valeur: '2 400', label: 'Largeur totale' },
   { code: 'OH',  valeur: '2 815', label: 'Hauteur totale' },
   { code: 'AW',  valeur: '1 965', label: 'Voie avant' },
@@ -108,13 +108,13 @@ const equipements = [
 
 const modeles_fseries = [
   { nom: 'FTR 34K 16T', href: '/catalogue/ftr-34k', actif: false },
-  { nom: 'FTR 34M 16T', href: '/catalogue/ftr-34m', actif: true },
-  { nom: 'FTR 34P 16T', href: '/catalogue/ftr-34p', actif: false },
+  { nom: 'FTR 34M 16T', href: '/catalogue/ftr-34m', actif: false },
+  { nom: 'FTR 34P 16T', href: '/catalogue/ftr-34p', actif: true },
   { nom: 'FVR 34K 18T', href: '/catalogue/fvr-34k', actif: false },
   { nom: 'FVR 34P 18T', href: '/catalogue/fvr-34p', actif: false },
 ]
 
-export default function FTR34MPage() {
+export default function FTR34PPage() {
   return (
     <main className="bg-white">
 
@@ -159,7 +159,7 @@ export default function FTR34MPage() {
             <span>/</span>
             <span style={{ color:'#888' }}>F-Series</span>
             <span>/</span>
-            <span style={{ color:'#CC0000', fontWeight:700 }}>FTR 34M 16T</span>
+            <span style={{ color:'#CC0000', fontWeight:700 }}>FTR 34P 16T</span>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -168,13 +168,13 @@ export default function FTR34MPage() {
                 <span style={{ background:'#CC0000', color:'#fff', fontSize:11, fontWeight:700, padding:'3px 12px', borderRadius:99 }}>Isuzu</span>
                 <span style={{ background:'#fff', border:'1px solid #e5e2dd', color:'#555', fontSize:11, fontWeight:600, padding:'3px 12px', borderRadius:99 }}>F-Series</span>
                 <span style={{ background:'#1B2B6B', color:'#fff', fontSize:11, fontWeight:700, padding:'3px 12px', borderRadius:99 }}>16T</span>
-                <span style={{ background:'#fff', border:'1px solid #e5e2dd', color:'#555', fontSize:11, fontWeight:600, padding:'3px 12px', borderRadius:99 }}>Châssis intermédiaire</span>
+                <span style={{ background:'#fff', border:'1px solid #e5e2dd', color:'#555', fontSize:11, fontWeight:600, padding:'3px 12px', borderRadius:99 }}>Châssis long</span>
               </div>
 
               <h1 style={{ fontSize:56, fontWeight:900, color:'#111', letterSpacing:'-2px', lineHeight:1, marginBottom:6 }}>
-                FTR <span style={{ color:'#CC0000' }}>34M</span>
+                FTR <span style={{ color:'#CC0000' }}>34P</span>
               </h1>
-              <p style={{ fontSize:16, color:'#888', fontWeight:600, marginBottom:16 }}>16T — Châssis intermédiaire</p>
+              <p style={{ fontSize:16, color:'#888', fontWeight:600, marginBottom:16 }}>16T — Châssis long</p>
 
               <div style={{ display:'flex', gap:8, alignItems:'center', marginBottom:20 }}>
                 <div style={{ width:32, height:3, background:'#CC0000', borderRadius:99 }}/>
@@ -182,9 +182,9 @@ export default function FTR34MPage() {
               </div>
 
               <p style={{ fontSize:15, color:'#777', lineHeight:1.75, marginBottom:28, maxWidth:480 }}>
-                Le FTR 34M offre un empattement intermédiaire de 4 650 mm avec une carosserie de 6 mètres,
-                idéal pour les applications citernes, bennes ou fourgons de grande capacité.
-                Moteur 6HK1-TCN 240 ch avec double réservoir.{' '}
+                Le FTR 34P est la version châssis long de la gamme FTR avec un empattement de 5 050 mm
+                et une carosserie pouvant atteindre 6 600 mm. Solution idéale pour les carrosseries
+                fourgon, frigorifique ou benne longue. Double réservoir 400 litres.{' '}
                 <strong style={{ color:'#C9A84C' }}>Garantie 3 ans SDAMA.</strong>
               </p>
 
@@ -306,14 +306,14 @@ export default function FTR34MPage() {
         </div>
       </section>
 
-      <BrochureForm modele="ftr-34m" marque="isuzu" nomModele="FTR 34M" />
+      <BrochureForm modele="ftr-34p" marque="isuzu" nomModele="FTR 34P" />
 
       {/* CTA */}
       <section className="py-16" style={{ background:'#111', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', top:'-80px', right:'-80px', width:360, height:360, borderRadius:'50%', background:'#CC0000', opacity:0.08, filter:'blur(80px)', pointerEvents:'none' }}/>
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 style={{ fontSize:32, fontWeight:900, color:'#fff', marginBottom:8 }}>
-            Intéressé par le <span style={{ color:'#CC0000' }}>FTR 34M</span> ?
+            Intéressé par le <span style={{ color:'#CC0000' }}>FTR 34P</span> ?
           </h2>
           <div style={{ width:48, height:2, background:'#C9A84C', margin:'16px auto' }}/>
           <p style={{ color:'rgba(255,255,255,0.5)', marginBottom:32, fontSize:15 }}>Contactez l&apos;une de nos agences — Ouarzazate · Agadir · Tinghir</p>
