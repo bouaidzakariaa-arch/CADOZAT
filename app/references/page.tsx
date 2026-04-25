@@ -1,4 +1,4 @@
-'use client' 
+'use client'
 
 import Link from 'next/link'
 
@@ -212,17 +212,18 @@ export default function ReferencesPage() {
                 <div style={{ width:16, height:3, background:'#C9A84C', borderRadius:99 }}/>
               </div>
               <p style={{ fontSize:15, color:'#888', lineHeight:1.8, maxWidth:460 }}>
-                CADOZAT accompagne les plus grandes entreprises du Sud Marocain
-                dans leurs besoins en véhicules utilitaires et industriels Isuzu & Karry.
+                CADOZAT accompagne les plus grands comptes du Sud Marocain —
+                industrie, BTP, agroalimentaire et distribution —
+                avec des flottes de véhicules utilitaires et industriels Isuzu & Karry.
               </p>
             </div>
 
             {/* Compteurs */}
             <div className="ref-fade-3 grid grid-cols-3 gap-4">
               {[
-                { nb: `${clients.length}+`, label: 'Clients', sub: 'de référence' },
-                { nb: '3',                  label: 'Agences', sub: 'au Maroc' },
-                { nb: '15+',               label: 'Années',  sub: 'd\'expérience' },
+                { nb: 'Grands',   label: 'Comptes',  sub: 'Clients stratégiques' },
+                { nb: '3',        label: 'Agences',  sub: 'au Maroc' },
+                { nb: '15+',      label: 'Années',   sub: 'd\'expérience' },
               ].map((s, i) => (
                 <div key={i} style={{ background:'#fff', borderRadius:16, border:'1px solid #ece9e2', padding:'20px 16px', textAlign:'center', boxShadow:'0 2px 12px rgba(0,0,0,0.05)' }}>
                   <div style={{ fontSize:32, fontWeight:900, color:'#CC0000', letterSpacing:'-1px', lineHeight:1 }}>{s.nb}</div>
