@@ -1,339 +1,222 @@
-'use client'
-
 import Link from 'next/link'
 
 const clients = [
-  {
-    nom: 'Coca-Cola',
-    secteur: 'Boissons',
-    site: 'https://www.coca-cola.com/ma/fr',
-    logo: '/images/clients/coca-cola.png',
-    initiales: 'CC',
-  },
-  {
-    nom: 'Walmas',
-    secteur: 'Distribution',
-    site: '#',
-    logo: null,
-    initiales: 'WA',
-  },
-  {
-    nom: 'Rafi3',
-    secteur: 'Boissons',
-    site: '#',
-    logo: '/images/clients/Rafii.jpg',
-    initiales: 'R3',
-  },
-  {
-    nom: 'HDS',
-    secteur: 'Services',
-    site: '#',
-    logo: '/images/clients/HDS.png',
-    initiales: 'HDS',
-  },
-  {
-    nom: 'COPAG',
-    secteur: 'Coopérative agricole',
-    site: 'https://www.copag.ma',
-    logo: '/images/clients/Copag.png',
-    initiales: 'CP',
-  },
-  {
-    nom: 'Soussia des Gaz',
-    secteur: 'Énergie',
-    site: '#',
-    logo: '/images/clients/soussiya-gaz.png',
-    initiales: 'SG',
-  },
-  {
-    nom: 'Al Ain (Dester)',
-    secteur: 'Eau minérale',
-    site: 'https://www.alain.ae',
-    logo: 'https://logo.clearbit.com/alain.ae',
-    initiales: 'AA',
-  },
-  {
-    nom: 'M2E — La Marocaine des Eaux',
-    secteur: 'Eau minérale',
-    site: '#',
-    logo: '/images/clients/m2ea.png',
-    initiales: 'M2E',
-  },
-  {
-    nom: 'Aqwa Life',
-    secteur: 'Eau minérale',
-    site: '#',
-    logo: '/images/clients/acwa-life.jpg',
-    initiales: 'AL',
-  },
+  { nom: 'Coca-Cola',                secteur: 'Boissons & Distribution',  logo: '/images/clients/coca-cola.png',    site: 'https://www.coca-cola.com/ma/fr' },
+  { nom: 'Walmas',                   secteur: 'Distribution',             logo: null,                               site: null },
+  { nom: 'Rafi3',                    secteur: 'Boissons',                 logo: '/images/clients/Rafii.jpg',        site: null },
+  { nom: 'HDS',                      secteur: 'Services industriels',     logo: '/images/clients/HDS.png',          site: null },
+  { nom: 'COPAG',                    secteur: 'Coopérative agricole',     logo: '/images/clients/Copag.png',        site: 'https://www.copag.ma' },
+  { nom: 'Soussia des Gaz',          secteur: 'Énergie & Gaz',           logo: '/images/clients/soussiya-gaz.png', site: null },
+  { nom: 'Al Ain (Dester)',          secteur: 'Eau minérale',             logo: null,                               site: null },
+  { nom: 'M2E — Marocaine des Eaux', secteur: 'Eau minérale',             logo: '/images/clients/m2ea.png',         site: null },
+  { nom: 'Aqwa Life',                secteur: 'Eau minérale',             logo: '/images/clients/acwa-life.jpg',    site: null },
 ]
 
-const CSS = `
-  @keyframes refFadeUp {
-    from { opacity:0; transform:translateY(20px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  @keyframes refBlob1 {
-    0%,100% { transform:translate(0,0) scale(1); }
-    33%      { transform:translate(60px,-50px) scale(1.1); }
-    66%      { transform:translate(-30px,40px) scale(0.92); }
-  }
-  @keyframes refBlob2 {
-    0%,100% { transform:translate(0,0) scale(1); }
-    50%      { transform:translate(-50px,60px) scale(1.08); }
-  }
-  @keyframes refBlob3 {
-    0%,100% { transform:translate(0,0) scale(1); }
-    40%      { transform:translate(40px,-30px) scale(1.06); }
-    80%      { transform:translate(-20px,20px) scale(0.95); }
-  }
-  .ref-fade   { animation: refFadeUp .6s ease both; }
-  .ref-fade-2 { animation: refFadeUp .6s .1s ease both; }
-  .ref-fade-3 { animation: refFadeUp .6s .15s ease both; }
-  .ref-b1 { animation: refBlob1 18s ease-in-out infinite; }
-  .ref-b2 { animation: refBlob2 14s ease-in-out infinite; }
-  .ref-b3 { animation: refBlob3 20s ease-in-out infinite; }
-
-  .ref-card {
-    background: #fff;
-    border: 1px solid #ece9e2;
-    border-radius: 20px;
-    padding: 32px 20px 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-    transition: transform .25s, box-shadow .25s, border-color .25s;
-  }
-  .ref-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.10);
-    border-color: #CC0000;
-  }
-  .ref-logo-wrap {
-    width: 160px;
-    height: 160px;
-    border-radius: 20px;
-    background: #f4f5f7;
-    border: 1px solid #e8e6e1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    overflow: hidden;
-    transition: border-color .25s, transform .25s, background .25s;
-  }
-  .ref-card:hover .ref-logo-wrap {
-    border-color: #CC0000;
-    background: #fff5f5;
-    transform: scale(1.04);
-  }
-  .ref-logo-wrap img {
-    width: 140px;
-    height: 140px;
-    object-fit: contain;
-    padding: 10px;
-  }
-  .ref-nom {
-    font-size: 14px;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-  .ref-secteur {
-    font-size: 11px;
-    color: #aaa;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    margin-bottom: 14px;
-  }
-  .ref-arrow {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #f4f5f7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .2s, transform .2s;
-    margin-top: auto;
-  }
-  .ref-card:hover .ref-arrow {
-    background: #CC0000;
-    transform: scale(1.1);
-  }
-  .ref-card:hover .ref-arrow svg {
-    stroke: #fff;
-  }
-`
+const secteurCouleur: Record<string, string> = {
+  'Boissons & Distribution': '#CC0000',
+  'Boissons':                '#CC0000',
+  'Distribution':            '#1B2B6B',
+  'Services industriels':    '#374151',
+  'Coopérative agricole':    '#16a34a',
+  'Énergie & Gaz':           '#d97706',
+  'Eau minérale':            '#0284c7',
+}
 
 export default function ReferencesPage() {
   return (
     <main className="bg-white">
-      <style dangerouslySetInnerHTML={{ __html: CSS }}/>
 
-      {/* ── HERO ── */}
-      <section style={{ background:'#f5f6f8', position:'relative', overflow:'hidden', padding:'100px 0 64px' }}>
-        {/* Blobs animés */}
-        <div className="ref-b1" style={{ position:'absolute', top:'-120px', right:'-100px', width:'500px', height:'500px', borderRadius:'50%', background:'radial-gradient(circle,#CC0000,transparent 70%)', opacity:0.09, filter:'blur(80px)', pointerEvents:'none' }}/>
-        <div className="ref-b2" style={{ position:'absolute', bottom:'-80px', left:'-80px', width:'380px', height:'380px', borderRadius:'50%', background:'radial-gradient(circle,#1B2B6B,transparent 70%)', opacity:0.07, filter:'blur(80px)', pointerEvents:'none' }}/>
-        <div className="ref-b3" style={{ position:'absolute', top:'40%', left:'40%', width:'280px', height:'280px', borderRadius:'50%', background:'radial-gradient(circle,#C9A84C,transparent 70%)', opacity:0.08, filter:'blur(70px)', pointerEvents:'none' }}/>
+      {/* HERO */}
+      <section className="pt-32 pb-16 relative overflow-hidden border-b border-gray-100">
 
-        <div className="max-w-7xl mx-auto px-6" style={{ position:'relative', zIndex:1 }}>
+        {/* Animation background */}
+        <style>{`
+          @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .ref-hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(-45deg, #ffffff, #fdf5f5, #fff8f0, #ffffff, #f5f8ff, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+          }
+        `}</style>
+        <div className="ref-hero-bg"/>
 
-          {/* Breadcrumb */}
-          <nav className="ref-fade flex items-center gap-2 text-sm mb-10" style={{ color:'#aaa' }}>
-            <Link href="/" style={{ color:'#aaa', textDecoration:'none' }} className="hover:text-[#CC0000] transition-colors">Accueil</Link>
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-2 text-sm text-gray-400 mb-8">
+            <Link href="/" className="hover:text-[#CC0000] transition-colors">Accueil</Link>
             <span>/</span>
-            <span style={{ color:'#CC0000', fontWeight:700 }}>Références</span>
-          </nav>
+            <span className="text-[#CC0000] font-semibold">Références</span>
+          </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-2xl">
+            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-4">Nos clients</p>
+            <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-none mb-4">
+              Ils nous font<br/><span className="text-[#CC0000]">confiance</span>
+            </h1>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-1 bg-[#CC0000] rounded-full"/>
+              <div className="w-5 h-1 bg-[#C9A84C] rounded-full"/>
+            </div>
+            <p className="text-gray-500 text-base leading-relaxed">
+              CADOZAT accompagne les plus grands comptes du Sud Marocain — industrie, BTP,
+              agroalimentaire et distribution — avec des flottes Isuzu & Karry.
+            </p>
+          </div>
 
-            {/* Texte */}
-            <div className="ref-fade-2">
-              <p style={{ color:'#CC0000', fontWeight:700, fontSize:12, textTransform:'uppercase', letterSpacing:'2px', marginBottom:12 }}>
-                Nos clients
-              </p>
-              <h1 style={{ fontSize:52, fontWeight:900, color:'#111', letterSpacing:'-2px', lineHeight:1, marginBottom:14 }}>
-                Ils nous font<br/><span style={{ color:'#CC0000' }}>confiance</span>
-              </h1>
-              <div style={{ display:'flex', gap:8, alignItems:'center', marginBottom:20 }}>
-                <div style={{ width:32, height:3, background:'#CC0000', borderRadius:99 }}/>
-                <div style={{ width:16, height:3, background:'#C9A84C', borderRadius:99 }}/>
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-4 mt-12 max-w-lg">
+            {[
+              { nb: '9+',  label: 'Clients majeurs' },
+              { nb: '3',   label: 'Agences Maroc' },
+              { nb: '15+', label: "Ans d'expérience" },
+            ].map((s, i) => (
+              <div key={i} className="bg-white/80 border border-gray-100 rounded-2xl p-4 text-center shadow-sm">
+                <div className="text-2xl font-black text-[#CC0000]">{s.nb}</div>
+                <div className="text-xs text-gray-500 mt-1">{s.label}</div>
               </div>
-              <p style={{ fontSize:15, color:'#888', lineHeight:1.8, maxWidth:460 }}>
-                CADOZAT accompagne les plus grands comptes du Sud Marocain —
-                industrie, BTP, agroalimentaire et distribution —
-                avec des flottes de véhicules utilitaires et industriels Isuzu & Karry.
-              </p>
-            </div>
-
-            {/* Compteurs */}
-            <div className="ref-fade-3 grid grid-cols-3 gap-4">
-              {[
-                { nb: 'Grands',   label: 'Comptes',  sub: 'Clients stratégiques' },
-                { nb: '3',        label: 'Agences',  sub: 'au Maroc' },
-                { nb: '15+',      label: 'Années',   sub: 'd\'expérience' },
-              ].map((s, i) => (
-                <div key={i} style={{ background:'#fff', borderRadius:16, border:'1px solid #ece9e2', padding:'20px 16px', textAlign:'center', boxShadow:'0 2px 12px rgba(0,0,0,0.05)' }}>
-                  <div style={{ fontSize:32, fontWeight:900, color:'#CC0000', letterSpacing:'-1px', lineHeight:1 }}>{s.nb}</div>
-                  <div style={{ fontSize:13, fontWeight:700, color:'#111', marginTop:6 }}>{s.label}</div>
-                  <div style={{ fontSize:11, color:'#aaa', marginTop:2 }}>{s.sub}</div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── GRILLE CLIENTS ── */}
-      <section className="py-20 bg-white">
+      {/* TABLEAU CLIENTS */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
 
-          <div className="text-center mb-14">
-            <p style={{ color:'#CC0000', fontWeight:700, fontSize:12, textTransform:'uppercase', letterSpacing:'2px', marginBottom:8 }}>
-              Références
-            </p>
-            <h2 style={{ fontSize:34, fontWeight:900, color:'#111', letterSpacing:'-0.5px' }}>
-              Nos clients
-            </h2>
-            <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:12, marginTop:10 }}>
-              <div style={{ height:1, width:48, background:'#C9A84C' }}/>
-              <div style={{ height:1, width:48, background:'#C9A84C' }}/>
+          <div className="mb-10">
+            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Références</p>
+            <div className="flex items-center gap-3">
+              <div className="h-px w-10 bg-[#C9A84C]"/>
+              <h2 className="text-3xl font-black text-gray-900">Nos partenaires</h2>
+              <div className="h-px w-10 bg-[#C9A84C]"/>
             </div>
-            <p style={{ fontSize:13, color:'#aaa', marginTop:10 }}>
-              Cliquez sur un logo pour visiter leur site
-            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-            {clients.map((client, i) => {
-              const isLink = client.site !== '#'
-              const Tag = isLink ? 'a' : 'div'
-              const props = isLink
-                ? { href: client.site, target: '_blank', rel: 'noopener noreferrer' }
-                : {}
+          {/* Tableau */}
+          <div className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
 
-              return (
-                <Tag key={i} {...props} className="ref-card">
-                  {/* Logo */}
-                  <div className="ref-logo-wrap">
-                    {client.logo ? (
-                      <img
-                        src={client.logo}
-                        alt={`Logo ${client.nom}`}
-                        onError={(e) => {
-                          const img = e.target as HTMLImageElement
-                          img.style.display = 'none'
-                          const wrap = img.parentElement
-                          if (wrap) {
-                            wrap.innerHTML = `<span style="font-size:18px;font-weight:800;color:#374151;letter-spacing:-0.5px">${client.initiales}</span>`
-                          }
-                        }}
-                      />
-                    ) : (
-                      <span style={{ fontSize:18, fontWeight:800, color:'#374151', letterSpacing:'-0.5px' }}>
-                        {client.initiales}
-                      </span>
-                    )}
+            {/* Header */}
+            <div className="grid grid-cols-12 bg-gray-50 border-b border-gray-100 px-6 py-3">
+              <div className="col-span-1 text-xs font-black text-gray-400 uppercase tracking-wider">#</div>
+              <div className="col-span-3 text-xs font-black text-gray-400 uppercase tracking-wider">Logo</div>
+              <div className="col-span-4 text-xs font-black text-gray-400 uppercase tracking-wider">Entreprise</div>
+              <div className="col-span-3 text-xs font-black text-gray-400 uppercase tracking-wider">Secteur</div>
+              <div className="col-span-1"/>
+            </div>
+
+            {/* Lignes */}
+            {clients.map((c, i) => {
+              const couleur = secteurCouleur[c.secteur] || '#374151'
+              const isLink = !!c.site
+
+              const rowContent = (
+                <>
+                  {/* Numéro */}
+                  <div className="col-span-1">
+                    <span className="text-xs font-black text-gray-300">{String(i + 1).padStart(2, '0')}</span>
                   </div>
 
-                  {/* Nom & secteur */}
-                  <div className="ref-nom">{client.nom}</div>
-                  <div className="ref-secteur">{client.secteur}</div>
-
-                  {/* Flèche si lien */}
-                  {isLink && (
-                    <div className="ref-arrow">
-                      <svg width="13" height="13" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                      </svg>
+                  {/* Logo */}
+                  <div className="col-span-3">
+                    <div className="w-24 h-12 flex items-center">
+                      {c.logo ? (
+                        <img
+                          src={c.logo}
+                          alt={c.nom}
+                          className="max-h-10 max-w-full object-contain"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-black"
+                          style={{ background: couleur }}>
+                          {c.nom.slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </Tag>
+                  </div>
+
+                  {/* Nom */}
+                  <div className="col-span-4">
+                    <p className="font-black text-gray-900 text-sm">{c.nom}</p>
+                  </div>
+
+                  {/* Secteur */}
+                  <div className="col-span-3">
+                    <span className="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full"
+                      style={{ background: couleur + '14', color: couleur }}>
+                      {c.secteur}
+                    </span>
+                  </div>
+
+                  {/* Lien */}
+                  <div className="col-span-1 flex justify-end">
+                    {isLink && (
+                      <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center">
+                        <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )
+
+              return isLink ? (
+                <a
+                  key={i}
+                  href={c.site!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`grid grid-cols-12 items-center px-6 py-4 hover:bg-gray-50 transition-all duration-200 ${i < clients.length - 1 ? 'border-b border-gray-50' : ''}`}
+                >
+                  {rowContent}
+                </a>
+              ) : (
+                <div
+                  key={i}
+                  className={`grid grid-cols-12 items-center px-6 py-4 ${i < clients.length - 1 ? 'border-b border-gray-50' : ''}`}
+                >
+                  {rowContent}
+                </div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* ── SÉPARATEUR ── */}
-      <div style={{ height:2, background:'linear-gradient(90deg,#CC0000,#C9A84C,#1B2B6B)', margin:'0 48px' }}/>
-
-      {/* ── CTA ── */}
-      <section className="py-20" style={{ background:'#f8f7f5' }}>
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p style={{ color:'#CC0000', fontWeight:700, fontSize:12, textTransform:'uppercase', letterSpacing:'2px', marginBottom:12 }}>
-            Rejoignez nos références
-          </p>
-          <h2 style={{ fontSize:34, fontWeight:900, color:'#111', marginBottom:8, letterSpacing:'-0.5px' }}>
+      {/* CTA */}
+      <section className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Rejoignez nos références</p>
+          <h2 className="text-3xl font-black text-gray-900 mb-2">
             Besoin de véhicules pour<br/>votre entreprise ?
           </h2>
-          <div style={{ width:48, height:2, background:'#C9A84C', margin:'16px auto' }}/>
-          <p style={{ fontSize:15, color:'#888', marginBottom:32, lineHeight:1.75 }}>
+          <div className="w-12 h-0.5 bg-[#C9A84C] mx-auto my-4"/>
+          <p className="text-gray-400 text-sm mb-8 leading-relaxed">
             Contactez notre équipe pour un devis personnalisé.<br/>
             Nous accompagnons les professionnels depuis plus de 15 ans.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/devis"
-              style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#CC0000', color:'#fff', fontWeight:700, padding:'13px 28px', borderRadius:99, textDecoration:'none', fontSize:14, boxShadow:'0 4px 16px rgba(204,0,0,0.28)' }}>
+              className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-8 py-4 rounded-full transition-all shadow-lg text-sm">
               Demande de devis
-              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </Link>
             <a href="tel:0524885025"
-              style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#fff', border:'1px solid #e5e2dd', color:'#111', fontWeight:700, padding:'13px 28px', borderRadius:99, textDecoration:'none', fontSize:14 }}>
-              <svg width="16" height="16" fill="#CC0000" viewBox="0 0 20 20">
+              className="inline-flex items-center gap-2 border border-gray-200 hover:border-[#CC0000] hover:text-[#CC0000] text-gray-600 font-bold px-8 py-4 rounded-full transition-all text-sm">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
               </svg>
               0524 885 025
             </a>
             <Link href="/contact"
-              style={{ display:'inline-flex', alignItems:'center', background:'#fff', border:'1px solid #e5e2dd', color:'#111', fontWeight:700, padding:'13px 28px', borderRadius:99, textDecoration:'none', fontSize:14 }}>
+              className="inline-flex items-center gap-2 border border-gray-200 hover:border-[#CC0000] hover:text-[#CC0000] text-gray-600 font-bold px-8 py-4 rounded-full transition-all text-sm">
               Nous contacter
             </Link>
           </div>

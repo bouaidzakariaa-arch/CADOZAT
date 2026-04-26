@@ -1,5 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+
+// ─── RATE LIMITING ────────────────────────────────────────────────
+const rateLimit = new Map<string, { count: number; resetAt: number }>()
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const limit = rateLimit.get(ip)
+
+  if (!limit || now > limit.resetAt) {
+    rateLimit.set(ip, { count: 1, resetAt: now + 60_000 }) // fenêtre 1 minute
+    return false
+  }
+
+  if (limit.count >= 3) return true // max 3 requêtes par minute par IP
+
+  limit.count++
+  return false
+}
+// ─────────────────────────────────────────────────────────────────
+
 // ─── CONFIGURATION ────────────────────────────────────────────────
 // 1. Créer un compte sur resend.com (gratuit)
 // 2. Créer une API Key dans le dashboard Resend
@@ -16,6 +36,14 @@ const FROM_EMAIL     = 'onboarding@resend.dev' // doit correspondre à ton domai
 // POST — Recevoir un devis et envoyer 2 emails
 export async function POST(request: NextRequest) {
   try {
+    // Vérification rate limit
+    const ip = request.headers.get('x-forwarded-for') ?? 'unknown'
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Trop de demandes. Réessayez dans une minute.' },
+        { status: 429 }
+      )
+    }
     const body = await request.json()
 
     // Validation
