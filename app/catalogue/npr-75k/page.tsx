@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'NPR 75K 7.5T — Camion Moyen Isuzu',
-  description: 'Camion Isuzu NPR 75K 7.5 tonnes châssis court. Moteur 155ch EURO IV boîte 6 rapports. Distribution régionale. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/npr-75k' },
-}
-
-
 const images = [
   '/images/camions/serie-n/npr-75k/img1.jpg',
   '/images/camions/serie-n/npr-75k/img2.jpg',

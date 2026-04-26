@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'NPR 75L 7.5T — Camion Isuzu Châssis Long',
-  description: 'Camion Isuzu NPR 75L 7.5 tonnes châssis long 4175mm. Moteur 155ch grande capacité. Transport longue distance. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/npr-75l' },
-}
 
 const images = [
   '/images/camions/serie-n/npr-75l/img1.jpg',

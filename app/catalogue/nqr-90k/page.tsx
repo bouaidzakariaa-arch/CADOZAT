@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'NQR 90K 9.5T — Camion Isuzu EURO 5',
-  description: 'Camion Isuzu NQR 90K 9.5 tonnes EURO 5. Moteur 190ch ABS et ASC. Référence transport lourd urbain. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/nqr-90k' },
-}
 
 const images = [
   '/images/camions/serie-n/nqr-90k/img1.jpg',

@@ -2,12 +2,6 @@ import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
 
-export const metadata = {
-  title: 'NNR 85H 3.5T — Camion Isuzu Cabine Large',
-  description: 'Camion Isuzu NNR 85H 3.5 tonnes cabine large châssis long. Boîte 6 rapports 124ch. CADOZAT concessionnaire Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/nnr-85h' },
-}
-
 const images = [
   '/images/camions/serie-n/nnr-85h/img1.jpg',
   '/images/camions/serie-n/nnr-85h/img2.jpg',

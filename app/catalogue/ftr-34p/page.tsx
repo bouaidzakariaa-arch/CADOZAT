@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'FTR 34P 16T — Camion Isuzu Châssis Long',
-  description: 'Camion Isuzu FTR 34P 16 tonnes châssis long 5050mm. Idéal fourgon frigorifique ou benne. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/ftr-34p' },
-}
 
 const images = [
   '/images/camions/serie-f/ftr-34p/img1.jpg',

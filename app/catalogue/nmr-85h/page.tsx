@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'NMR 85H 3.5T — Camion Isuzu Châssis Long',
-  description: 'Camion Isuzu NMR 85H 3.5 tonnes châssis long. Moteur 124ch EURO IV. Grande capacité de chargement. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/nmr-85h' },
-}
-
-
 const images = [
   '/images/camions/serie-n/nmr-85h/img1.jpg',
   '/images/camions/serie-n/nmr-85h/img2.jpg',

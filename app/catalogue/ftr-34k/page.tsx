@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'FTR 34K 16T — Camion Isuzu 16 Tonnes',
-  description: 'Camion Isuzu FTR 34K 16 tonnes empattement standard. Moteur 6HK1 240ch EURO IV. Disponible chez CADOZAT Ouarzazate, Agadir, Tinghir.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/ftr-34k' },
-}
 
 const images = [
   '/images/camions/serie-f/ftr-34k/img1.jpg',

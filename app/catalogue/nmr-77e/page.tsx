@@ -3,12 +3,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'NMR 77E 3.5T — Camion Léger Isuzu',
-  description: 'Camion léger Isuzu NMR 77E 3.5 tonnes châssis court 2490mm. Moteur 105ch EURO IV. Idéal livraisons urbaines. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/nmr-77e' },
-}
-
 const images = [
   '/images/camions/serie-n/nmr-77e/img1.jpg',
   '/images/camions/serie-n/nmr-77e/img2.jpg',

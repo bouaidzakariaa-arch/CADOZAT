@@ -1,12 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'FTR 34M 16T — Camion Isuzu Châssis Intermédiaire',
-  description: 'Camion Isuzu FTR 34M 16 tonnes châssis 4650mm. Moteur 240ch EURO IV. CADOZAT concessionnaire officiel Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/ftr-34m' },
-}
-
 const images = [
   '/images/camions/serie-f/ftr-34m/img1.jpg',
   '/images/camions/serie-f/ftr-34m/img2.jpg',

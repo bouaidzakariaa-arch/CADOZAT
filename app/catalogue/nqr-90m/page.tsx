@@ -1,12 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'NQR 90M 9.5T — Camion Isuzu EURO 5 Châssis Long',
-  description: 'Camion Isuzu NQR 90M 9.5 tonnes châssis long EURO 5. Empattement 4475mm 190ch ASC. Longue distance. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/nqr-90m' },
-}
-
 const images = [
   '/images/camions/serie-n/nqr-90m/img1.jpg',
   '/images/camions/serie-n/nqr-90m/img2.jpg',

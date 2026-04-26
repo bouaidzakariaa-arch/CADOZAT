@@ -1,12 +1,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'FVR 34K 18T — Camion Isuzu 18 Tonnes',
-  description: 'Camion Isuzu FVR 34K 18 tonnes châssis court. Idéal charges lourdes et transport industriel. CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/fvr-34k' },
-}
-
 
 const images = [
   '/images/camions/serie-f/fvr-34k/img1.jpg',
