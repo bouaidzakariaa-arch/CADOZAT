@@ -5,6 +5,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BrochureForm from '@/app/components/BrochureForm'
 
+export const metadata = {
+  title: 'Karry 22Q — Fourgon Grande Capacité Maroc',
+  description: 'Fourgon utilitaire Karry 22Q grande capacité. Économique et polyvalent pour tous types de transport. Disponible chez CADOZAT Maroc.',
+  alternates: { canonical: 'https://cadozat.com/catalogue/karry-22q' },
+}
+
 // ── Composant Galerie (identique Q22B) ─────────
 function GaleriePhotos() {
   const [onglet, setOnglet] = useState<'exterieur' | 'interieur'>('exterieur')

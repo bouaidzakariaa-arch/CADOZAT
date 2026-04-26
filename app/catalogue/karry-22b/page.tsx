@@ -5,6 +5,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BrochureForm from '@/app/components/BrochureForm'
 
+export const metadata = {
+  title: 'Karry 22B — Fourgon Compact Utilitaire Maroc',
+  description: 'Fourgon utilitaire Karry 22B compact et économique. Idéal livraisons urbaines et petits transports. Disponible chez CADOZAT Maroc.',
+  alternates: { canonical: 'https://cadozat.com/catalogue/karry-22b' },
+}
+
 // ── Composant Galerie ──────────────────────────
 function GaleriePhotos() {
   const [onglet, setOnglet] = useState<'exterieur' | 'interieur'>('exterieur')
@@ -27,7 +33,6 @@ function GaleriePhotos() {
 
   const current = photos[onglet]
 
-  // ── Auto-play ──────────────────────────────
   useEffect(() => {
     const timer = setInterval(() => {
       setIsTransitioning(true)
@@ -39,7 +44,6 @@ function GaleriePhotos() {
     return () => clearInterval(timer)
   }, [onglet, current.length])
 
-  // Reset index when switching tabs
   useEffect(() => { setActiveIdx(0) }, [onglet])
 
   const goTo = (idx: number) => {
@@ -80,10 +84,10 @@ function GaleriePhotos() {
         {/* Layout : grande image + miniatures verticales */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_180px] gap-4">
 
-          {/* Grande image principale avec transition */}
+          {/* Grande image principale — fond transparent */}
           <div
-            className="relative rounded-3xl overflow-hidden cursor-zoom-in bg-gray-100"
-            style={{ height: '520px' }}
+            className="relative rounded-3xl overflow-hidden cursor-zoom-in"
+            style={{ height: '520px', background: 'transparent' }}
             onClick={() => setLightbox(current[activeIdx])}
           >
             <img
@@ -92,44 +96,38 @@ function GaleriePhotos() {
               className="w-full h-full transition-all duration-500"
               style={{
                 objectFit: 'contain',
-                background: '#f5f5f5',
+                background: 'transparent',
                 opacity: isTransitioning ? 0 : 1,
                 transform: isTransitioning ? 'scale(1.03)' : 'scale(1)',
               }}
             />
-
-            {/* Gradient bas */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
             {/* Label bas gauche */}
             <div
               className="absolute bottom-5 left-5 flex items-center gap-2 transition-all duration-500"
               style={{ opacity: isTransitioning ? 0 : 1 }}
             >
-              <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              <span className="text-white font-bold text-sm">{current[activeIdx].alt}</span>
+              <div className="w-2 h-2 rounded-full bg-[#0057A8] animate-pulse" />
+              <span className="font-bold text-sm text-gray-700">{current[activeIdx].alt}</span>
             </div>
 
             {/* Icône zoom haut droite */}
-            <div className="absolute top-5 right-5 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity pointer-events-none">
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="absolute top-5 right-5 w-10 h-10 bg-[#0057A8]/10 rounded-full flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity pointer-events-none">
+              <svg className="w-4 h-4 text-[#0057A8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
               </svg>
             </div>
 
             {/* Barre de progression auto-play */}
-            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/20">
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-100">
               <div
-                className="h-full bg-white"
-                style={{
-                  animation: 'progress 3.5s linear infinite',
-                  transformOrigin: 'left',
-                }}
+                className="h-full bg-[#0057A8]"
+                style={{ animation: 'progress 3.5s linear infinite', transformOrigin: 'left' }}
               />
             </div>
           </div>
 
-          {/* Miniatures verticales */}
+          {/* Miniatures verticales — fond transparent */}
           <div className="flex flex-row lg:flex-col gap-3">
             {current.map((photo, i) => (
               <button
@@ -138,14 +136,22 @@ function GaleriePhotos() {
                 className="relative rounded-2xl overflow-hidden flex-1 lg:flex-none transition-all duration-300"
                 style={{
                   height: '120px',
+                  background: 'transparent',
                   outline: activeIdx === i ? '3px solid #0057A8' : '3px solid transparent',
                   outlineOffset: '2px',
-                  opacity: activeIdx === i ? 1 : 0.55,
+                  opacity: activeIdx === i ? 1 : 0.5,
                   transform: activeIdx === i ? 'scale(1)' : 'scale(0.97)',
                 }}
               >
-                <img src={photo.src} alt={photo.alt} className="w-full h-full" style={{ objectFit: 'contain', background: '#f5f5f5' }} />
-                {activeIdx === i && <div className="absolute inset-0 bg-[#0057A8]/15" />}
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-full"
+                  style={{ objectFit: 'contain', background: 'transparent' }}
+                />
+                {activeIdx === i && (
+                  <div className="absolute inset-0 rounded-2xl" style={{ border: '2px solid #0057A820' }} />
+                )}
               </button>
             ))}
           </div>
@@ -182,13 +188,17 @@ function GaleriePhotos() {
               </svg>
             </button>
             <div className="relative w-full max-w-5xl" onClick={e => e.stopPropagation()}>
-              <img src={lightbox.src} alt={lightbox.alt} className="w-full max-h-[85vh] object-contain rounded-2xl" />
+              <img
+                src={lightbox.src}
+                alt={lightbox.alt}
+                className="w-full max-h-[85vh] object-contain rounded-2xl"
+                style={{ background: 'transparent' }}
+              />
               <p className="text-center text-white/50 text-sm mt-4 font-medium">{lightbox.alt}</p>
             </div>
           </div>
         )}
 
-        {/* CSS animation barre progression */}
         <style>{`
           @keyframes progress {
             from { width: 0%; }
@@ -255,11 +265,9 @@ export default function KarryQ22BPage() {
       {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0057A8 0%, #003d78 60%, #001f3f 100%)', minHeight: '90vh' }}>
 
-        {/* Décors */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10" style={{ background: 'radial-gradient(circle, white, transparent)', transform: 'translate(30%, -30%)' }} />
           <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-5" style={{ background: 'radial-gradient(circle, white, transparent)', transform: 'translate(-30%, 30%)' }} />
-          {/* Grille décorative */}
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         </div>
 
@@ -268,7 +276,6 @@ export default function KarryQ22BPage() {
 
             {/* Texte */}
             <div>
-              {/* Breadcrumb */}
               <div className="flex items-center gap-2 text-white/40 text-xs mb-6">
                 <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
                 <span>/</span>
@@ -277,22 +284,17 @@ export default function KarryQ22BPage() {
                 <span className="text-white/70">Karry Q22B</span>
               </div>
 
-              {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 text-white text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 Karry · Fourgon Plateau
               </div>
 
-              {/* Titre */}
               <h1 className="font-black text-white leading-none tracking-tighter mb-4" style={{ fontSize: 'clamp(3.5rem, 8vw, 6.5rem)' }}>
                 Q22<span style={{ color: '#7DB8F7' }}>B</span>
               </h1>
 
-              <p className="text-white/60 text-base mb-8 max-w-md leading-relaxed">
-                {modele.soustitre}
-              </p>
+              <p className="text-white/60 text-base mb-8 max-w-md leading-relaxed">{modele.soustitre}</p>
 
-              {/* 3 stats clés */}
               <div className="grid grid-cols-3 gap-4 mb-10">
                 {[
                   { val: '1 100', unit: 'kg', label: 'Charge utile' },
@@ -306,7 +308,6 @@ export default function KarryQ22BPage() {
                 ))}
               </div>
 
-              {/* CTAs */}
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/devis"
@@ -316,17 +317,14 @@ export default function KarryQ22BPage() {
                   Demande de devis
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
-                <a
-                  href="tel:0524885025"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-white px-7 py-3.5 rounded-xl border border-white/25 hover:bg-white/10 transition-all"
-                >
+                <a href="tel:0524885025" className="inline-flex items-center gap-2 text-sm font-semibold text-white px-7 py-3.5 rounded-xl border border-white/25 hover:bg-white/10 transition-all">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
                   0524 885 025
                 </a>
               </div>
             </div>
 
-            {/* Image */}
+            {/* Image hero — fond transparent */}
             <div className="relative">
               <div className="relative h-80 lg:h-[420px]">
                 <Image
@@ -334,7 +332,7 @@ export default function KarryQ22BPage() {
                   alt="Karry Q22B"
                   fill
                   className="object-contain drop-shadow-2xl"
-                  style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.4))' }}
+                  style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.4))', background: 'transparent' }}
                 />
               </div>
               {/* Badge PTAC flottant */}
@@ -385,7 +383,6 @@ export default function KarryQ22BPage() {
             <h2 className="text-3xl font-black text-gray-900">Caractéristiques</h2>
           </div>
 
-          {/* Onglets */}
           <div className="flex gap-2 justify-center mb-10 flex-wrap">
             {([
               { key: 'moteur', label: 'Moteur & Transmission' },
@@ -407,13 +404,9 @@ export default function KarryQ22BPage() {
             ))}
           </div>
 
-          {/* Tableau specs */}
           <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
             {modele.specs[activeTab].map((row, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between px-8 py-4 border-b border-gray-50 last:border-0 hover:bg-blue-50/30 transition-colors"
-              >
+              <div key={i} className="flex items-center justify-between px-8 py-4 border-b border-gray-50 last:border-0 hover:bg-blue-50/30 transition-colors">
                 <span className="text-gray-500 text-sm">{row.label}</span>
                 <span className="font-black text-gray-900 text-sm text-right">{row.value}</span>
               </div>
@@ -430,17 +423,12 @@ export default function KarryQ22BPage() {
             <h2 className="text-3xl font-black text-gray-900">Plateau 2 500 mm</h2>
           </div>
           <div className="rounded-3xl p-10 border-2 border-dashed flex flex-col items-center gap-4" style={{ borderColor: '#0057A820', background: '#f0f6ff' }}>
-            {/* Schéma SVG simplifié */}
             <svg viewBox="0 0 500 160" className="w-full max-w-lg">
-              {/* Plateau */}
               <rect x="80" y="40" width="340" height="60" rx="4" fill="#0057A8" opacity="0.15" stroke="#0057A8" strokeWidth="1.5" />
-              {/* Cotes L */}
               <line x1="80" y1="120" x2="420" y2="120" stroke="#0057A8" strokeWidth="1.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
               <text x="250" y="138" textAnchor="middle" fill="#0057A8" fontSize="13" fontWeight="800">2 500 mm</text>
-              {/* Cotes l */}
               <line x1="30" y1="40" x2="30" y2="100" stroke="#0057A8" strokeWidth="1.5" />
               <text x="15" y="75" textAnchor="middle" fill="#0057A8" fontSize="11" fontWeight="700" transform="rotate(-90 15 75)">1 520 mm</text>
-              {/* Hauteur */}
               <line x1="440" y1="40" x2="440" y2="100" stroke="#0057A8" strokeWidth="1.5" />
               <text x="460" y="75" textAnchor="start" fill="#0057A8" fontSize="11" fontWeight="700">370 mm</text>
               <defs>
@@ -460,7 +448,9 @@ export default function KarryQ22BPage() {
           </div>
         </div>
       </section>
+
       <BrochureForm modele="karry-q22b" marque="karry" nomModele="Karry Q22B" />
+
       {/* ── CTA FINAL ── */}
       <section className="py-20" style={{ background: 'linear-gradient(135deg, #0057A8, #003d78)' }}>
         <div className="max-w-2xl mx-auto px-6 text-center">

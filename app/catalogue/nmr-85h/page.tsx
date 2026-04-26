@@ -1,30 +1,34 @@
-'use client'
-
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
+export const metadata = {
+  title: 'NMR 85H 3.5T — Camion Isuzu Châssis Long',
+  description: 'Camion Isuzu NMR 85H 3.5 tonnes châssis long. Moteur 124ch EURO IV. Grande capacité de chargement. CADOZAT Maroc.',
+  alternates: { canonical: 'https://cadozat.com/catalogue/nmr-85h' },
+}
+
+
 const images = [
-  '/images/camions/serie-n/img1.jpg',
-  '/images/camions/serie-n/img2.jpg',
-  '/images/camions/serie-n/img3.jpg',
+  '/images/camions/serie-n/nmr-85h/img1.jpg',
+  '/images/camions/serie-n/nmr-85h/img2.jpg',
+  '/images/camions/serie-n/nmr-85h/img3.jpg',
+  '/images/camions/serie-n/nmr-85h/img4.jpg',
+  '/images/camions/serie-n/nmr-85h/img5.jpg',
+  '/images/camions/serie-n/nmr-85h/img6.jpg',
 ]
 
 const specs = [
-  {
-    categorie: 'Dimensions & Poids',
-    icon: '📐',
+  { categorie: 'Dimensions & Poids', icon: '📐',
     items: [
       { label: 'Empattement', valeur: '3 345 mm' },
       { label: 'Longueur carossable', valeur: '4 457 mm' },
-      { label: 'Poids total en charge (PTAC)', valeur: '3 500 kg' },
+      { label: 'PTAC', valeur: '3 500 kg' },
       { label: 'Poids à vide — Avant', valeur: '1 420 kg' },
       { label: 'Poids à vide — Arrière', valeur: '680 kg' },
       { label: 'Poids à vide — Total', valeur: '2 120 kg' },
     ],
   },
-  {
-    categorie: 'Essieux & Pont',
-    icon: '🔩',
+  { categorie: 'Essieux & Pont', icon: '🔩',
     items: [
       { label: 'Cabine', valeur: 'Standard' },
       { label: 'Capacité essieu avant', valeur: '2 900 kg' },
@@ -32,9 +36,7 @@ const specs = [
       { label: 'Rapport de pont', valeur: '4.556' },
     ],
   },
-  {
-    categorie: 'Moteur',
-    icon: '⚙️',
+  { categorie: 'Moteur', icon: '⚙️',
     items: [
       { label: 'Modèle', valeur: '4JJ1-TCC' },
       { label: 'Type', valeur: 'Turbo diesel intercooler Common Rail' },
@@ -45,18 +47,14 @@ const specs = [
       { label: 'Couple maxi', valeur: '354 Nm / 1 500 tr/min' },
     ],
   },
-  {
-    categorie: 'Boîte de vitesse',
-    icon: '🔄',
+  { categorie: 'Boîte de vitesse', icon: '🔄',
     items: [
       { label: 'Modèle', valeur: 'MYY5M' },
       { label: 'Type', valeur: 'Mécanique surmultipliée' },
       { label: 'Nombre de rapports', valeur: '5 AV + 1 AR' },
     ],
   },
-  {
-    categorie: 'Direction & Freinage',
-    icon: '🛡️',
+  { categorie: 'Direction & Freinage', icon: '🛡️',
     items: [
       { label: 'Direction', valeur: 'Assistée — écrou bille recirculation' },
       { label: 'Freinage service', valeur: 'Frein hydraulique à tambour' },
@@ -65,9 +63,7 @@ const specs = [
       { label: 'ABS', valeur: 'Système antiblocage des freins' },
     ],
   },
-  {
-    categorie: 'Suspension & Pneus',
-    icon: '🚛',
+  { categorie: 'Suspension & Pneus', icon: '🚛',
     items: [
       { label: 'Suspension', valeur: 'Ressorts à lames AV et AR' },
       { label: 'Dimension pneus', valeur: '205/85 R16' },
@@ -120,54 +116,46 @@ export default function NMR85HPage() {
     <main className="bg-white">
 
       {/* HERO */}
-      <section className="relative bg-[#1B2B6B] py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC0000] rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute inset-0 opacity-50" style={{backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '60px 60px'}}></div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-2 text-white/40 text-sm mb-8 flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+      <section className="bg-white pt-32 pb-16 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-2 text-sm text-gray-400 mb-8 flex-wrap">
+            <Link href="/" className="hover:text-[#CC0000] transition-colors">Accueil</Link>
             <span>/</span>
-            <Link href="/catalogue" className="hover:text-white transition-colors">Notre gamme</Link>
+            <Link href="/catalogue" className="hover:text-[#CC0000] transition-colors">Notre gamme</Link>
             <span>/</span>
-            <span className="text-white/60">N-Series</span>
+            <span className="text-gray-500">N-Series</span>
             <span>/</span>
-            <span className="text-[#C9A84C] font-semibold">NMR 85H</span>
+            <span className="text-[#CC0000] font-semibold">NMR 85H 3.5T</span>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="flex items-center gap-2 mb-4 flex-wrap">
+              <div className="flex items-center gap-2 mb-5 flex-wrap">
                 <span className="bg-[#CC0000] text-white text-xs font-bold px-3 py-1 rounded-full">Isuzu</span>
-                <span className="bg-white/10 text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">N-Series</span>
-                <span className="bg-[#C9A84C] text-white text-xs font-bold px-3 py-1 rounded-full">3.5T</span>
-                <span className="bg-white/10 text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">Châssis long</span>
+                <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">N-Series</span>
+                <span className="bg-[#1B2B6B] text-white text-xs font-bold px-3 py-1 rounded-full">3.5T</span>
+                <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">Châssis long</span>
               </div>
-              <h1 className="text-5xl lg:text-6xl font-black text-white mb-1">
+              <h1 className="text-5xl lg:text-6xl font-black text-gray-900 mb-2 leading-none">
                 NMR <span className="text-[#CC0000]">85H</span>
               </h1>
-              <p className="text-white/50 text-lg font-semibold mb-4">3.5T — Châssis long</p>
+              <p className="text-gray-400 text-lg font-semibold mb-5">3.5T — Châssis long</p>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-1 bg-[#CC0000] rounded-full"></div>
-                <div className="w-6 h-1 bg-[#C9A84C] rounded-full"></div>
+                <div className="w-10 h-1 bg-[#CC0000] rounded-full" />
+                <div className="w-5 h-1 bg-[#C9A84C] rounded-full" />
               </div>
-              <p className="text-white/70 text-lg leading-relaxed mb-8">
-                Le NMR 85H est un camion léger 3.5T sur châssis long, offrant une
-                capacité de chargement supérieure. Idéal pour les livraisons régionales
-                nécessitant un grand volume. Moteur Common Rail puissant et économique.
+              <p className="text-gray-500 text-base leading-relaxed mb-8 max-w-lg">
+                Le NMR 85H est un camion léger 3.5T sur châssis long, offrant une capacité de chargement supérieure. Idéal pour les livraisons régionales nécessitant un grand volume. Moteur Common Rail puissant et économique.
                 <span className="text-[#C9A84C] font-bold"> Garantie 3 ans SDAMA.</span>
               </p>
-              <a href="tel:0524885025" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-full border border-white/30 transition-all">
+              <a href="tel:0524885025"
+                className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-6 py-3 rounded-full transition-all shadow-md">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                 </svg>
                 0524 885 025 — CADOZAT
               </a>
             </div>
-
             <div className="grid grid-cols-2 gap-4">
               {[
                 { icon: '⚡', label: 'Puissance', valeur: '124 ch / 91 kw' },
@@ -177,10 +165,10 @@ export default function NMR85HPage() {
                 { icon: '⛽', label: 'Réservoir', valeur: '100 litres' },
                 { icon: '🌿', label: 'Émission', valeur: 'EURO IV' },
               ].map((s, i) => (
-                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:border-[#CC0000]/50 transition-all">
+                <div key={i} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 hover:border-[#CC0000]/30 hover:shadow-sm transition-all">
                   <div className="text-2xl mb-2">{s.icon}</div>
-                  <div className="text-white/50 text-xs mb-0.5">{s.label}</div>
-                  <div className="text-white font-black">{s.valeur}</div>
+                  <div className="text-gray-400 text-xs mb-1">{s.label}</div>
+                  <div className="text-gray-900 font-black text-sm">{s.valeur}</div>
                 </div>
               ))}
             </div>
@@ -192,16 +180,16 @@ export default function NMR85HPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Galerie</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">Photos du NMR 85H</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
+            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Galerie</p>
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-px w-10 bg-[#C9A84C]" />
+              <h2 className="text-3xl font-black text-gray-900">Photos du NMR 85H</h2>
+              <div className="h-px w-10 bg-[#C9A84C]" />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {images.map((src, i) => (
-              <div key={i} className="aspect-video rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all bg-gradient-to-br from-[#1B2B6B] to-[#CC0000]">
+              <div key={i} className="aspect-video rounded-2xl overflow-hidden border border-gray-100 bg-white shadow-sm hover:shadow-md transition-all">
                 <img src={src} alt={`NMR 85H — Photo ${i + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"/>
               </div>
             ))}
@@ -213,25 +201,25 @@ export default function NMR85HPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Données officielles SDAMA</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">Fiche technique complète</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
+            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Données officielles SDAMA</p>
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-px w-10 bg-[#C9A84C]" />
+              <h2 className="text-3xl font-black text-gray-900">Fiche technique complète</h2>
+              <div className="h-px w-10 bg-[#C9A84C]" />
             </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {specs.map((cat, i) => (
-              <div key={i} className="bg-white rounded-3xl border-2 border-gray-100 hover:border-[#CC0000]/20 hover:shadow-lg transition-all overflow-hidden">
-                <div className="bg-gray-50 border-b-2 border-gray-100 px-6 py-4 flex items-center gap-3">
-                  <span className="text-2xl">{cat.icon}</span>
-                  <h3 className="font-black text-[#1B2B6B] text-sm uppercase tracking-wide">{cat.categorie}</h3>
+              <div key={i} className="bg-white rounded-2xl border border-gray-100 hover:border-[#CC0000]/20 hover:shadow-md transition-all overflow-hidden">
+                <div className="bg-gray-50 border-b border-gray-100 px-5 py-3 flex items-center gap-3">
+                  <span className="text-xl">{cat.icon}</span>
+                  <h3 className="font-black text-gray-700 text-xs uppercase tracking-wide">{cat.categorie}</h3>
                 </div>
                 <div className="p-4">
                   {cat.items.map((item, j) => (
-                    <div key={j} className={`flex items-start justify-between gap-4 py-2.5 ${j < cat.items.length - 1 ? 'border-b border-gray-100' : ''}`}>
-                      <span className="text-gray-500 text-xs font-medium flex-shrink-0">{item.label}</span>
-                      <span className="text-[#1B2B6B] text-xs font-bold text-right">{item.valeur}</span>
+                    <div key={j} className={`flex justify-between gap-4 py-2.5 ${j < cat.items.length - 1 ? 'border-b border-gray-50' : ''}`}>
+                      <span className="text-gray-400 text-xs">{item.label}</span>
+                      <span className="text-gray-800 text-xs font-bold text-right">{item.valeur}</span>
                     </div>
                   ))}
                 </div>
@@ -245,18 +233,18 @@ export default function NMR85HPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Cotes officielles</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">Dimensions (mm)</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
+            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Cotes officielles</p>
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-px w-10 bg-[#C9A84C]" />
+              <h2 className="text-3xl font-black text-gray-900">Dimensions (mm)</h2>
+              <div className="h-px w-10 bg-[#C9A84C]" />
             </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {dimensions.map((d, i) => (
-              <div key={i} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-[#CC0000]/30 p-5 text-center transition-all">
-                <div className="text-xl font-black text-[#CC0000] mb-1">{d.code}</div>
-                <div className="text-2xl font-black text-[#1B2B6B] mb-1">{d.valeur}</div>
+              <div key={i} className="bg-white rounded-2xl border border-gray-100 hover:border-[#CC0000]/30 p-5 text-center transition-all">
+                <div className="text-sm font-black text-[#CC0000] mb-1">{d.code}</div>
+                <div className="text-2xl font-black text-gray-900 mb-1">{d.valeur}</div>
                 <div className="text-xs text-gray-400">{d.label}</div>
               </div>
             ))}
@@ -268,23 +256,23 @@ export default function NMR85HPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="text-[#CC0000] font-bold text-sm uppercase tracking-widest">Inclus de série</span>
-            <div className="flex items-center justify-center gap-3 mt-3">
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
-              <h2 className="text-3xl font-black text-[#1B2B6B]">Équipements</h2>
-              <div className="h-px w-12 bg-[#C9A84C]"></div>
+            <p className="text-[#CC0000] font-bold text-xs uppercase tracking-widest mb-3">Inclus de série</p>
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-px w-10 bg-[#C9A84C]" />
+              <h2 className="text-3xl font-black text-gray-900">Équipements</h2>
+              <div className="h-px w-10 bg-[#C9A84C]" />
             </div>
           </div>
-          <div className="bg-white rounded-3xl border-2 border-gray-100 p-8">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {equipements.map((eq, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 transition-colors group">
-                  <div className="w-6 h-6 bg-[#CC0000] rounded-full flex items-center justify-center flex-shrink-0">
+                <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-white transition-colors">
+                  <div className="w-5 h-5 bg-[#CC0000] rounded-full flex items-center justify-center flex-shrink-0">
                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/>
                     </svg>
                   </div>
-                  <span className="text-gray-700 text-sm font-medium">{eq}</span>
+                  <span className="text-gray-600 text-sm font-medium">{eq}</span>
                 </div>
               ))}
             </div>
@@ -293,35 +281,44 @@ export default function NMR85HPage() {
       </section>
 
       {/* NAVIGATION N-SERIES */}
-      <section className="py-12 bg-gray-50 border-t border-gray-100">
+      <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Autres modèles N-Series</p>
+          <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-5">Autres modèles N-Series</p>
           <div className="flex flex-wrap gap-3 justify-center">
             {modeles_nseries.map((m) => (
-              <Link key={m.nom} href={m.href} className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${m.actif ? 'bg-[#CC0000] text-white shadow-md' : 'bg-white border-2 border-gray-200 text-gray-600 hover:border-[#CC0000] hover:text-[#CC0000]'}`}>
+              <Link key={m.nom} href={m.href}
+                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${m.actif ? 'bg-[#CC0000] text-white shadow-md' : 'bg-white border border-gray-200 text-gray-600 hover:border-[#CC0000] hover:text-[#CC0000]'}`}>
                 {m.nom}
               </Link>
             ))}
           </div>
         </div>
       </section>
+
       <BrochureForm modele="nmr-85h" marque="isuzu" nomModele="NMR 85H" />
-      {/* CTA */}
-      <section className="py-16 bg-[#1B2B6B] relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#CC0000] via-[#C9A84C] to-[#1B2B6B]"></div>
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black text-white mb-2">Intéressé par le <span className="text-[#CC0000]">NMR 85H</span> ?</h2>
-          <div className="w-16 h-0.5 bg-[#C9A84C] mx-auto my-4"></div>
-          <p className="text-white/60 mb-8">Contactez l&apos;une de nos 3 agences — Ouarzazate · Agadir · Tinghir</p>
+
+      {/* CTA FINAL */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-black text-gray-900 mb-2">
+            Intéressé par le <span className="text-[#CC0000]">NMR 85H</span> ?
+          </h2>
+          <div className="w-12 h-0.5 bg-[#C9A84C] mx-auto my-4" />
+          <p className="text-gray-400 mb-8 text-sm">Contactez l&apos;une de nos 3 agences — Ouarzazate · Agadir · Tinghir</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a href="tel:0524885025" className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-8 py-4 rounded-full transition-all shadow-lg">
+            <a href="tel:0524885025"
+              className="inline-flex items-center gap-2 bg-[#CC0000] hover:bg-[#aa0000] text-white font-bold px-8 py-4 rounded-full transition-all shadow-lg">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
               </svg>
               0524 885 025
             </a>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full border border-white/30 transition-all">Nous contacter</Link>
-            <Link href="/catalogue" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-full border border-white/30 transition-all">Voir toute la gamme</Link>
+            <Link href="/contact" className="inline-flex items-center border border-gray-200 hover:border-[#CC0000] hover:text-[#CC0000] text-gray-600 font-bold px-8 py-4 rounded-full transition-all">
+              Nous contacter
+            </Link>
+            <Link href="/catalogue" className="inline-flex items-center border border-gray-200 hover:border-[#CC0000] hover:text-[#CC0000] text-gray-600 font-bold px-8 py-4 rounded-full transition-all">
+              Voir toute la gamme
+            </Link>
           </div>
         </div>
       </section>

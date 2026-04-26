@@ -11,16 +11,7 @@ const gammes = [
         nom: 'D-MAX TFR',
         slug: 'dmax-tfr',
         variantes: [
-          { nom: 'Pick-up SC 4×2', desc: 'Simple cabine — Transmission 4×2' },
-          { nom: 'Pick-up SC 4×2 Clim', desc: 'Simple cabine — Climatisation' },
-          { nom: 'Pick-up DC 4×2', desc: 'Double cabine — Transmission 4×2' },
-        ],
-      },
-      {
-        nom: 'D-MAX TFS',
-        slug: 'dmax-tfs',
-        variantes: [
-          { nom: 'Pick-up DC 4×4', desc: 'Double cabine — Transmission intégrale 4×4' },
+          { nom: 'Pick-up SC 4×2 EURO 6', desc: 'Simple cabine — Transmission 4×2' },
         ],
       },
     ],
@@ -91,7 +82,6 @@ export default function CataloguePage() {
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-20">
         {gammes.map((gamme) => (
           <section key={gamme.serie} id={gamme.serie.toLowerCase().replace(' ', '-')}>
-
             {/* En-tête section */}
             <div className="flex items-center gap-4 mb-10">
               <div className="w-1 h-12 rounded-full" style={{background: gamme.accentColor}}></div>

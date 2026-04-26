@@ -3,30 +3,20 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
+export const metadata = {
+  title: 'D-MAX Pick-up SC 4×2 EURO 6 — Isuzu Maroc',
+  description: 'Pick-up Isuzu D-MAX Simple Cabine 4×2 EURO 6. Moteur 164ch 360Nm. Robuste et économique. Disponible chez CADOZAT Ouarzazate, Agadir, Tinghir.',
+  alternates: { canonical: 'https://cadozat.com/catalogue/dmax-tfr' },
+}
+
 const variantes = [
   {
-    nom: 'Pick-up SC 4×2',
+    nom: 'Pick-up SC 4×2 EURO 6',
     badge: 'Simple Cabine',
     badgeColor: 'bg-red-600',
     description: 'Pick-up simple cabine 4×2 — La solution idéale pour les professionnels exigeant robustesse et polyvalence. Motorisation diesel puissante et économique.',
     points: ['2 portes · 2 sièges', 'Transmission 4×2', 'Moteur 1 898 cc Diesel', '164 cv @ 3 800 tr/min'],
     accent: '#CC0000',
-  },
-  {
-    nom: 'Pick-up SC 4×2 Clim',
-    badge: 'Climatisation',
-    badgeColor: 'bg-amber-500',
-    description: 'Pick-up simple cabine 4×2 avec climatisation — Tout le confort pour les longues missions. Idéal pour les régions chaudes du Sud marocain.',
-    points: ['2 portes · 2 sièges', 'Transmission 4×2', 'Climatisation de série', '164 cv @ 3 800 tr/min'],
-    accent: '#C9A84C',
-  },
-  {
-    nom: 'Pick-up DC 4×2',
-    badge: 'Double Cabine',
-    badgeColor: 'bg-[#1B2B6B]',
-    description: 'Pick-up double cabine 4×2 — 5 places pour transporter votre équipe. Confort premium et équipements de sécurité complets.',
-    points: ['4 portes · 5 sièges', 'Transmission 4×2', '7 airbags de série', 'AEB + TCS inclus'],
-    accent: '#1B2B6B',
   },
 ]
 
@@ -211,7 +201,6 @@ export default function DMaxTFRPage() {
 
           <div className="mb-12">
             <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-2">Versions disponibles</p>
-            <h2 className="text-3xl font-black text-gray-900">3 variantes pour chaque besoin</h2>
             <div className="w-12 h-[3px] bg-[#C9A84C] mt-3 rounded-full"></div>
           </div>
 
