@@ -3,12 +3,6 @@
 import Link from 'next/link'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'D-MAX Pick-up SC 4×2 EURO 6 — Isuzu Maroc',
-  description: 'Pick-up Isuzu D-MAX Simple Cabine 4×2 EURO 6. Moteur 164ch 360Nm. Robuste et économique. Disponible chez CADOZAT Ouarzazate, Agadir, Tinghir.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/dmax-tfr' },
-}
-
 const variantes = [
   {
     nom: 'Pick-up SC 4×2 EURO 6',

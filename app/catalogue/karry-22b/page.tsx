@@ -5,12 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BrochureForm from '@/app/components/BrochureForm'
 
-export const metadata = {
-  title: 'Karry 22B — Fourgon Compact Utilitaire Maroc',
-  description: 'Fourgon utilitaire Karry 22B compact et économique. Idéal livraisons urbaines et petits transports. Disponible chez CADOZAT Maroc.',
-  alternates: { canonical: 'https://cadozat.com/catalogue/karry-22b' },
-}
-
 // ── Composant Galerie ──────────────────────────
 function GaleriePhotos() {
   const [onglet, setOnglet] = useState<'exterieur' | 'interieur'>('exterieur')
