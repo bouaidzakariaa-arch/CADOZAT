@@ -5,10 +5,11 @@ const prisma = new PrismaClient()
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id)
+    const { id: idStr } = await context.params
+    const id = parseInt(idStr)
     if (isNaN(id)) {
       return NextResponse.json({ error: 'ID invalide' }, { status: 400 })
     }
@@ -35,10 +36,11 @@ export async function PATCH(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id)
+    const { id: idStr } = await context.params
+    const id = parseInt(idStr)
     if (isNaN(id)) {
       return NextResponse.json({ error: 'ID invalide' }, { status: 400 })
     }
