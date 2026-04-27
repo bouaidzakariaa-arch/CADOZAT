@@ -333,7 +333,6 @@ export default function Navbar() {
                     Références
                   </Link>
                 </li>
-                <li><Link href="/contact" className="nav-link" onClick={fermer}>Contact</Link></li>
               </ul>
 
               {/* ── CTAs desktop ── */}

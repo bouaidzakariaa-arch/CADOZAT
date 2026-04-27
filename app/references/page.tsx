@@ -2,14 +2,14 @@ import Link from 'next/link'
 
 const clients = [
   { nom: 'Coca-Cola',                secteur: 'Boissons & Distribution',  logo: '/images/clients/coca-cola.png',    site: 'https://www.coca-cola.com/ma/fr' },
-  { nom: 'Walmas',                   secteur: 'Distribution',             logo: null,                               site: null },
-  { nom: 'Rafi3',                    secteur: 'Boissons',                 logo: '/images/clients/Rafii.jpg',        site: null },
+  { nom: 'Oulmes',                   secteur: 'Distribution',             logo: null,                               site: 'https://www.oulmes.ma/' },
+  { nom: 'Rafi3',                    secteur: 'Boissons',                 logo: '/images/clients/Rafii.jpg',        site: 'https://www.facebook.com/Rafii.Officiel/posts/-le-lait-rafii-cest-le-r%C3%A9flexe-de-toute-la-famille-entier-ou-demi-%C3%A9cr%C3%A9m%C3%A9-en-form/785699623956945/' },
   { nom: 'HDS',                      secteur: 'Services industriels',     logo: '/images/clients/HDS.png',          site: null },
   { nom: 'COPAG',                    secteur: 'Coopérative agricole',     logo: '/images/clients/Copag.png',        site: 'https://www.copag.ma' },
-  { nom: 'Soussia des Gaz',          secteur: 'Énergie & Gaz',           logo: '/images/clients/soussiya-gaz.png', site: null },
+  { nom: 'Soussia des Gaz',          secteur: 'Énergie & Gaz',           logo: '/images/clients/soussiya-gaz.png', site: 'https://soussgaz.com/' },
   { nom: 'Al Ain (Dester)',          secteur: 'Eau minérale',             logo: null,                               site: null },
   { nom: 'M2E — Marocaine des Eaux', secteur: 'Eau minérale',             logo: '/images/clients/m2ea.png',         site: null },
-  { nom: 'Aqwa Life',                secteur: 'Eau minérale',             logo: '/images/clients/acwa-life.jpg',    site: null },
+  { nom: 'Aqwa Life',                secteur: 'Eau minérale',             logo: '/images/clients/acwa-life.jpg',    site: 'https://aqwalife.org/' },
 ]
 
 const secteurCouleur: Record<string, string> = {
