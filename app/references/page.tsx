@@ -4,7 +4,7 @@ const clients = [
   { nom: 'Coca-Cola',                secteur: 'Boissons & Distribution',  logo: '/images/clients/coca-cola.png',    site: 'https://www.coca-cola.com/ma/fr' },
   { nom: 'Oulmes',                   secteur: 'Distribution',             logo: null,                               site: 'https://www.oulmes.ma/' },
   { nom: 'Rafi3',                    secteur: 'Boissons',                 logo: '/images/clients/Rafii.jpg',        site: 'https://www.facebook.com/Rafii.Officiel/posts/-le-lait-rafii-cest-le-r%C3%A9flexe-de-toute-la-famille-entier-ou-demi-%C3%A9cr%C3%A9m%C3%A9-en-form/785699623956945/' },
-  { nom: 'HDS',                      secteur: 'Services industriels',     logo: '/images/clients/HDS.png',          site: null },
+  { nom: 'HDS',                      secteur: 'Services industriels',     logo: '/images/clients/HDS.png',          site: 'https://www.hsbmaroc.com/produits/huile-dolive-oued-souss/' },
   { nom: 'COPAG',                    secteur: 'Coopérative agricole',     logo: '/images/clients/Copag.png',        site: 'https://www.copag.ma' },
   { nom: 'Soussia des Gaz',          secteur: 'Énergie & Gaz',           logo: '/images/clients/soussiya-gaz.png', site: 'https://soussgaz.com/' },
   { nom: 'Al Ain (Dester)',          secteur: 'Eau minérale',             logo: null,                               site: null },
