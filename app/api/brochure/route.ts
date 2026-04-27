@@ -4,7 +4,6 @@ import { PrismaClient } from '@prisma/client'
 import { Resend } from 'resend'
 
 const prisma = new PrismaClient()
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 const MARQUES: Record<string, { label: string; color: string }> = {
   isuzu:     { label: 'Isuzu',      color: '#CC0000' },
@@ -21,9 +20,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Champs requis manquants' }, { status: 400 })
     }
 
-    /* ════════════════════════════════════
-       1. SAUVEGARDE EN BASE DE DONNÉES
-       ════════════════════════════════════ */
+    // Initialisation Resend ici — pas au niveau du module
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
     const lead = await prisma.leadBrochure.create({
       data: {
         nom,
@@ -37,9 +36,6 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    /* ════════════════════════════════════
-       2. EMAIL NOTIFICATION ADMIN
-       ════════════════════════════════════ */
     const m = MARQUES[marque] || { label: marque, color: '#CC0000' }
 
     await resend.emails.send({
@@ -55,9 +51,7 @@ export async function POST(req: NextRequest) {
               à ${new Date().toLocaleTimeString('fr-MA', { hour:'2-digit', minute:'2-digit' })}
             </p>
           </div>
-
           <div style="background:#f9f9f9;padding:32px;border:1px solid #e5e5e5;border-top:none;">
-
             <h2 style="color:${m.color};font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 16px;">👤 Contact</h2>
             <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
               <tr>
@@ -83,7 +77,6 @@ export async function POST(req: NextRequest) {
                 <td style="padding:8px 12px;background:#fafafa;border:1px solid #e5e5e5;font-size:13px;">${societe}</td>
               </tr>` : ''}
             </table>
-
             <h2 style="color:${m.color};font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 16px;">📋 Brochure téléchargée</h2>
             <div style="padding:16px 20px;background:white;border:2px solid ${m.color}33;border-radius:10px;margin-bottom:24px;">
               <p style="margin:0;font-size:15px;font-weight:bold;color:#1a1a1a;">
@@ -91,18 +84,10 @@ export async function POST(req: NextRequest) {
               </p>
               <p style="margin:6px 0 0;font-size:13px;color:#666;">Fichier : /brochures/${modele}.pdf</p>
             </div>
-
-            <div style="text-align:center;">
-              <a href="${process.env.NEXT_PUBLIC_SITE_URL}/admin/brochures"
-                style="display:inline-block;background:linear-gradient(135deg,${m.color},${m.color}cc);color:white;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:14px;">
-                Voir dans le tableau admin →
-              </a>
-            </div>
           </div>
-
           <div style="background:#1a1a1a;padding:16px 32px;border-radius:0 0 12px 12px;text-align:center;">
             <p style="color:rgba(255,255,255,.5);font-size:12px;margin:0;">
-              CADOZAT — Concessionnaire Isuzu · Karry · Great Wall
+              CADOZAT — Concessionnaire Isuzu · Karry
             </p>
           </div>
         </div>
@@ -117,7 +102,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-/* ── GET : liste des leads pour l'admin ── */
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
