@@ -4,7 +4,6 @@ import { PrismaClient } from '@prisma/client'
 import { Resend } from 'resend'
 
 const prisma = new PrismaClient()
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 const MARQUES: Record<string, string> = {
   isuzu: 'Isuzu', karry: 'Karry', greatwall: 'Great Wall',
@@ -27,6 +26,7 @@ const ATELIERS: Record<string, string> = {
 
 export async function POST(req: NextRequest) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY)
     const body = await req.json()
     const { nom, tel, marque, vehicule, type, atelier, message, localisation } = body
 
