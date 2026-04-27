@@ -43,7 +43,7 @@ const categories = [
     couleur: '#2D6A4F',
     desc: 'Véhicules de collecte des déchets et nettoiement urbain.',
     vehicules: [
-      { nom: 'Camion Benne Tasseuse', desc: 'Collecte et compactage des ordures ménagères', img: '/images/marche-public/environnement/benne-tasseuse.jpg' },
+      { nom: 'Camion Benne Tasseuse', desc: 'Collecte et compactage des ordures ménagères', img: '/images/marche-public/environnement/benne-tasseuse.jpeg' },
       { nom: 'Camion Multi-Benne', desc: 'Collecte sélective et transport de bennes amovibles', img: '/images/marche-public/environnement/multi-benne.jpg' },
       { nom: 'Camion Nacelle', desc: "Travaux en hauteur — éclairage public, émondage, maintenance", img: '/images/marche-public/environnement/nacelle.jpg' },
     ],
