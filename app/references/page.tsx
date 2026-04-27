@@ -9,7 +9,7 @@ const clients = [
   { nom: 'Soussia des Gaz',          secteur: 'Énergie & Gaz',           logo: '/images/clients/soussiya-gaz.png', site: 'https://soussgaz.com/' },
   { nom: 'Al Ain (Dester)',          secteur: 'Eau minérale',             logo: null,                               site: null },
   { nom: 'M2E — Marocaine des Eaux', secteur: 'Eau minérale',             logo: '/images/clients/m2ea.png',         site: null },
-  { nom: 'Aqwa Life',                secteur: 'Eau minérale',             logo: '/images/clients/acwa-life.jpg',    site: 'https://aqwalife.org/' },
+  { nom: 'Aqwa Life',                secteur: 'Eau minérale',             logo: '/images/clients/acwa-life.jpg',    site: 'https://aqualife.ma/' },
 ]
 
 const secteurCouleur: Record<string, string> = {
