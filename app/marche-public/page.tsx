@@ -208,28 +208,6 @@ export default function MarchePublicPage() {
         </div>
       </section>
 
-      {/* RÉFÉRENCES */}
-      <section className="py-16 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: '#CC0000' }}>Ils nous font confiance</p>
-            <h2 className="text-2xl font-black text-gray-900">Nos références marchés publics</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {references.map((ref, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#CC000012' }}>
-                  <svg className="w-4 h-4" fill="none" stroke="#CC0000" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                  </svg>
-                </div>
-                <span className="text-sm font-semibold text-gray-700">{ref}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
