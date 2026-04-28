@@ -48,28 +48,6 @@ const categories = [
       { nom: 'Camion Nacelle', desc: "Travaux en hauteur — éclairage public, émondage, maintenance", img: '/images/marche-public/environnement/nacelle.jpg' },
     ],
   },
-  {
-    id: 'personnes',
-    titre: 'Transport de personnes',
-    icon: '🚌',
-    couleur: '#d97706',
-    desc: 'Minibus scolaires et transport du personnel pour collectivités.',
-    vehicules: [
-      { nom: 'Transport Scolaire', desc: 'Minibus jaune homologué — normes sécurité enfants respectées', img: '/images/marche-public/personnes/transport-scolaire.jpg' },
-      { nom: 'Transport du Personnel', desc: 'Minibus blanc pour navettes entreprises et administrations', img: '/images/marche-public/personnes/transport-personnel.jpg' },
-    ],
-  },
-  {
-    id: 'speciaux',
-    titre: 'Véhicules spéciaux',
-    icon: '🚑',
-    couleur: '#7c3aed',
-    desc: "Véhicules d'urgence et d'intervention médicale.",
-    vehicules: [
-      { nom: 'Ambulance', desc: 'Véhicule médicalisé équipé — hôpitaux, communes, protection civile', img: '/images/marche-public/speciaux/ambulance.jpg' },
-      { nom: 'Ambulance 4×4', desc: 'Ambulance tout-terrain pour zones rurales et montagneuses', img: '/images/marche-public/speciaux/ambulance-4x4.jpg' },
-    ],
-  },
 ]
 
 const references = [

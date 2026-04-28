@@ -237,67 +237,6 @@ export default function DMaxTFRPage() {
         </div>
       </section>
 
-      {/* ── FICHE TECHNIQUE ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="mb-12">
-            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-2">Spécifications</p>
-            <h2 className="text-3xl font-black text-gray-900">Fiche technique complète</h2>
-            <div className="w-12 h-[3px] bg-[#C9A84C] mt-3 rounded-full"></div>
-            <p className="text-gray-400 text-sm mt-4">Caractéristiques communes aux 3 variantes TFR</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {specs.map((cat, i) => (
-              <div key={i} className="rounded-2xl border border-gray-100 overflow-hidden hover:shadow-sm transition-all">
-                {/* Category header */}
-                <div className="flex items-center gap-3 px-5 py-4 bg-gray-50 border-b border-gray-100">
-                  <span className="text-xl">{cat.icon}</span>
-                  <h3 className="font-bold text-gray-700 text-xs uppercase tracking-wider">{cat.categorie}</h3>
-                </div>
-                {/* Rows */}
-                <div className="divide-y divide-gray-50">
-                  {cat.items.map((item, j) => (
-                    <div key={j} className="flex items-center justify-between px-5 py-3">
-                      <span className="text-gray-400 text-xs">{item.label}</span>
-                      <span className="text-gray-800 text-xs font-semibold text-right ml-4 max-w-[55%]">{item.valeur}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── ÉQUIPEMENTS DE SÉRIE ── */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="mb-12">
-            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-2">Inclus de série</p>
-            <h2 className="text-3xl font-black text-gray-900">Équipements de série</h2>
-            <div className="w-12 h-[3px] bg-[#C9A84C] mt-3 rounded-full"></div>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-gray-100 p-8">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {equipements.map((eq, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors">
-                  <div className="w-5 h-5 bg-red-50 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-3 h-3 text-[#CC0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <span className="text-gray-600 text-sm">{eq}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── BROCHURE FORM ── */}
       <BrochureForm modele="dmax-tfr" marque="isuzu" nomModele="D-MAX TFR" />
 
