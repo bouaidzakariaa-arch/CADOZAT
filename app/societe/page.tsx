@@ -87,7 +87,7 @@ export default function SocietePage() {
           <div className="flex flex-wrap gap-12 mt-16">
             {[
               { val: '28+', label: 'Années d\'expérience', color: '#CC0000' },
-              { val: '3',   label: 'Agences  dans la region de souss massa et draa tafilalt ',    color: '#0057A8' },
+              { val: '3',   label: 'Agences ',    color: '#0057A8' },
               { val: '1996', label: 'Année de création',  color: '#2D6A4F' },
             ].map((s, i) => (
               <div key={i}>
