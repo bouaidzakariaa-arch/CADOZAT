@@ -78,7 +78,7 @@ export default function SocietePage() {
             <div className="w-16 h-1 mb-8 rounded-full" style={{ background: 'linear-gradient(to right, #CC0000, #2D6A4F)' }} />
 
             <p className="text-gray-500 text-lg leading-relaxed max-w-2xl">
-              Concessionnaire officiel <strong className="text-gray-800">Isuzu</strong> et <strong className="text-gray-800">Karry</strong> au Maroc,
+              concessionnaire officiel de la marque<strong className="text-gray-800">Isuzu</strong> et <strong className="text-gray-800">Karry</strong>  dans la region de souss massa et draa tafilalt ,
               CADOZAT s'est imposé comme le partenaire de référence pour les véhicules utilitaires, camions et engins industriels
               au Sud du Maroc depuis plus de <strong className="text-gray-800">28 ans</strong>.
             </p>
@@ -87,7 +87,7 @@ export default function SocietePage() {
           <div className="flex flex-wrap gap-12 mt-16">
             {[
               { val: '28+', label: 'Années d\'expérience', color: '#CC0000' },
-              { val: '3',   label: 'Agences au Maroc',    color: '#0057A8' },
+              { val: '3',   label: 'Agences  dans la region de souss massa et draa tafilalt ',    color: '#0057A8' },
               { val: '1996', label: 'Année de création',  color: '#2D6A4F' },
             ].map((s, i) => (
               <div key={i}>
@@ -202,7 +202,7 @@ export default function SocietePage() {
                   { icon: '🏢', titre: 'Espaces d\'exposition', desc: 'Showrooms dans chacune de nos 3 agences' },
                   { icon: '🔩', titre: 'Ateliers de réparation', desc: 'Équipés pour l\'entretien et la réparation de tous véhicules' },
                   { icon: '📦', titre: 'Magasins pièces de rechange', desc: 'Stock de pièces d\'origine pour intervention rapide' },
-                  { icon: '🚐', titre: 'Atelier mobile', desc: 'Dacia Dokker équipé — intervention sur site partout au Maroc' },
+                  { icon: '🚐', titre: 'Atelier mobile', desc: 'Dacia Dokker équipé — intervention sur site partout  dans la region de souss massa et draa tafilalt ' },
                   { icon: '💻', titre: 'Logiciel TOPAZE', desc: 'Gestion stock, comptabilité et diagnostic électronique' },
                   { icon: '🔵', titre: 'Station pneumatique', desc: 'Équipement complet pour les véhicules lourds et utilitaires' },
                 ].map((t, i) => (
