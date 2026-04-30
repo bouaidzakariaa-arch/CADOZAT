@@ -78,7 +78,7 @@ export default function SocietePage() {
             <div className="w-16 h-1 mb-8 rounded-full" style={{ background: 'linear-gradient(to right, #CC0000, #2D6A4F)' }} />
 
             <p className="text-gray-500 text-lg leading-relaxed max-w-2xl">
-              concessionnaire officiel de la marque<strong className="text-gray-800">Isuzu</strong> et <strong className="text-gray-800">Karry</strong>  dans la region de souss massa et draa tafilalt ,
+              Concessionnaire officiel de la marque<strong className="text-gray-800">Isuzu</strong> et <strong className="text-gray-800">Karry</strong>  dans la region de souss massa et draa tafilalt ,
               CADOZAT s'est imposé comme le partenaire de référence pour les véhicules utilitaires, camions et engins industriels
               au Sud du Maroc depuis plus de <strong className="text-gray-800">28 ans</strong>.
             </p>
