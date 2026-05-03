@@ -1,9 +1,11 @@
 'use client'
 
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
 const ZELLIGE = `data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23CC0000' fill-opacity='0.025'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5L30 0zm0 40l8.66 5v10L30 60l-8.66-5V45L30 40zM0 20l8.66 5v10L0 40l-8.66-5V25L0 20zm60 0l8.66 5v10L60 40l-8.66-5V25L60 20zM15 10l8.66 5v10L15 30l-8.66-5V15L15 10zm30 0l8.66 5v10L45 30l-8.66-5V15L45 10zm-30 30l8.66 5v10L15 60l-8.66-5V45L15 40zm30 0l8.66 5v10L45 60l-8.66-5V45L45 40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E`
 
+// ─── Icons ────────────────────────────────────────────────────────────────────
 const IcWrench = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>)
 const IcShield = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>)
 const IcBox = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>)
@@ -16,15 +18,99 @@ const IcPin = () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" 
 const IcClock = () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>)
 const IcArrow = () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>)
 
+// ─── Professional Carousel (large format for AtelierCard) ─────────────────────
+function AtelierCarousel({ images, alt, couleur }: {
+  images: string[]; alt: string; couleur: string
+}) {
+  const [current, setCurrent] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const startTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
+      setCurrent(p => (p + 1) % images.length)
+    }, 4500)
+  }, [images.length])
+
+  useEffect(() => {
+    startTimer()
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [startTimer])
+
+  const goTo = (i: number) => { setCurrent(i); startTimer() }
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Slide track */}
+      <div
+        style={{
+          display: 'flex',
+          width: `${images.length * 100}%`,
+          height: '100%',
+          transform: `translateX(-${current * (100 / images.length)}%)`,
+          transition: 'transform 0.8s cubic-bezier(0.77,0,0.175,1)',
+        }}>
+        {images.map((src, i) => (
+          <div key={i} style={{ width: `${100 / images.length}%`, flexShrink: 0, position: 'relative', height: '100%' }}>
+            <img src={src} alt={`${alt} ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+          </div>
+        ))}
+      </div>
+
+      {/* Subtle dark gradient bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.35), transparent)' }}/>
+
+      {/* Arrows — appear on hover */}
+      <button
+        onClick={() => goTo((current - 1 + images.length) % images.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+        style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.3)' }}>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button
+        onClick={() => goTo((current + 1) % images.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+        style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.3)' }}>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      {/* Progress lines — bottom center */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            style={{
+              height: '2px',
+              width: i === current ? '32px' : '12px',
+              background: i === current ? '#fff' : 'rgba(255,255,255,0.38)',
+              borderRadius: '2px',
+              transition: 'width 0.45s ease, background 0.45s ease',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
 const ENGAGEMENTS = [
   { icon: <IcWrench/>, color: '#CC0000', bg: '#fff5f5', titre: 'Atelier fixe', desc: "Atelier de réparation et d'entretien équipé de ponts élévateurs, station pneumatique et outillage aux normes constructeur." },
   { icon: <IcShield/>, color: '#2D6A4F', bg: '#f0faf5', titre: 'Garantie constructeur', desc: 'Tous nos véhicules bénéficient de la garantie officielle Isuzu. Traitement prioritaire pour tout véhicule sous garantie.' },
-  { icon: <IcBox/>, color: '#CC0000', bg: '#fff5f5', titre: "Pièces d'origine", desc: "Stock permanent de pièces de rechange 100% d'origine géré via le logiciel TOPAZE. Approvisionnement rapide si rupture." },
-  { icon: <IcGrad/>, color: '#2D6A4F', bg: '#f0faf5', titre: '8 techniciens qualifiés', desc: '3 ingénieurs, 3 techniciens électromécaniciens et 2 mécaniciens certifiés, formés en partenariat direct avec les constructeurs.' },
-  { icon: <IcTruck/>, color: '#CC0000', bg: '#fff5f5', titre: 'Atelier mobile sur site', desc: 'Atelier mobile Dacia Dokker équipé d\'outillage complet et pièces de rechange. Intervention directement chez vous.' },
-  { icon: <IcClip/>, color: '#2D6A4F', bg: '#f0faf5', titre: 'Diagnostic & logiciel TOPAZE', desc: 'Scanner de diagnostic homologué et logiciel TOPAZE pour la gestion de l\'entretien, du stock et du suivi de chaque véhicule.' },
+  { icon: <IcBox/>,    color: '#CC0000', bg: '#fff5f5', titre: "Pièces d'origine", desc: "Stock permanent de pièces de rechange 100% d'origine géré via le logiciel TOPAZE. Approvisionnement rapide si rupture." },
+  { icon: <IcGrad/>,  color: '#2D6A4F', bg: '#f0faf5', titre: '8 techniciens qualifiés', desc: '3 ingénieurs, 3 techniciens électromécaniciens et 2 mécaniciens certifiés, formés en partenariat direct avec les constructeurs.' },
+  { icon: <IcTruck/>, color: '#CC0000', bg: '#fff5f5', titre: 'Atelier mobile sur site', desc: "Atelier mobile Dacia Dokker équipé d'outillage complet et pièces de rechange. Intervention directement chez vous." },
+  { icon: <IcClip/>,  color: '#2D6A4F', bg: '#f0faf5', titre: 'Diagnostic & logiciel TOPAZE', desc: "Scanner de diagnostic homologué et logiciel TOPAZE pour la gestion de l'entretien, du stock et du suivi de chaque véhicule." },
 ]
 
+// ─── AtelierCard ──────────────────────────────────────────────────────────────
 function SectionLabel({ label }: { label: string }) {
   return (
     <div className="flex items-center justify-center gap-3 mb-4">
@@ -36,22 +122,35 @@ function SectionLabel({ label }: { label: string }) {
 }
 
 function AtelierCard({
-  img, ville, couleur, titre, desc, infos, services, badge, reverse = false
+  img, imgs, ville, couleur, titre, desc, infos, services, badge, reverse = false
 }: {
-  img: string; ville: string; couleur: string; titre: string; desc: string;
-  infos: { icon: React.ReactNode; label: string; val: string }[];
-  services: string[]; badge: string; reverse?: boolean;
+  img?: string
+  imgs?: string[]
+  ville: string; couleur: string; titre: string; desc: string
+  infos: { icon: React.ReactNode; label: string; val: string }[]
+  services: string[]; badge: string; reverse?: boolean
 }) {
+  const hasCarousel = imgs && imgs.length > 1
+
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20 ${reverse ? '' : ''}`}>
-      <div className={`relative rounded-3xl overflow-hidden shadow-2xl ${reverse ? 'order-1 lg:order-2' : ''}`} style={{ height: 420 }}>
-        <img src={img} alt={`Atelier CADOZAT ${ville}`} className="w-full h-full object-cover"/>
-        <div className="absolute bottom-5 left-5 px-4 py-2 rounded-xl text-white text-sm font-extrabold"
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      {/* Media */}
+      <div
+        className={`group relative rounded-3xl overflow-hidden shadow-2xl ${reverse ? 'order-1 lg:order-2' : ''}`}
+        style={{ height: 420 }}>
+        {hasCarousel ? (
+          <AtelierCarousel images={imgs} alt={`Atelier CADOZAT ${ville}`} couleur={couleur}/>
+        ) : (
+          <img src={img} alt={`Atelier CADOZAT ${ville}`} className="w-full h-full object-cover"/>
+        )}
+        {/* Badge */}
+        <div className="absolute bottom-5 left-5 px-4 py-2 rounded-xl text-white text-sm font-extrabold z-30"
           style={{ background: `linear-gradient(135deg,${couleur},${couleur}cc)`, boxShadow: `0 4px 16px ${couleur}55` }}>
           {badge}
         </div>
       </div>
 
+      {/* Texte */}
       <div className={reverse ? 'order-2 lg:order-1' : ''}>
         <div className="flex items-center gap-3 mb-5">
           <div className="h-px w-8" style={{ background: couleur }}/>
@@ -59,7 +158,6 @@ function AtelierCard({
         </div>
         <h3 className="text-2xl font-black text-gray-900 mb-4 leading-tight">{titre}</h3>
         <p className="text-gray-500 text-sm leading-relaxed mb-7">{desc}</p>
-
         <div className="space-y-3 mb-7">
           {infos.map((item, i) => (
             <div key={i} className="flex items-center gap-4 p-3 rounded-xl"
@@ -72,7 +170,6 @@ function AtelierCard({
             </div>
           ))}
         </div>
-
         <div className="grid grid-cols-2 gap-2">
           {services.map(s => (
             <div key={s} className="flex items-center gap-2 text-sm text-gray-600">
@@ -86,6 +183,7 @@ function AtelierCard({
   )
 }
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-white pt-[108px]">
@@ -95,7 +193,6 @@ export default function ServicesPage() {
         style={{ background: 'linear-gradient(135deg,#1a3d2b 0%,#0f2419 45%,#1a1a2e 100%)', backgroundImage: `url("${ZELLIGE}")`, backgroundSize: '60px 60px' }}>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,rgba(26,61,43,.97) 0%,rgba(15,36,25,.97) 50%,rgba(26,26,46,.96) 100%)' }}/>
         <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: 'linear-gradient(180deg,#CC0000,#2D6A4F)' }}/>
-
         <div className="relative max-w-7xl mx-auto px-6 py-20">
           <div className="flex flex-col lg:flex-row items-center gap-14">
             <div className="flex-1 text-white">
@@ -124,13 +221,12 @@ export default function ServicesPage() {
                 </Link>
               </div>
             </div>
-
             <div className="grid grid-cols-2 gap-4 flex-shrink-0">
               {[
-                { val: '8',     label: 'Techniciens\nqualifiés',   accent: '#CC0000' },
-                { val: '2',     label: 'Ateliers\nfixes',          accent: '#e8c84a' },
-                { val: '100%',  label: "Pièces\nd'origine",        accent: '#CC0000' },
-                { val: '6j/7',  label: 'Ouvert\ntoute la semaine', accent: '#e8c84a' },
+                { val: '8',    label: 'Techniciens\nqualifiés',   accent: '#CC0000' },
+                { val: '2',    label: 'Ateliers\nfixes',          accent: '#e8c84a' },
+                { val: '100%', label: "Pièces\nd'origine",        accent: '#CC0000' },
+                { val: '6j/7', label: 'Ouvert\ntoute la semaine', accent: '#e8c84a' },
               ].map((s, i) => (
                 <div key={i} className="text-center px-6 py-5 rounded-2xl"
                   style={{ background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.1)' }}>
@@ -179,7 +275,6 @@ export default function ServicesPage() {
         style={{ background: '#f9f7f5', backgroundImage: `url("${ZELLIGE}")`, backgroundSize: '60px 60px' }}>
         <div className="absolute inset-0 bg-white/92 pointer-events-none"/>
         <div className="relative max-w-7xl mx-auto px-6">
-
           <div className="text-center mb-14">
             <SectionLabel label="Nos ateliers"/>
             <h2 className="text-3xl font-black text-gray-900">Nos ateliers à votre service</h2>
@@ -191,15 +286,14 @@ export default function ServicesPage() {
           {/* Agadir */}
           <AtelierCard
             img="/images/ateliers/atelier1.jpg"
-            ville="Agadir"
-            couleur="#CC0000"
+            ville="Agadir" couleur="#CC0000"
             titre="Atelier CADOZAT Agadir"
             desc="Notre atelier Agadir dispose de ponts élévateurs, d'une station pneumatique, d'un scanner de diagnostic homologué et du logiciel TOPAZE pour le suivi complet de chaque véhicule."
             badge="🔧 Atelier fixe — Agadir"
             infos={[
-              { icon: <IcClock/>, label: 'Horaires', val: 'Lun – Sam : 8h à 18h' },
-              { icon: <IcPhone/>, label: 'Contact SAV', val: '0524 885 025' },
-              { icon: <IcPin/>, label: 'Ville', val: 'Agadir' },
+              { icon: <IcClock/>, label: 'Horaires',     val: 'Lun – Sam : 8h à 18h' },
+              { icon: <IcPhone/>, label: 'Contact SAV',  val: '0524 885 025' },
+              { icon: <IcPin/>,   label: 'Ville',        val: 'Agadir' },
             ]}
             services={['Entretien & révision', 'Réparation toutes pannes', "Pièces d'origine", 'Diagnostic TOPAZE', 'Station pneumatique', 'Garantie constructeur']}
           />
@@ -207,32 +301,34 @@ export default function ServicesPage() {
           {/* Ouarzazate */}
           <AtelierCard
             img="/images/ateliers/atelier2.jpg"
-            ville="Ouarzazate"
-            couleur="#1B2B6B"
+            ville="Ouarzazate" couleur="#1B2B6B"
             titre="Atelier CADOZAT Ouarzazate"
             desc="Notre atelier Ouarzazate, siège social de CADOZAT depuis 1996, est équipé de tout le matériel nécessaire pour l'entretien et la réparation de vos véhicules Isuzu et Karry."
             badge="🔧 Atelier fixe — Ouarzazate"
             reverse
             infos={[
-              { icon: <IcClock/>, label: 'Horaires', val: 'Lun – Sam : 8h à 18h' },
+              { icon: <IcClock/>, label: 'Horaires',    val: 'Lun – Sam : 8h à 18h' },
               { icon: <IcPhone/>, label: 'Contact SAV', val: '0524 885 025' },
-              { icon: <IcPin/>, label: 'Ville', val: 'Ouarzazate' },
+              { icon: <IcPin/>,   label: 'Ville',       val: 'Ouarzazate' },
             ]}
             services={['Entretien & révision', 'Réparation toutes pannes', "Pièces d'origine", 'Diagnostic TOPAZE', 'Station pneumatique', 'Garantie constructeur']}
           />
 
-          {/* Atelier Mobile */}
+          {/* Atelier Mobile — CAROUSEL */}
           <AtelierCard
-            img="/images/ateliers/atelier5.jpg"
-            ville="Atelier mobile"
-            couleur="#2D6A4F"
+            imgs={[
+              '/images/ateliers/atelier-mobile1.jpg',
+              '/images/ateliers/atelier-mobile2.jpg',
+              '/images/ateliers/atelier-mobile3.jpg',
+            ]}
+            ville="Atelier mobile" couleur="#2D6A4F"
             titre="Nous venons à vous — partout au Sud du Maroc"
             desc="Notre atelier mobile Dacia Dokker est équipé de tous les outils et pièces de rechange nécessaires. Nos techniciens interviennent directement sur site — chez vous, dans votre dépôt ou sur chantier."
             badge="🚐 Atelier mobile ISUZU SERVICE"
             infos={[
-              { icon: <IcTruck/>, label: 'Véhicule', val: 'Dacia Dokker' },
-              { icon: <IcBox/>, label: 'Équipement', val: 'Outillage complet + stock pièces de rechange' },
-              { icon: <IcPin/>, label: "Zone d'intervention", val: 'Sud du Maroc — Ouarzazate, Agadir et environs' },
+              { icon: <IcTruck/>, label: 'Véhicule',            val: 'Dacia Dokker' },
+              { icon: <IcBox/>,   label: 'Équipement',          val: 'Outillage complet + stock pièces de rechange' },
+              { icon: <IcPin/>,   label: "Zone d'intervention", val: 'Sud du Maroc — Ouarzazate, Agadir et environs' },
             ]}
             services={['Intervention sur site', "Dépannage d'urgence", 'Flottes & grands comptes', 'Marchés publics', 'Zones rurales', 'Sans déplacement client']}
           />

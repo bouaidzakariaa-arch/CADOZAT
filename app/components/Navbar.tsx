@@ -100,7 +100,6 @@ const NAV_LINKS = [
   { label: 'Marché public',      href: '/marche-public' },
   { label: 'Services après-vente', href: '/services' },
   { label: 'Références',         href: '/references' },
-  { label: 'Contact',            href: '/contact' },
 ]
 
 function BrandLogo({ id, zone, className = '' }: { id: BrandId; zone: 'tab' | 'header' | 'footer'; className?: string }) {
@@ -634,7 +633,6 @@ export default function Navbar() {
                   { label: 'Marché public',       href: '/marche-public' },
                   { label: 'Services après-vente', href: '/services' },
                   { label: 'Références',           href: '/references' },
-                  { label: 'Contact',              href: '/contact' },
                 ].map(item => (
                   <Link key={item.href} href={item.href}
                     className="block py-3 px-4 text-sm font-bold rounded-lg transition-all"
