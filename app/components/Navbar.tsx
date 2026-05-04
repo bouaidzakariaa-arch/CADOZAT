@@ -113,8 +113,7 @@ function BrandLogo({ id, zone, className = '' }: { id: BrandId; zone: 'tab' | 'h
     <div className={`relative flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg ${className}`}
       style={{ width: w, height: h, background: imgError ? gradient : 'transparent' }}>
       {!imgError && (
-        <Image src={b.logo} alt={`Logo ${id}`} fill className="object-contain p-1" onError={() => setImgError(true)} />
-      )}
+      <Image src={b.logo} alt={`Logo ${id}`} fill sizes="160px" className="object-contain p-1" onError={() => setImgError(true)} />      )}
       {imgError && (
         <span className="font-black text-white text-center leading-none px-1 select-none" style={{ fontSize, letterSpacing: '0.05em' }}>
           {id.toUpperCase()}
