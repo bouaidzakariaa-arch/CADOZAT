@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
-// ─── Scroll Reveal ────────────────────────────────────────────────────────────
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -28,7 +27,6 @@ function RevealItem({ children, delay = 0 }: { children: React.ReactNode; delay?
   )
 }
 
-// ─── Counter ─────────────────────────────────────────────────────────────────
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [val, setVal] = useState(0)
   const { ref, visible } = useInView(0.5)
@@ -41,7 +39,6 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   return <span ref={ref}>{val}{suffix}</span>
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
 const clients = [
   { nom: 'Coca-Cola',                secteur: 'Boissons & Distribution',  logo: '/images/clients/coca-cola.png',    site: 'https://www.coca-cola.com/ma/fr' },
   { nom: 'Oulmes',                   secteur: 'Distribution',             logo: null,                               site: 'https://www.oulmes.ma/' },
@@ -78,17 +75,14 @@ export default function ReferencesPage() {
         .h-in-4{animation:heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.45s both}
       `}</style>
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section className="relative overflow-hidden" style={{ paddingTop: '110px', paddingBottom: '0', background: '#f8faff' }}>
-
-        {/* Blobs */}
         <div style={{ position:'absolute', top:'-80px', right:'-80px', width:'520px', height:'520px', borderRadius:'50%', background:'linear-gradient(135deg, rgba(0,87,168,0.09), rgba(27,43,107,0.07))', animation:'floatA 12s ease-in-out infinite', zIndex:0 }} />
         <div style={{ position:'absolute', bottom:'-60px', left:'-60px', width:'420px', height:'420px', borderRadius:'50%', background:'linear-gradient(135deg, rgba(204,0,0,0.06), rgba(201,168,76,0.05))', animation:'floatB 16s ease-in-out infinite', zIndex:0 }} />
         <div style={{ position:'absolute', top:'30%', left:'35%', width:'300px', height:'300px', borderRadius:'50%', background:'rgba(0,87,168,0.05)', animation:'floatC 20s ease-in-out infinite', zIndex:0 }} />
         <div style={{ position:'absolute', inset:0, zIndex:0, opacity:0.5, backgroundImage:'radial-gradient(circle, rgba(0,87,168,0.08) 1px, transparent 1px)', backgroundSize:'32px 32px' }} />
 
         <div className="relative max-w-7xl mx-auto px-6" style={{ zIndex:1 }}>
-          {/* Breadcrumb */}
           <div className="h-in-1 flex items-center gap-2 text-xs mb-10" style={{ color:'#aab' }}>
             <Link href="/" style={{ color:'#aab', textDecoration:'none' }}>Accueil</Link>
             <span>›</span>
@@ -96,7 +90,6 @@ export default function ReferencesPage() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-end pb-16">
-            {/* Left */}
             <div>
               <div className="h-in-1 inline-flex items-center gap-2 px-4 py-2 rounded-full mb-7"
                 style={{ background:'#fff', border:'1px solid #e8e8f0', boxShadow:'0 2px 12px rgba(0,0,0,0.06)' }}>
@@ -109,13 +102,9 @@ export default function ReferencesPage() {
                   <div style={{ width:'20px', height:'2px', background:'#0057A8', borderRadius:'2px' }} />
                   Depuis 1996
                 </div>
-                <h1 style={{ fontSize:'clamp(44px,7vw,78px)', fontWeight:900, lineHeight:0.95, letterSpacing:'-1.5px', color:'#0f172a', margin:0 }}>
-                  Ils nous font
-                </h1>
+                <h1 style={{ fontSize:'clamp(44px,7vw,78px)', fontWeight:900, lineHeight:0.95, letterSpacing:'-1.5px', color:'#0f172a', margin:0 }}>Ils nous font</h1>
                 <h1 style={{ fontSize:'clamp(44px,7vw,78px)', fontWeight:900, lineHeight:0.95, letterSpacing:'-1.5px', margin:0 }}>
-                  <span style={{ background:'linear-gradient(90deg, #0057A8 0%, #1B2B6B 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>
-                    confiance
-                  </span>
+                  <span style={{ background:'linear-gradient(90deg, #0057A8 0%, #1B2B6B 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>confiance</span>
                 </h1>
               </div>
 
@@ -145,11 +134,10 @@ export default function ReferencesPage() {
               </div>
             </div>
 
-            {/* Right — stats */}
             <div className="h-in-4 grid grid-cols-3 gap-4">
               {[
-                { n: 9, s:'+', label:'Clients majeurs', color:'#0057A8', bg:'#f0f7ff' },
-                { n: 3, s:'',  label:'Agences Maroc',   color:'#1B2B6B', bg:'#f0f3ff' },
+                { n: 9, s:'+', label:'Clients majeurs',  color:'#0057A8', bg:'#f0f7ff' },
+                { n: 3, s:'',  label:'Agences Maroc',    color:'#1B2B6B', bg:'#f0f3ff' },
                 { n:28, s:'+', label:"Ans d'expérience", color:'#CC0000', bg:'#fff5f5' },
               ].map((s, i) => (
                 <div key={i} className="p-6 rounded-2xl text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -163,12 +151,11 @@ export default function ReferencesPage() {
             </div>
           </div>
 
-          {/* Bottom bar */}
           <div style={{ height:'4px', background:'linear-gradient(90deg, #0057A8 0%, #1B2B6B 40%, #CC0000 70%, #C9A84C 100%)', borderRadius:'2px 2px 0 0', margin:'0 -24px' }} />
         </div>
       </section>
 
-      {/* ── CLIENTS GRID ── */}
+      {/* CLIENTS GRID */}
       <section className="py-20 max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color:'#0057A8' }}>Références</p>
@@ -185,16 +172,24 @@ export default function ReferencesPage() {
             const meta = SECTEUR_META[c.secteur] || { color:'#374151', bg:'#f3f4f6' }
             return (
               <RevealItem key={i} delay={(i % 3) * 100}>
+                {/* ✅ Un seul attribut style, onClick géré séparément */}
                 <div
-                  className="group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-                  style={{ background:'#fff', border:`1px solid ${meta.color}18`, boxShadow:'0 2px 16px rgba(0,0,0,0.06)' }}
+                  className="group"
                   onClick={() => c.site && window.open(c.site, '_blank')}
-                  style={{ cursor: c.site ? 'pointer' : 'default', background:'#fff', border:`1px solid ${meta.color}18`, boxShadow:'0 2px 16px rgba(0,0,0,0.06)', borderRadius:'16px', overflow:'hidden', transition:'all 0.3s cubic-bezier(0.22,1,0.36,1)' }}
+                  style={{
+                    cursor: c.site ? 'pointer' : 'default',
+                    background: '#fff',
+                    border: `1px solid ${meta.color}18`,
+                    boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    transition: 'all 0.3s cubic-bezier(0.22,1,0.36,1)',
+                  }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform='translateY(-4px)'; el.style.boxShadow=`0 16px 48px ${meta.color}20, 0 4px 16px rgba(0,0,0,0.08)` }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform=''; el.style.boxShadow='0 2px 16px rgba(0,0,0,0.06)' }}
                 >
-                  {/* Top stripe */}
                   <div style={{ height:'3px', background:`linear-gradient(90deg, ${meta.color}, ${meta.color}88)` }} />
 
-                  {/* Logo zone */}
                   <div className="flex items-center justify-center" style={{ height:'120px', background: meta.bg, position:'relative' }}>
                     {c.logo ? (
                       <img src={c.logo} alt={c.nom} style={{ maxHeight:'70px', maxWidth:'160px', objectFit:'contain' }} />
@@ -214,7 +209,6 @@ export default function ReferencesPage() {
                     )}
                   </div>
 
-                  {/* Info */}
                   <div className="p-5">
                     <div className="w-6 h-1 rounded-full mb-3" style={{ background: meta.color }} />
                     <h3 className="font-black text-gray-900 text-sm mb-2">{c.nom}</h3>
@@ -230,7 +224,7 @@ export default function ReferencesPage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section style={{ padding:'80px 0', background:'#0f172a', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize:'32px 32px' }} />
         <div style={{ position:'absolute', top:'-100px', right:'-100px', width:'500px', height:'500px', borderRadius:'50%', background:'radial-gradient(circle, rgba(0,87,168,0.15) 0%, transparent 60%)' }} />
@@ -243,7 +237,8 @@ export default function ReferencesPage() {
           </div>
 
           <h2 style={{ fontSize:'clamp(24px,4vw,42px)', fontWeight:900, color:'#fff', letterSpacing:'-1px', margin:'0 0 16px' }}>
-            Besoin de véhicules pour <span style={{ background:'linear-gradient(90deg, #0057A8, #4a9eff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>votre entreprise</span> ?
+            Besoin de véhicules pour{' '}
+            <span style={{ background:'linear-gradient(90deg, #0057A8, #4a9eff)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>votre entreprise</span> ?
           </h2>
           <p style={{ color:'rgba(255,255,255,0.45)', fontSize:'15px', marginBottom:'36px', maxWidth:'480px', margin:'0 auto 36px', lineHeight:1.7 }}>
             Notre équipe vous accompagne avec des flottes Isuzu & Karry adaptées à vos besoins professionnels.
