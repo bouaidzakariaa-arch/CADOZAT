@@ -48,9 +48,7 @@ const menuMarques = [
     sections: [
       {
         titre: 'D-MAX TFR', subtitle: 'Pick-up EURO 6', href: '/catalogue/dmax-tfr',
-        items: [
-          { nom: 'Pick-up SC 4×2 EURO 6', href: '/catalogue/dmax-tfr' },
-        ],
+        items: [{ nom: 'Pick-up SC 4×2 EURO 6', href: '/catalogue/dmax-tfr' }],
       },
       {
         titre: 'Série N', subtitle: '3.5T — 9.5T', href: '/catalogue',
@@ -92,16 +90,6 @@ const menuMarques = [
   },
 ]
 
-// ── Liens simples de la navbar ──────────────────────────────────────
-const NAV_LINKS = [
-  { label: 'Accueil',            href: '/' },
-  { label: 'Société',            href: '/societe' },
-  // "Notre gamme" est géré séparément (mega menu)
-  { label: 'Marché public',      href: '/marche-public' },
-  { label: 'Services après-vente', href: '/services' },
-  { label: 'Références',         href: '/references' },
-]
-
 function BrandLogo({ id, zone, className = '' }: { id: BrandId; zone: 'tab' | 'header' | 'footer'; className?: string }) {
   const [imgError, setImgError] = useState(false)
   const b = BRANDS[id]
@@ -113,7 +101,8 @@ function BrandLogo({ id, zone, className = '' }: { id: BrandId; zone: 'tab' | 'h
     <div className={`relative flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg ${className}`}
       style={{ width: w, height: h, background: imgError ? gradient : 'transparent' }}>
       {!imgError && (
-      <Image src={b.logo} alt={`Logo ${id}`} fill sizes="160px" className="object-contain p-1" onError={() => setImgError(true)} />      )}
+        <Image src={b.logo} alt={`Logo ${id}`} fill sizes="160px" className="object-contain p-1" onError={() => setImgError(true)} />
+      )}
       {imgError && (
         <span className="font-black text-white text-center leading-none px-1 select-none" style={{ fontSize, letterSpacing: '0.05em' }}>
           {id.toUpperCase()}
@@ -151,16 +140,6 @@ export default function Navbar() {
     @keyframes megamenu-in { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
     .megamenu-enter { animation:megamenu-in .22s cubic-bezier(.16,1,.3,1) both; }
 
-    /* ── Animations liens navbar ── */
-    @keyframes navUnderline {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
-    }
-    @keyframes navFadeIn {
-      from { opacity:0; transform:translateY(-4px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-
     .nav-link {
       position: relative;
       color: #374151;
@@ -171,7 +150,6 @@ export default function Navbar() {
       transition: color .2s;
       white-space: nowrap;
     }
-    /* Ligne animée en dessous */
     .nav-link::after {
       content: '';
       position: absolute;
@@ -179,56 +157,37 @@ export default function Navbar() {
       left: 14px;
       right: 14px;
       height: 2px;
-      background: #CC0000;
+      background: linear-gradient(90deg, #CC0000, #0057A8);
       border-radius: 99px;
       transform: scaleX(0);
       transform-origin: left;
       transition: transform .25s cubic-bezier(.4,0,.2,1);
     }
-    .nav-link:hover {
-      color: #CC0000;
-    }
-    .nav-link:hover::after {
-      transform: scaleX(1);
-    }
+    .nav-link:hover { color: #CC0000; }
+    .nav-link:hover::after { transform: scaleX(1); }
 
     .nav-link-gamme {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      display: flex; align-items: center; gap: 5px;
       position: relative;
-      color: #374151;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 8px;
-      transition: color .2s;
-      white-space: nowrap;
-      border: none;
-      background: transparent;
-      cursor: pointer;
+      color: #374151; font-size: 14px; font-weight: 700;
+      padding: 6px 14px; border-radius: 8px;
+      transition: color .2s; white-space: nowrap;
+      border: none; background: transparent; cursor: pointer;
     }
     .nav-link-gamme::after {
       content: '';
-      position: absolute;
-      bottom: 0px;
-      left: 14px;
-      right: 14px;
+      position: absolute; bottom: 0px; left: 14px; right: 14px;
       height: 2px;
-      background: #CC0000;
-      border-radius: 99px;
-      transform: scaleX(0);
-      transform-origin: left;
+      background: linear-gradient(90deg, #CC0000, #0057A8);
+      border-radius: 99px; transform: scaleX(0); transform-origin: left;
       transition: transform .25s cubic-bezier(.4,0,.2,1);
     }
-    .nav-link-gamme:hover,
-    .nav-link-gamme.active {
-      color: #CC0000;
-    }
-    .nav-link-gamme:hover::after,
-    .nav-link-gamme.active::after {
-      transform: scaleX(1);
-    }
+    .nav-link-gamme:hover, .nav-link-gamme.active { color: #CC0000; }
+    .nav-link-gamme:hover::after, .nav-link-gamme.active::after { transform: scaleX(1); }
+
+    /* ── Appeler button blue on hover ── */
+    .btn-appeler { transition: all .2s; }
+    .btn-appeler:hover { background: #f0f7ff !important; color: #0057A8 !important; border-color: rgba(0,87,168,.4) !important; }
   `
 
   return (
@@ -237,20 +196,20 @@ export default function Navbar() {
       <header className="w-full fixed top-0 z-50 transition-all duration-300"
         style={{ filter: scrolled ? 'drop-shadow(0 4px 24px rgba(0,0,0,0.13))' : 'none' }}>
 
-        {/* ── Ticker ── */}
+        {/* ── Ticker — fond dégradé bleu/vert/marine ── */}
         <div className="relative overflow-hidden text-white text-xs"
           style={{
-            background: 'linear-gradient(135deg,#1a3d2b 0%,#0f2419 50%,#1a1a2e 100%)',
+            background: 'linear-gradient(135deg, #0f2419 0%, #1a1a2e 40%, #001428 100%)',
             height: scrolled ? '0px' : '36px',
             transition: 'height .35s cubic-bezier(.4,0,.2,1)',
           }}>
           <div className="absolute left-0 top-0 bottom-0 z-10 flex items-center px-4"
-            style={{ background: 'linear-gradient(90deg,#0f2419 60%,transparent)' }}>
+            style={{ background: 'linear-gradient(90deg, #001428 60%, transparent)' }}>
             <span className="text-[9px] font-black tracking-[.2em] uppercase px-2 py-0.5 rounded"
               style={{ color: '#e8c84a', border: '1px solid rgba(232,200,74,.3)' }}>CADOZAT</span>
           </div>
           <div className="absolute right-0 top-0 bottom-0 z-10 w-16"
-            style={{ background: 'linear-gradient(270deg,#0f2419 60%,transparent)' }} />
+            style={{ background: 'linear-gradient(270deg, #001428 60%, transparent)' }} />
           <div className="flex items-center h-full pl-24">
             <div className={`ticker-track${tickerPaused ? ' paused' : ''}`}
               onMouseEnter={() => setTickerPaused(true)}
@@ -260,25 +219,26 @@ export default function Navbar() {
                   style={{ color: 'rgba(255,255,255,.82)' }}>
                   <span className="text-base leading-none">{item.icon}</span>
                   <span>{item.text}</span>
-                  <span className="mx-2 opacity-30" style={{ color: '#CC0000' }}>◆</span>
+                  <span className="mx-2 opacity-30" style={{ color: '#0057A8' }}>◆</span>
                 </span>
               ))}
             </div>
           </div>
         </div>
 
-        {/* ── Bande drapeau ── */}
-        <div className="flex" style={{ height: scrolled ? '2px' : '3px', transition: 'height .3s' }}>
-          <div className="flex-1" style={{ background: '#CC0000' }} />
-          <div className="flex-1" style={{ background: '#2D6A4F' }} />
-        </div>
+        {/* ── Bande dégradé 4 couleurs ── */}
+        <div style={{
+          height: scrolled ? '2px' : '3px',
+          transition: 'height .3s',
+          background: 'linear-gradient(90deg, #CC0000 0%, #1B2B6B 33%, #0057A8 66%, #2D6A4F 100%)',
+        }} />
 
         {/* ── Navbar principale ── */}
         <nav className="relative bg-white transition-all duration-300"
           style={{
             backgroundImage: `url("${ZELLIGE}")`,
             backgroundSize: '60px 60px',
-            boxShadow: scrolled ? '0 2px 0 rgba(204,0,0,.06),0 4px 30px rgba(0,0,0,.09)' : '0 1px 0 rgba(0,0,0,.05)',
+            boxShadow: scrolled ? '0 2px 0 rgba(0,87,168,.04), 0 4px 30px rgba(0,0,0,.09)' : '0 1px 0 rgba(0,0,0,.05)',
           }}>
           <div className="absolute inset-0 bg-white/94 pointer-events-none" />
           <div className="relative max-w-7xl mx-auto px-6">
@@ -302,17 +262,12 @@ export default function Navbar() {
                 </div>
               </Link>
 
-              {/* ── Nav links desktop ── */}
+              {/* Nav links desktop */}
               <ul className="hidden lg:flex items-center gap-0.5">
-
-                {/* Accueil & Société */}
                 <li><Link href="/" className="nav-link" onClick={fermer}>Accueil</Link></li>
                 <li><Link href="/societe" className="nav-link" onClick={fermer}>Société</Link></li>
-
-                {/* Notre gamme — mega menu */}
                 <li onMouseEnter={() => setGammeOuverte(true)}>
-                  <button
-                    onClick={() => setGammeOuverte(!gammeOuverte)}
+                  <button onClick={() => setGammeOuverte(!gammeOuverte)}
                     className={`nav-link-gamme${gammeOuverte ? ' active' : ''}`}>
                     Notre gamme
                     <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${gammeOuverte ? 'rotate-180' : ''}`}
@@ -321,8 +276,6 @@ export default function Navbar() {
                     </svg>
                   </button>
                 </li>
-
-                {/* Autres liens */}
                 <li><Link href="/marche-public" className="nav-link" onClick={fermer}>Marché public</Link></li>
                 <li><Link href="/services" className="nav-link" onClick={fermer}>Services après-vente</Link></li>
                 <li>
@@ -333,7 +286,7 @@ export default function Navbar() {
                 </li>
               </ul>
 
-              {/* ── CTAs desktop ── */}
+              {/* CTAs desktop */}
               <div className="hidden lg:flex items-center gap-2">
                 <Link href="/admin"
                   className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
@@ -345,11 +298,10 @@ export default function Navbar() {
                   </svg>
                 </Link>
 
+                {/* Appeler — devient bleu au hover */}
                 <a href="tel:0524885025"
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-all"
-                  style={{ color: '#374151', border: '1.5px solid rgba(0,0,0,.15)' }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#f3f4f6'; }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = ''; }}>
+                  className="btn-appeler flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg"
+                  style={{ color: '#374151', border: '1.5px solid rgba(0,0,0,.15)' }}>
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
@@ -359,7 +311,7 @@ export default function Navbar() {
                 <Link href="/devis"
                   className="flex items-center gap-2 px-5 py-2 text-sm font-extrabold text-white rounded-lg transition-all hover:scale-[1.02] active:scale-[.98]"
                   onClick={fermer}
-                  style={{ background: 'linear-gradient(135deg,#CC0000,#aa0000)', boxShadow: '0 2px 12px rgba(204,0,0,.35)' }}>
+                  style={{ background: 'linear-gradient(135deg, #CC0000, #aa0000)', boxShadow: '0 2px 12px rgba(204,0,0,.35)' }}>
                   Demande de devis
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -373,7 +325,7 @@ export default function Navbar() {
                 onClick={() => { setOuvert(!ouvert); setGammeOuverte(false) }}>
                 <div className="w-5 space-y-1.5">
                   <span className={`block h-0.5 transition-all duration-300 ${ouvert ? 'rotate-45 translate-y-2' : ''}`} style={{ background: '#CC0000' }} />
-                  <span className={`block h-0.5 transition-all duration-300 ${ouvert ? 'opacity-0' : ''}`} style={{ background: '#2D6A4F' }} />
+                  <span className={`block h-0.5 transition-all duration-300 ${ouvert ? 'opacity-0' : ''}`} style={{ background: '#0057A8' }} />
                   <span className={`block h-0.5 transition-all duration-300 ${ouvert ? '-rotate-45 -translate-y-2' : ''}`} style={{ background: '#CC0000' }} />
                 </div>
               </button>
@@ -391,7 +343,7 @@ export default function Navbar() {
 
               {/* Onglets marques */}
               <div className="flex border-b justify-center gap-8"
-                style={{ borderColor: 'rgba(0,0,0,.07)', background: 'rgba(250,248,248,.95)' }}>
+                style={{ borderColor: 'rgba(0,0,0,.07)', background: 'rgba(248,250,255,.95)' }}>
                 {menuMarques.map(marque => {
                   const isActive = activeMarque === marque.id
                   const b = BRANDS[marque.id]
@@ -404,7 +356,7 @@ export default function Navbar() {
                       <span className="absolute bottom-0 left-0 right-0 transition-all duration-300"
                         style={{
                           height: '3px',
-                          background: `linear-gradient(to right,${b.primary},${b.primaryDark})`,
+                          background: `linear-gradient(to right, ${b.primary}, ${b.primaryDark})`,
                           transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
                           transformOrigin: 'left',
                         }} />
@@ -431,7 +383,7 @@ export default function Navbar() {
               {/* Contenu marque active */}
               <div className="flex-1 flex flex-col">
                 <div className="px-8 py-5 flex items-center justify-between border-b"
-                  style={{ borderColor: 'rgba(0,0,0,.06)', background: `linear-gradient(135deg,${brand.primaryLight} 0%,rgba(240,250,245,.9) 100%)` }}>
+                  style={{ borderColor: 'rgba(0,0,0,.06)', background: `linear-gradient(135deg, ${brand.primaryLight} 0%, rgba(248,250,255,.9) 100%)` }}>
                   <div className="flex items-center gap-5">
                     <div className="flex items-center justify-center rounded-xl overflow-hidden flex-shrink-0"
                       style={{ width: brand.headerW + 16, height: brand.headerH + 8, background: brand.primaryFaint, border: `1px solid ${brand.primary}22`, padding: '6px 8px' }}>
@@ -460,14 +412,12 @@ export default function Navbar() {
                 <div className="flex-1 p-8 grid gap-8 relative"
                   style={{
                     gridTemplateColumns: `repeat(${Math.min(active.sections.length, 4)}, 1fr)`,
-                    background: `linear-gradient(160deg,${brand.primaryLight}cc 0%,rgba(240,250,245,.7) 50%,rgba(255,251,245,.6) 100%)`,
+                    background: `linear-gradient(160deg, ${brand.primaryLight}cc 0%, rgba(248,250,255,.7) 50%, rgba(255,251,245,.6) 100%)`,
                     borderLeft: `3px solid ${brand.primary}`,
                     borderRight: `3px solid ${brand.primaryDark}`,
                   }}>
-                  <div className="absolute bottom-0 left-0 right-0 flex" style={{ height: '2px' }}>
-                    <div className="flex-1" style={{ background: brand.primary }} />
-                    <div className="flex-1" style={{ background: brand.primaryDark }} />
-                  </div>
+                  {/* Bottom bar */}
+                  <div className="absolute bottom-0 left-0 right-0" style={{ height: '2px', background: `linear-gradient(90deg, ${brand.primary}, ${brand.primaryDark})` }} />
                   {active.sections.map((section, si) => (
                     <div key={si}>
                       <div className="mb-4">
@@ -476,10 +426,7 @@ export default function Navbar() {
                         <span className="inline-block text-[10px] font-extrabold px-2.5 py-0.5 rounded-full text-white"
                           style={{ background: grad(activeMarque) }}>{section.subtitle}</span>
                       </div>
-                      <div className="flex mb-4" style={{ height: '2px', width: '44px', borderRadius: '1px', overflow: 'hidden' }}>
-                        <div className="flex-1" style={{ background: brand.primary }} />
-                        <div className="flex-1" style={{ background: brand.primaryDark }} />
-                      </div>
+                      <div className="flex mb-4" style={{ height: '2px', width: '44px', borderRadius: '1px', background: `linear-gradient(90deg, ${brand.primary}, ${brand.primaryDark})` }} />
                       <div className="space-y-0.5">
                         {section.items.map((item, ii) => (
                           <Link key={ii} href={item.href} onClick={fermer}
@@ -500,7 +447,7 @@ export default function Navbar() {
 
                 {/* Footer mega menu */}
                 <div className="px-8 py-3 border-t flex items-center justify-between"
-                  style={{ borderColor: 'rgba(0,0,0,.06)', background: 'rgba(250,248,248,.85)' }}>
+                  style={{ borderColor: 'rgba(0,0,0,.06)', background: 'rgba(248,250,255,.85)' }}>
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-400">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -541,19 +488,16 @@ export default function Navbar() {
             style={{ borderColor: 'rgba(0,0,0,.07)', boxShadow: '0 12px 40px rgba(0,0,0,.12)', backgroundImage: `url("${ZELLIGE}")`, backgroundSize: '60px 60px' }}>
             <div className="absolute inset-0 bg-white/96 pointer-events-none" />
             <div className="relative">
-              <div className="h-0.5 flex">
-                <div className="flex-1" style={{ background: '#CC0000' }} />
-                <div className="flex-1" style={{ background: '#2D6A4F' }} />
-              </div>
+              {/* Mobile top bar — 4 couleurs */}
+              <div style={{ height:'3px', background:'linear-gradient(90deg, #CC0000 0%, #1B2B6B 33%, #0057A8 66%, #2D6A4F 100%)' }} />
               <div className="px-4 py-4 space-y-1">
 
-                {/* Liens simples mobile */}
-                {[
-                  { label: 'Accueil',   href: '/' },
-                  { label: 'Société',   href: '/societe' },
-                ].map(item => (
+                {[{ label: 'Accueil', href: '/' }, { label: 'Société', href: '/societe' }].map(item => (
                   <Link key={item.href} href={item.href}
-                    className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-[#CC0000] rounded-lg hover:bg-red-50/60 transition-all"
+                    className="block py-3 px-4 text-sm font-bold text-gray-700 rounded-lg transition-all"
+                    style={{ color: '#374151' }}
+                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color='#CC0000'; el.style.background='rgba(204,0,0,0.04)' }}
+                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color='#374151'; el.style.background='' }}
                     onClick={() => setOuvert(false)}>
                     {item.label}
                   </Link>
@@ -579,7 +523,7 @@ export default function Navbar() {
                       {menuMarques.map(marque => {
                         const b = BRANDS[marque.id]
                         return (
-                          <div key={marque.id} className="rounded-xl overflow-hidden border" style={{ borderColor: 'rgba(0,0,0,.07)' }}>
+                          <div key={marque.id} className="rounded-xl overflow-hidden border" style={{ borderColor: `${b.primary}20` }}>
                             <button onClick={() => setMobileMarque(mobileMarque === marque.id ? null : marque.id)}
                               className="w-full flex items-center justify-between px-4 py-3 text-left"
                               style={{ background: b.primaryLight }}>
@@ -605,7 +549,7 @@ export default function Navbar() {
                                     <div className="space-y-0.5">
                                       {section.items.map((item, ii) => (
                                         <Link key={ii} href={item.href}
-                                          className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-all"
+                                          className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm font-bold text-gray-600 hover:bg-gray-50 transition-all"
                                           onClick={() => { setOuvert(false); setMobileGamme(false); setMobileMarque(null) }}>
                                           <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             style={{ color: b.primaryDark }}>
@@ -626,11 +570,10 @@ export default function Navbar() {
                   )}
                 </div>
 
-                {/* Liens restants mobile */}
                 {[
-                  { label: 'Marché public',       href: '/marche-public' },
-                  { label: 'Services après-vente', href: '/services' },
-                  { label: 'Références',           href: '/references' },
+                  { label: 'Marché public',        href: '/marche-public' },
+                  { label: 'Services après-vente',  href: '/services' },
+                  { label: 'Références',            href: '/references' },
                 ].map(item => (
                   <Link key={item.href} href={item.href}
                     className="block py-3 px-4 text-sm font-bold rounded-lg transition-all"
@@ -652,14 +595,15 @@ export default function Navbar() {
                   </Link>
                   <a href="tel:0524885025"
                     className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold rounded-xl transition-all"
-                    style={{ color: '#374151', border: '1.5px solid rgba(0,0,0,.15)' }}>
+                    style={{ color: '#0057A8', border: '1.5px solid rgba(0,87,168,.3)', background:'rgba(0,87,168,0.04)' }}>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                     </svg>
+                    0524 885 025
                   </a>
                   <Link href="/devis"
                     className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold text-white rounded-xl transition-all hover:opacity-90"
-                    style={{ background: 'linear-gradient(135deg,#CC0000,#990000)', boxShadow: '0 2px 12px rgba(204,0,0,.35)' }}
+                    style={{ background: 'linear-gradient(135deg, #CC0000, #990000)', boxShadow: '0 2px 12px rgba(204,0,0,.35)' }}
                     onClick={() => setOuvert(false)}>
                     Demande de devis
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
