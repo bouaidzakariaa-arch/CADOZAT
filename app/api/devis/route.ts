@@ -17,7 +17,7 @@ function isRateLimited(ip: string): boolean {
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const ADMIN_EMAIL    = process.env.ADMIN_EMAIL || 'contact@cadozat.com'
-const FROM_EMAIL     = 'onboarding@resend.dev'
+const FROM_EMAIL     = 'noreply@cadozaat.com'
 
 export async function POST(request: NextRequest) {
   try {
