@@ -2,7 +2,7 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import WhatsAppButton from './components/WhatsAppButton'
+import SocialButtons from './components/WhatsAppButton'
 import type { Metadata } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
-        <WhatsAppButton />
+        <SocialButtons />
         <GoogleAnalytics gaId="G-05SWRNEP5Z" />
       </body>
     </html>
