@@ -3,28 +3,9 @@ import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import type { Metadata } from 'next'
-
-
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="fr">
-      <head>
-        <meta name="google-site-verification" content="LfJZbC_Y9f1LNwNL1iIRnn1c29bXb9_L2BUF3LelxrY" />
-      </head>
-      <body className={geist.className}>
-        <Navbar />
-        <main className="pt-[112px]">
-          {children}
-        </main>
-        <Footer />
-        <GoogleAnalytics gaId="G-05SWRNEP5Z" />  {/* ← ajoute ça */}
-      </body>
-    </html>
-  )
-}
-
+const geist = Geist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
@@ -58,8 +39,6 @@ export const metadata: Metadata = {
   },
 }
 
-const geist = Geist({ subsets: ['latin'] })
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
@@ -72,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <GoogleAnalytics gaId="G-05SWRNEP5Z" />
       </body>
     </html>
   )
