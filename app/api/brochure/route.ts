@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     const m = MARQUES[marque] || { label: marque, color: '#CC0000' }
 
     await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'noreply@cadozaat.com',
       to:   ['bouaidzakariaa@gmail.com'],
       subject: `📄 Brochure téléchargée — ${modele.toUpperCase()} — ${prenom} ${nom}`,
       html: `
