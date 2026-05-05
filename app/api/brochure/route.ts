@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to:   ['tok940642@gmail.com'],
+      to:   ['bouaidzakariaa@gmail.com'],
       subject: `📄 Brochure téléchargée — ${modele.toUpperCase()} — ${prenom} ${nom}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
