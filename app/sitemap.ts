@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://cadozat.com'
+  const base = 'https://cadozaat.com'
 
   const modeles = [
     'ftr-34k', 'ftr-34m', 'ftr-34p', 'fvr-34k', 'fvr-34p',
