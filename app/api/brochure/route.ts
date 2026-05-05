@@ -1,7 +1,21 @@
-// app/api/brochure/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import { Resend } from 'resend'
+
+// ─── RATE LIMITING ────────────────────────────────────────────────
+const rateLimit = new Map<string, { count: number; resetAt: number }>()
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const limit = rateLimit.get(ip)
+  if (!limit || now > limit.resetAt) {
+    rateLimit.set(ip, { count: 1, resetAt: now + 60_000 })
+    return false
+  }
+  if (limit.count >= 5) return true
+  limit.count++
+  return false
+}
 
 const prisma = new PrismaClient()
 
@@ -13,14 +27,22 @@ const MARQUES: Record<string, { label: string; color: string }> = {
 
 export async function POST(req: NextRequest) {
   try {
+    // ── 1. Rate limiting ── ✅ à l'intérieur de POST
+    const ip = req.headers.get('x-forwarded-for') ?? 'unknown'
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Trop de requêtes' }, { status: 429 })
+    }
+
+    // ── 2. Parse body ──
     const body = await req.json()
     const { nom, prenom, email, telephone, societe, modele, marque, brochure } = body
 
+    // ── 3. Validation ──
     if (!nom || !prenom || !email || !modele) {
       return NextResponse.json({ error: 'Champs requis manquants' }, { status: 400 })
     }
 
-    // Initialisation Resend ici — pas au niveau du module
+    // ── 4. Resend ──
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     const lead = await prisma.leadBrochure.create({
