@@ -24,6 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <head>
+          <meta name="google-site-verification" content="LfJZbC_Y9f1LNwNL1iIRnn1c29bXb9_L2BUF3LelxrY" />
+      </head>
       <body className={geist.className}>
         <Navbar />
         <main className="pt-[112px]">
