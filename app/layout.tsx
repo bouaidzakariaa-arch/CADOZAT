@@ -2,7 +2,6 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -11,21 +10,39 @@ export const metadata: Metadata = {
     template: '%s | CADOZAT',
   },
   description: 'Concessionnaire officiel Isuzu et Karry au Maroc. Pick-ups D-MAX, camions Série N & F, fourgons Karry. 3 agences : Ouarzazate, Agadir, Tinghir.',
-  keywords: ['concessionnaire isuzu maroc', 'camion isuzu maroc', 'karry maroc', 'cadozat ouarzazate'],
-  metadataBase: new URL('https://cadozat.com'),
+  keywords: [
+    'concessionnaire isuzu maroc',
+    'camion isuzu maroc',
+    'karry maroc',
+    'cadozat ouarzazate',
+    'isuzu dmax maroc',
+    'camion utilitaire maroc',
+    'pick-up isuzu maroc',
+    'concessionnaire camion agadir',
+    'camion tinghir',
+  ],
+  metadataBase: new URL('https://www.cadozaat.com'),
+  openGraph: {
+    type: 'website',
+    locale: 'fr_MA',
+    url: 'https://www.cadozaat.com',
+    siteName: 'CADOZAT',
+    title: 'CADOZAT — Concessionnaire Isuzu & Karry au Maroc',
+    description: 'Concessionnaire officiel Isuzu et Karry. Pick-ups, camions et fourgons. 3 agences au Maroc.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 const geist = Geist({ subsets: ['latin'] })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
       <head>
-          <meta name="google-site-verification" content="LfJZbC_Y9f1LNwNL1iIRnn1c29bXb9_L2BUF3LelxrY" />
+        <meta name="google-site-verification" content="LfJZbC_Y9f1LNwNL1iIRnn1c29bXb9_L2BUF3LelxrY" />
       </head>
       <body className={geist.className}>
         <Navbar />
