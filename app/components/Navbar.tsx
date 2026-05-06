@@ -247,18 +247,6 @@ export default function Navbar() {
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-3 flex-shrink-0 group" onClick={fermer}>
-                <div
-                  className="relative transition-all duration-300 overflow-hidden rounded-xl group-hover:scale-105"
-                  style={{ width: scrolled ? 65 : 80, height: scrolled ? 65 : 80 }}>
-                  <Image
-                    src="/images/logo.png"
-                    alt="CADOZAT"
-                    fill
-                    className="object-contain"
-                    sizes="60px"
-                    priority
-                  />
-                </div>
                 <div className="hidden sm:block">
                   <div className="font-black tracking-tight leading-none transition-all duration-300 group-hover:opacity-75"
                     style={{ color: '#2D6A4F', fontSize: scrolled ? '18px' : '21px' }}>CADOZAT</div>

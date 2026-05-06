@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
-// ─── Scroll Reveal ────────────────────────────────────────────────────────────
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -28,11 +27,9 @@ function RevealItem({ children, delay = 0 }: { children: React.ReactNode; delay?
   )
 }
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
 const IcWrench = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>)
 const IcShield = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>)
 const IcBox = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>)
-const IcGrad = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 14l9-5-9-5-9 5 9 5z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>)
 const IcTruck = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>)
 const IcClip = () => (<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>)
 const IcPhone = () => (<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>)
@@ -41,7 +38,6 @@ const IcPin = () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" 
 const IcClock = () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>)
 const IcArrow = () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>)
 
-// ─── Carousel ─────────────────────────────────────────────────────────────────
 function AtelierCarousel({ images, alt }: { images: string[]; alt: string }) {
   const [current, setCurrent] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -80,28 +76,28 @@ function AtelierCarousel({ images, alt }: { images: string[]; alt: string }) {
   )
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
 const ENGAGEMENTS = [
-  { icon: <IcWrench/>, color:'#CC0000',  bg:'#fff5f5', titre:'Atelier fixe',            desc:"Atelier de réparation et d'entretien équipé de ponts élévateurs, station pneumatique et outillage aux normes constructeur." },
-  { icon: <IcShield/>, color:'#0057A8',  bg:'#f0f7ff', titre:'Garantie constructeur',   desc:'Tous nos véhicules bénéficient de la garantie officielle Isuzu. Traitement prioritaire pour tout véhicule sous garantie.' },
-  { icon: <IcBox/>,    color:'#CC0000',  bg:'#fff5f5', titre:"Pièces d'origine",        desc:"Stock permanent de pièces de rechange 100% d'origine géré via le logiciel TOPAZE. Approvisionnement rapide si rupture." },
-  { icon: <IcGrad/>,   color:'#1B2B6B',  bg:'#f0f3ff', titre:'8 techniciens qualifiés', desc:'3 ingénieurs, 3 techniciens électromécaniciens et 2 mécaniciens certifiés, formés en partenariat direct avec les constructeurs.' },
-  { icon: <IcTruck/>,  color:'#CC0000',  bg:'#fff5f5', titre:'Atelier mobile sur site', desc:"Atelier mobile Dacia Dokker équipé d'outillage complet et pièces de rechange. Intervention directement chez vous." },
-  { icon: <IcClip/>,   color:'#0057A8',  bg:'#f0f7ff', titre:'Diagnostic TOPAZE',       desc:"Scanner de diagnostic homologué et logiciel TOPAZE pour la gestion de l'entretien, du stock et du suivi de chaque véhicule." },
+  { icon: <IcWrench/>, color:'#CC0000', bg:'#fff5f5', titre:'Atelier fixe', desc:"Atelier de réparation et d'entretien équipé de ponts élévateurs, station pneumatique et outillage aux normes constructeur." },
+  { icon: <IcShield/>, color:'#0057A8', bg:'#f0f7ff', titre:'Garantie constructeur', desc:'Tous nos véhicules bénéficient de la garantie officielle Isuzu. Traitement prioritaire pour tout véhicule sous garantie.' },
+  { icon: <IcBox/>, color:'#CC0000', bg:'#fff5f5', titre:"Pièces d'origine", desc:"Stock permanent de pièces de rechange 100% d'origine géré via le logiciel TOPAZE. Approvisionnement rapide si rupture." },
+  { icon: <IcTruck/>, color:'#CC0000', bg:'#fff5f5', titre:'Atelier mobile sur site', desc:"Atelier mobile Dacia Dokker équipé d'outillage complet et pièces de rechange. Intervention directement chez vous." },
+  { icon: <IcClip/>, color:'#0057A8', bg:'#f0f7ff', titre:'Diagnostic TOPAZE', desc:"Scanner de diagnostic homologué et logiciel TOPAZE pour la gestion de l'entretien, du stock et du suivi de chaque véhicule." },
 ]
 
-// ─── Atelier Card ─────────────────────────────────────────────────────────────
-function AtelierCard({ img, imgs, ville, couleur, titre, desc, infos, services, badge, reverse = false }: {
+function AtelierCard({ img, imgs, ville, couleur, titre, desc, infos, services, badge, reverse = false, height = 420 }: {
   img?: string; imgs?: string[]; ville: string; couleur: string; titre: string; desc: string
   infos: { icon: React.ReactNode; label: string; val: string }[]
-  services: string[]; badge: string; reverse?: boolean
+  services: string[]; badge: string; reverse?: boolean; height?: number
 }) {
   const { ref, visible } = useInView()
   return (
     <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20"
       style={{ opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(40px)', transition:'all 0.7s cubic-bezier(0.22,1,0.36,1)' }}>
-      <div className={`group relative rounded-3xl overflow-hidden shadow-2xl ${reverse ? 'order-1 lg:order-2' : ''}`} style={{ height:420 }}>
-        {imgs && imgs.length > 1 ? <AtelierCarousel images={imgs} alt={`Atelier CADOZAT ${ville}`}/> : <img src={img} alt={`Atelier CADOZAT ${ville}`} className="w-full h-full object-cover"/>}
+      <div className={`group relative rounded-3xl overflow-hidden shadow-2xl ${reverse ? 'order-1 lg:order-2' : ''}`} style={{ height }}>
+        {imgs && imgs.length > 1
+          ? <AtelierCarousel images={imgs} alt={`Atelier CADOZAT ${ville}`}/>
+          : <img src={img} alt={`Atelier CADOZAT ${ville}`} className="w-full h-full object-cover"/>
+        }
         <div className="absolute bottom-5 left-5 px-4 py-2 rounded-xl text-white text-sm font-extrabold z-30"
           style={{ background:`linear-gradient(135deg,${couleur},${couleur}cc)`, boxShadow:`0 4px 16px ${couleur}55` }}>
           {badge}
@@ -139,7 +135,6 @@ function AtelierCard({ img, imgs, ville, couleur, titre, desc, infos, services, 
   )
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ServicesPage() {
   return (
     <main style={{ background:'#f8faff', minHeight:'100vh' }}>
@@ -153,7 +148,7 @@ export default function ServicesPage() {
         .h-in-4{animation:heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.5s both}
       `}</style>
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section className="relative overflow-hidden" style={{ paddingTop:'110px', paddingBottom:'0', background:'#f8faff' }}>
         <div style={{ position:'absolute', top:'-80px', right:'-80px', width:'520px', height:'520px', borderRadius:'50%', background:'linear-gradient(135deg, rgba(204,0,0,0.07), rgba(0,87,168,0.06))', animation:'floatA 12s ease-in-out infinite', zIndex:0 }} />
         <div style={{ position:'absolute', bottom:'-60px', left:'-60px', width:'420px', height:'420px', borderRadius:'50%', background:'linear-gradient(135deg, rgba(27,43,107,0.06), rgba(0,87,168,0.05))', animation:'floatB 16s ease-in-out infinite', zIndex:0 }} />
@@ -211,13 +206,11 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            {/* Stats */}
             <div className="h-in-4 grid grid-cols-2 gap-4">
               {[
-                { nb:'8',    label:'Techniciens qualifiés', color:'#CC0000', bg:'#fff5f5' },
-                { nb:'2',    label:'Ateliers fixes',        color:'#0057A8', bg:'#f0f7ff' },
-                { nb:'100%', label:"Pièces d'origine",     color:'#1B2B6B', bg:'#f0f3ff' },
-                { nb:'6j/7', label:'Disponibilité',        color:'#2D6A4F', bg:'#f0fdf4' },
+                { nb:'2',    label:'Ateliers fixes',    color:'#0057A8', bg:'#f0f7ff' },
+                { nb:'100%', label:"Pièces d'origine",  color:'#1B2B6B', bg:'#f0f3ff' },
+                { nb:'6j/7', label:'Disponibilité',     color:'#2D6A4F', bg:'#f0fdf4' },
               ].map((s, i) => (
                 <div key={i} className="p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   style={{ background:s.bg, border:`1px solid ${s.color}18` }}>
@@ -232,7 +225,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── ENGAGEMENTS ── */}
+      {/* ENGAGEMENTS */}
       <section style={{ padding:'80px 0', background:'#fff' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -268,7 +261,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── ATELIERS ── */}
+      {/* ATELIERS */}
       <section style={{ padding:'80px 0', background:'#f8faff', position:'relative' }}>
         <div style={{ position:'absolute', inset:0, opacity:0.4, backgroundImage:'radial-gradient(circle, rgba(0,87,168,0.06) 1px, transparent 1px)', backgroundSize:'28px 28px' }} />
         <div className="relative max-w-7xl mx-auto px-6">
@@ -297,7 +290,8 @@ export default function ServicesPage() {
           />
 
           <AtelierCard
-            img="/images/ateliers/atelier2.jpg"
+            imgs={['/images/ateliers/atelier1.jpg', '/images/ateliers/atelier2.jpg']}
+            height={280}
             ville="Ouarzazate" couleur="#1B2B6B"
             titre="Atelier CADOZAT Ouarzazate"
             desc="Notre atelier Ouarzazate, siège social de CADOZAT depuis 1996, est équipé de tout le matériel nécessaire pour l'entretien et la réparation de vos véhicules Isuzu et Karry."
@@ -318,16 +312,16 @@ export default function ServicesPage() {
             desc="Notre atelier mobile Dacia Dokker est équipé de tous les outils et pièces de rechange nécessaires. Nos techniciens interviennent directement sur site."
             badge="🚐 Atelier mobile ISUZU SERVICE"
             infos={[
-              { icon:<IcTruck/>, label:'Véhicule',    val:'Dacia Dokker' },
-              { icon:<IcBox/>,   label:'Équipement',  val:'Outillage complet + stock pièces' },
-              { icon:<IcPin/>,   label:'Zone',        val:'Sud du Maroc — Ouarzazate, Agadir' },
+              { icon:<IcTruck/>, label:'Véhicule',   val:'Dacia Dokker' },
+              { icon:<IcBox/>,   label:'Équipement', val:'Outillage complet + stock pièces' },
+              { icon:<IcPin/>,   label:'Zone',       val:'Sud du Maroc — Ouarzazate, Agadir' },
             ]}
             services={['Intervention sur site',"Dépannage d'urgence",'Flottes & grands comptes','Marchés publics','Zones rurales','Sans déplacement client']}
           />
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section style={{ padding:'80px 0', background:'#0f172a', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize:'32px 32px' }} />
         <div style={{ position:'absolute', top:'-100px', right:'-100px', width:'500px', height:'500px', borderRadius:'50%', background:'radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 60%)' }} />

@@ -115,7 +115,7 @@ export default function ReferencesPage() {
               </div>
 
               <p className="h-in-3 mb-9" style={{ color:'#64748b', fontSize:'15px', lineHeight:1.75, maxWidth:'440px' }}>
-                CADOZAT accompagne les plus grands comptes du Sud Marocain — industrie, BTP, agroalimentaire et distribution — avec des flottes Isuzu & Karry.
+                CADOZAT accompagne les plus grands comptes — industrie, BTP, agroalimentaire et distribution — avec des flottes Isuzu & Karry.
               </p>
 
               <div className="h-in-4 flex flex-wrap gap-3">

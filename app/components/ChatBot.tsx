@@ -208,9 +208,17 @@ export default function ChatBot() {
       {/* Fenêtre chat */}
       {open && (
         <div style={{
-          position: 'fixed', bottom: '96px', left: '28px', zIndex: 99998,
-          width: '360px', height: '520px',
-          background: '#fff', borderRadius: '20px',
+          position: 'fixed',
+          bottom: '0',
+          left: '0',
+          right: '0',
+          zIndex: 99998,
+          width: '100%',
+          maxWidth: '420px',
+          height: '85vh',
+          margin: '0 auto',
+          borderRadius: '20px 20px 0 0',
+          background: '#fff',
           boxShadow: '0 24px 80px rgba(0,0,0,0.18)',
           display: 'flex', flexDirection: 'column',
           animation: 'chatIn 0.3s cubic-bezier(0.22,1,0.36,1)',
