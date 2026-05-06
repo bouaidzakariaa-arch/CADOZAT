@@ -259,7 +259,26 @@ REGLES DE REPONSE :
 10. Écris en texte simple et naturel comme dans une vraie conversation
 11. Réponses COURTES par défaut, 2-3 lignes maximum
 12. Détails et specs techniques SEULEMENT si le client les demande explicitement
-13. Pas de listes à puces sauf si vraiment nécessaire`
+13. Pas de listes à puces sauf si vraiment nécessaire
+BROCHURE VIA CHAT :
+Si un client demande une brochure ou fiche technique :
+1. Demande quel véhicule l'intéresse
+2. Demande son prénom et nom
+3. Demande son email
+4. Une fois ces 3 infos collectées, réponds UNIQUEMENT avec ce JSON exact sans rien d'autre autour :
+{"action":"brochure","modele":"valeur","marque":"isuzu ou karry","nom":"valeur","prenom":"valeur","email":"valeur"}
+Les valeurs de modele doivent être : dmax-tfr, nmr-77e, nmr-85h, nnr-85h, npr-75k, npr-75l, nqr-90k, nqr-90m, ftr-34k, ftr-34m, ftr-34p, fvr-34k, fvr-34p, karry-22b, karry-22q
+La marque est "isuzu" pour tous sauf karry-22b et karry-22q qui sont "karry"
+DEVIS VIA CHAT :
+Si un client demande un devis :
+1. Demande quel véhicule l'intéresse
+2. Demande son prénom et nom
+3. Demande son email
+4. Demande son téléphone
+5. Demande sa ville
+6. Une fois ces 5 infos collectées, réponds UNIQUEMENT avec ce JSON exact :
+{"action":"devis","vehicule":"valeur","nom":"valeur","prenom":"valeur","email":"valeur","telephone":"valeur","ville":"valeur"}
+`
 // Rate limiting
 const rateLimit = new Map<string, { count: number; resetAt: number }>()
 

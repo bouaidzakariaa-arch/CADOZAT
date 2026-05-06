@@ -42,36 +42,110 @@ export default function ChatBot() {
   }, [messages, loading])
 
   const sendMessage = async (text: string) => {
-    if (!text.trim() || loading) return
-    setShowSuggestions(false)
+  if (!text.trim() || loading) return
+  setShowSuggestions(false)
 
-    const userMessage: Message = { role: 'user', content: text }
-    const newMessages = [...messages, userMessage]
-    setMessages(newMessages)
-    setInput('')
-    setLoading(true)
+  const userMessage: Message = { role: 'user', content: text }
+  const newMessages = [...messages, userMessage]
+  setMessages(newMessages)
+  setInput('')
+  setLoading(true)
 
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
-      })
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: newMessages }),
+    })
 
-      const data = await res.json()
+    const data = await res.json()
+    if (!data.message) throw new Error()
 
-      if (data.message) {
-        setMessages(prev => [...prev, { role: 'assistant', content: data.message }])
-      } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: 'Désolé, une erreur est survenue. Appelez-nous au 0524 885 025.' }])
+    const trimmed = data.message.trim()
+
+    // 🔹 CAS BROCHURE
+    if (trimmed.startsWith('{"action":"brochure"')) {
+      try {
+        const info = JSON.parse(trimmed)
+
+        await fetch('/api/brochure', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nom: info.nom,
+            prenom: info.prenom,
+            email: info.email,
+            modele: info.modele,
+            marque: info.marque,
+            brochure: `/brochures/${info.modele}.pdf`,
+          }),
+        })
+
+        const link = document.createElement('a')
+        link.href = `/brochures/${info.modele}.pdf`
+        link.download = `CADOZAT-${info.modele}.pdf`
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `Parfait ${info.prenom} ! Votre brochure est en cours de téléchargement. Nous vous avons aussi envoyé une confirmation à ${info.email}. Souhaitez-vous demander un devis ? 😊`,
+        }])
+
+      } catch {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: 'Une erreur est survenue. Appelez-nous au 0524 885 025.',
+        }])
       }
-    } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Désolé, une erreur est survenue. Appelez-nous au 0524 885 025.' }])
-    } finally {
-      setLoading(false)
-      inputRef.current?.focus()
+
+    // 🔥 NOUVEAU CAS DEVIS
+    } else if (trimmed.startsWith('{"action":"devis"')) {
+      try {
+        const info = JSON.parse(trimmed)
+
+        await fetch('/api/devis', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nom: info.nom,
+            prenom: info.prenom,
+            email: info.email,
+            telephone: info.telephone,
+            ville: info.ville,
+            vehicule: info.vehicule,
+            message: 'Demande reçue via Cadozat Bot',
+          }),
+        })
+
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `Merci ${info.prenom} ! Votre demande de devis pour le ${info.vehicule} a bien été envoyée. Notre équipe vous contactera très bientôt au ${info.telephone}. 😊`,
+        }])
+
+      } catch {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: 'Une erreur est survenue. Appelez-nous au 0524 885 025.',
+        }])
+      }
+
+    // 🔹 CAS NORMAL (chat classique)
+    } else {
+      setMessages(prev => [...prev, { role: 'assistant', content: data.message }])
     }
+
+  } catch {
+    setMessages(prev => [...prev, {
+      role: 'assistant',
+      content: 'Désolé, une erreur est survenue. Appelez-nous au 0524 885 025.',
+    }])
+  } finally {
+    setLoading(false)
+    inputRef.current?.focus()
   }
+}
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
