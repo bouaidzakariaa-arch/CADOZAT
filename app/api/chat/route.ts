@@ -270,15 +270,21 @@ Si un client demande une brochure ou fiche technique :
 Les valeurs de modele doivent être : dmax-tfr, nmr-77e, nmr-85h, nnr-85h, npr-75k, npr-75l, nqr-90k, nqr-90m, ftr-34k, ftr-34m, ftr-34p, fvr-34k, fvr-34p, karry-22b, karry-22q
 La marque est "isuzu" pour tous sauf karry-22b et karry-22q qui sont "karry"
 DEVIS VIA CHAT :
-Si un client demande un devis :
-1. Demande quel véhicule l'intéresse
-2. Demande son prénom et nom
-3. Demande son email
-4. Demande son téléphone
-5. Demande sa ville
-6. Une fois ces 5 infos collectées, réponds UNIQUEMENT avec ce JSON exact :
-{"action":"devis","vehicule":"valeur","nom":"valeur","prenom":"valeur","email":"valeur","telephone":"valeur","ville":"valeur"}
-`
+DEVIS VIA CHAT :
+Si un client demande un devis ou montre un intérêt pour acheter un véhicule :
+1. Collecte naturellement ces infos dans la conversation (pas forcément dans l'ordre) :
+   - Véhicule souhaité
+   - Prénom et nom
+   - Email
+   - Téléphone
+   - Ville (optionnel)
+2. Si le client donne plusieurs infos en une fois, mémorise-les toutes
+3. Demande seulement les infos manquantes
+4. Quand tu as au minimum : véhicule + nom + email + téléphone
+   réponds UNIQUEMENT avec ce JSON exact sans rien d'autre :
+   {"action":"devis","vehicule":"valeur","nom":"valeur","prenom":"valeur","email":"valeur","telephone":"valeur","ville":"valeur"}
+5. Si ville manquante mets "Non précisée"
+6. Si prénom/nom pas séparés, mets tout dans "nom" et "prenom" vide`
 // Rate limiting
 const rateLimit = new Map<string, { count: number; resetAt: number }>()
 
