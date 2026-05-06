@@ -249,7 +249,7 @@ export default function Navbar() {
               <Link href="/" className="flex items-center gap-3 flex-shrink-0 group" onClick={fermer}>
                 <div
                   className="relative transition-all duration-300 overflow-hidden rounded-xl group-hover:scale-105"
-                  style={{ width: scrolled ? 48 : 60, height: scrolled ? 48 : 60 }}>
+                  style={{ width: scrolled ? 56 : 72, height: scrolled ? 56 : 72 }}>
                   <Image
                     src="/images/logo.png"
                     alt="CADOZAT"
