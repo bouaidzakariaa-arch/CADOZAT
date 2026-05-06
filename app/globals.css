@@ -23,3 +23,42 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* ============================================
+   CORRECTION CHATBOT MOBILE - CENTRÉ EN BAS
+   ============================================ */
+@media screen and (max-width: 768px) {
+    
+    /* Cibler le conteneur du chatbot */
+    [class*="chat"],
+    [class*="Chat"],
+    [id*="chat"],
+    [id*="Chat"] {
+        /* Si c'est le bouton flottant (petit) */
+        position: fixed !important;
+        bottom: 24px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        z-index: 99999 !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Si le panneau est ouvert (grand) */
+    [class*="chat"][class*="open"],
+    [class*="Chat"][class*="Open"],
+    [class*="chat"][style*="height"] {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        height: 85vh !important;
+        max-height: 85vh !important;
+        border-radius: 16px 16px 0 0 !important;
+        transform: none !important;
+    }
+}

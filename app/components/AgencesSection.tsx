@@ -28,7 +28,7 @@ const agences = [
   },
   {
     ville: 'Agadir',
-    role: 'Agence régionale',
+    role: 'Agence succursale',
     adresse: '18 Bab Al Madina Tilila, Agadir',
     tel: '06 62 12 40 44',
     telHref: 'tel:0662124044',
@@ -40,7 +40,7 @@ const agences = [
   },
   {
     ville: 'Tinghir',
-    role: 'Agence régionale',
+    role: 'Agence succursale',
     adresse: 'Avenue Mohammed V, Tinghir',
     tel: '06 62 12 40 44',
     telHref: 'tel:0662124044',

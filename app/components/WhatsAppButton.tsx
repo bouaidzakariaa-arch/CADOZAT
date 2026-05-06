@@ -17,7 +17,7 @@ const SOCIAL_BUTTONS = [
     ),
   },
   {
-    href: 'https://www.instagram.com/cadozaat',
+    href: 'https://www.instagram.com/cadozat',
     color: '#E1306C',
     shadow: 'rgba(225,48,108,0.4)',
     label: 'Instagram',
