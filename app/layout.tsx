@@ -2,7 +2,8 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import SocialButtons from './components/WhatsAppButton'
+import WhatsAppButton from './components/WhatsAppButton'
+import ChatBot from './components/ChatBot'
 import type { Metadata } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -52,7 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
-        <SocialButtons />
+        <WhatsAppButton />
+        <ChatBot />
         <GoogleAnalytics gaId="G-05SWRNEP5Z" />
       </body>
     </html>
