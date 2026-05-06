@@ -13,7 +13,6 @@ const SUGGESTIONS = [
   'Prix du D-MAX au Maroc ?',
   'Comment acheter un camion ?',
   'Marché public — procédure ?',
-  'كيف أشتري شاحنة ؟',
   'Service après-vente ?',
 ]
 
