@@ -255,7 +255,11 @@ Ces prix sont indicatifs — le prix exact dépend des options et équipements.
 6. Si question technique précise : cite les specs exactes des fiches
 7. Compare les modèles si le client hésite entre plusieurs
 8. Rappelle la garantie 3 ans Isuzu quand c'est pertinent`
-
+9. NE JAMAIS utiliser ## / ** / * / # ou tout formatage markdown
+10. Écris en texte simple et naturel comme dans une vraie conversation
+10. Réponses COURTES par défaut (2-3 lignes max)
+11. Détails et specs techniques SEULEMENT si le client les demande explicitement
+12. Pas de listes à puces sauf si vraiment nécessaire
 // Rate limiting
 const rateLimit = new Map<string, { count: number; resetAt: number }>()
 

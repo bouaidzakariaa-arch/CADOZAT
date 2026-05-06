@@ -84,34 +84,40 @@ export default function ChatBot() {
       <button
         onClick={() => setOpen(!open)}
         style={{
-          position: 'fixed', bottom: '28px', left: '28px', zIndex: 99998,
-          width: '54px', height: '54px', borderRadius: '50%',
-          background: open ? '#0f172a' : 'linear-gradient(135deg, #CC0000, #1B2B6B)',
-          border: 'none', cursor: 'pointer',
-          boxShadow: '0 8px 32px rgba(204,0,0,0.35)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          transition: 'all 0.3s cubic-bezier(0.22,1,0.36,1)',
+            position: 'fixed', bottom: '28px', left: '28px', zIndex: 99998,
+            height: '48px',
+            borderRadius: '99px',
+            background: open ? '#0f172a' : 'linear-gradient(135deg, #CC0000, #1B2B6B)',
+            border: 'none', cursor: 'pointer',
+            boxShadow: '0 8px 32px rgba(204,0,0,0.35)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: '8px',
+            padding: '0 16px',
+            transition: 'all 0.3s cubic-bezier(0.22,1,0.36,1)',
         }}
-      >
+        >
         {open ? (
-          <svg width="20" height="20" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
+            </svg>
         ) : (
-          <svg width="22" height="22" fill="white" viewBox="0 0 24 24">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-          </svg>
+            <>
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+            <span style={{ color: 'white', fontWeight: 800, fontSize: '13px', whiteSpace: 'nowrap' }}>
+                Cadozat Bot
+            </span>
+            </>
         )}
-        {/* Notification badge */}
         {!open && (
-          <span style={{
+            <span style={{
             position: 'absolute', top: '-2px', right: '-2px',
-            width: '14px', height: '14px', borderRadius: '50%',
+            width: '12px', height: '12px', borderRadius: '50%',
             background: '#25D366', border: '2px solid white',
-            animation: 'pulse 2s infinite',
-          }}/>
+            }}/>
         )}
-      </button>
+        </button>
 
       <style>{`
         @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
