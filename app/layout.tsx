@@ -7,9 +7,15 @@ import ChatBot from './components/ChatBot'
 import type { Metadata } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
+
+
+
 const geist = Geist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
   title: {
     default: 'CADOZAT — Concessionnaire Isuzu & Karry au Maroc',
     template: '%s | CADOZAT',
