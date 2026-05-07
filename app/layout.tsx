@@ -8,19 +8,18 @@ import type { Metadata } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 
-
-
 const geist = Geist({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
-  icons: {
-    icon: "/favicon.ico",
-  },
+  metadataBase: new URL('https://www.cadozaat.com'),
+
   title: {
     default: 'CADOZAT — Concessionnaire Isuzu & Karry au Maroc',
     template: '%s | CADOZAT',
   },
-  description: 'Concessionnaire officiel Isuzu et Karry au Maroc. Pick-ups D-MAX, camions Série N & F, fourgons Karry. 3 agences : Ouarzazate, Agadir, Tinghir.',
+
+  description:
+    'Concessionnaire officiel Isuzu et Karry au Maroc. Pick-ups D-MAX, camions Série N & F, fourgons Karry. 3 agences : Ouarzazate, Agadir, Tinghir.',
+
   keywords: [
     'concessionnaire isuzu maroc',
     'camion isuzu maroc',
@@ -32,15 +31,27 @@ export const metadata: Metadata = {
     'concessionnaire camion agadir',
     'camion tinghir',
   ],
-  metadataBase: new URL('https://www.cadozaat.com'),
+
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.svg',       type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+
   openGraph: {
     type: 'website',
     locale: 'fr_MA',
     url: 'https://www.cadozaat.com',
     siteName: 'CADOZAT',
     title: 'CADOZAT — Concessionnaire Isuzu & Karry au Maroc',
-    description: 'Concessionnaire officiel Isuzu et Karry. Pick-ups, camions et fourgons. 3 agences au Maroc.',
+    description:
+      'Concessionnaire officiel Isuzu et Karry. Pick-ups, camions et fourgons. 3 agences au Maroc.',
   },
+
   robots: {
     index: true,
     follow: true,
