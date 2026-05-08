@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const agences = [
-  { ville: 'Ouarzazate', role: 'Siège principal',   adresse: '189, Bd Maghreb Arabi, Ouarzazate', tel: '0524 885 025', telHref: 'tel:0524885025', mapsUrl: 'https://maps.google.com/?q=30.929241,-6.904725', color: '#CC0000', bg: '#fff5f5', icon: '🏢' },
-  { ville: 'Agadir',     role: 'Agence régionale',   adresse: '18 Bab Al Madina Tilila, Agadir',  tel: '0524 890 930', telHref: 'tel:0524890930', mapsUrl: 'https://maps.google.com/?q=30.39542,-9.52030',  color: '#0057A8', bg: '#f0f7ff', icon: '🌊' },
-  { ville: 'Tinghir',   role: 'Agence régionale',   adresse: 'Avenue Mohammed V, Tinghir',        tel: '0524 890 930', telHref: 'tel:0524890930', mapsUrl: 'https://maps.google.com/?q=31.5134,-5.5342',   color: '#2D6A4F', bg: '#f0fdf4', icon: '🏔️' },
+  { ville: 'Ouarzazate', role: 'Siège principal',   adresse: '189, Bd Maghreb Arabi, Ouarzazate', tel: '05 24 88 50 25', telHref: 'tel:05 24 88 50 25', mapsUrl: 'https://maps.google.com/?q=30.929241,-6.904725', color: '#CC0000', bg: '#fff5f5', icon: '🏢' },
+  { ville: 'Agadir',     role: 'Agence régionale',   adresse: '18 Bab Al Madina Tilila, Agadir',  tel: '05 24 88 50 25', telHref: 'tel:05 24 89 09 30', mapsUrl: 'https://maps.google.com/?q=30.39542,-9.52030',  color: '#0057A8', bg: '#f0f7ff', icon: '🌊' },
+  { ville: 'Tinghir',   role: 'Agence régionale',   adresse: 'Avenue Mohammed V, Tinghir',        tel: '05 24 88 50 25', telHref: 'tel:05 24 89 09 30', mapsUrl: 'https://maps.google.com/?q=31.5134,-5.5342',   color: '#2D6A4F', bg: '#f0fdf4', icon: '🏔️' },
 ]
 
 const catalogueLinks = [
@@ -181,7 +181,7 @@ export default function Footer() {
             </div>
             <ul className="space-y-4 text-sm mb-8">
               <li>
-                <a href="mailto:contact@cadozat.com"
+                <a href="mailto:CADOZAT99@hotmail.com"
                   className="flex items-center gap-2.5 text-gray-400 hover:text-gray-900 transition-colors">
                   <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background:'#fff5f5' }}>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color:'#CC0000' }}>
@@ -189,7 +189,7 @@ export default function Footer() {
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                     </svg>
                   </div>
-                  contact@cadozat.com
+                  CADOZAT99@hotmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-gray-400 text-xs">
@@ -206,7 +206,7 @@ export default function Footer() {
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                   </svg>
                 </div>
-                0524 885 025
+                05 24 88 50 25
               </li>
             </ul>
             <div className="flex flex-col gap-3">
