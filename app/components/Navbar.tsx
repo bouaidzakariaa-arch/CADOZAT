@@ -33,11 +33,11 @@ const ZELLIGE = `data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 6
 
 const TICKER = [
   { icon: '🚛', text: 'Concessionnaire officiel Isuzu · Karry au Maroc' },
-  { icon: '📞', text: 'Service après-vente 6j/7 — Lundi au Samedi, 8h à 18h' },
+  { icon: '📞', text: 'Service après-vente 6j/7 — Lundi au Vendredi 8h à 18h , Samedi 8h à 12h' },
   { icon: '📍', text: 'Présents à Ouarzazate · Agadir · Tinghir' },
   { icon: '🏆', text: 'Leader des véhicules utilitaires & industriels au Sud du Maroc' },
   { icon: '📋', text: "Marchés publics & appels d'offres — Solutions sur mesure pour collectivités" },
-  { icon: '✉️', text: 'contact@cadozat.com · 0524 885 025' },
+  { icon: '✉️', text: 'CADOZAT99@hotmail.com · 05 24 88 50 25' },
 ]
 
 const menuMarques = [

@@ -283,7 +283,7 @@ export default function ServicesPage() {
             badge="🔧 Atelier fixe — Agadir"
             infos={[
               { icon:<IcClock/>, label:'Horaires',    val:'Lun – Sam : 8h à 18h' },
-              { icon:<IcPhone/>, label:'Contact SAV', val:'0524 885 025' },
+              { icon:<IcPhone/>, label:'Contact SAV', val:'06 61 43 76 82' },
               { icon:<IcPin/>,   label:'Ville',       val:'Agadir' },
             ]}
             services={['Entretien & révision','Réparation toutes pannes',"Pièces d'origine",'Diagnostic TOPAZE','Station pneumatique','Garantie constructeur']}
@@ -299,7 +299,7 @@ export default function ServicesPage() {
             reverse
             infos={[
               { icon:<IcClock/>, label:'Horaires',    val:'Lun – Sam : 8h à 18h' },
-              { icon:<IcPhone/>, label:'Contact SAV', val:'0524 885 025' },
+              { icon:<IcPhone/>, label:'Contact SAV', val:'06 62 77 54 11' },
               { icon:<IcPin/>,   label:'Ville',       val:'Ouarzazate' },
             ]}
             services={['Entretien & révision','Réparation toutes pannes',"Pièces d'origine",'Diagnostic TOPAZE','Station pneumatique','Garantie constructeur']}
