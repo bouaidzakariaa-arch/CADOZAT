@@ -62,8 +62,13 @@ export default function ChatBot() {
 
       const trimmed = data.message.trim()
 
+      // Extraire le JSON même si le bot ajoute du texte avant
+      const jsonMatch = trimmed.match(/\{"action":"(?:brochure|devis)"[\s\S]*?\}/)
+      const jsonStr = jsonMatch ? jsonMatch[0] : null
+      const action = jsonStr ? (JSON.parse(jsonStr) as {action: string}).action : null
+
       // CAS BROCHURE
-      if (trimmed.startsWith('{"action":"brochure"')) {
+      if (action === 'brochure') {
         try {
           const info = JSON.parse(trimmed)
 
@@ -100,9 +105,9 @@ export default function ChatBot() {
         }
 
       // ── CAS DEVIS ── appel /api/chat-devis → email admin
-      } else if (trimmed.startsWith('{"action":"devis"')) {
+      } else if (action === 'devis') {
         try {
-          const info = JSON.parse(trimmed)
+          const info = JSON.parse(jsonStr!)
 
           await fetch('/api/chat-devis', {
             method: 'POST',
