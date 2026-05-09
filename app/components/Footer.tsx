@@ -5,8 +5,8 @@ import Image from 'next/image'
 
 const agences = [
   { ville: 'Ouarzazate', role: 'Siège principal',   adresse: '189, Bd Maghreb Arabi, Ouarzazate', tel: '05 24 88 50 25', telHref: 'tel:05 24 88 50 25', mapsUrl: 'https://maps.google.com/?q=30.929241,-6.904725', color: '#CC0000', bg: '#fff5f5', icon: '🏢' },
-  { ville: 'Agadir',     role: 'Agence régionale',   adresse: '18 Bab Al Madina Tilila, Agadir',  tel: '05 24 88 50 25', telHref: 'tel:05 24 89 09 30', mapsUrl: 'https://maps.google.com/?q=30.39542,-9.52030',  color: '#0057A8', bg: '#f0f7ff', icon: '🌊' },
-  { ville: 'Tinghir',   role: 'Agence régionale',   adresse: 'Tinghir',        tel: '05 24 88 50 25', telHref: 'tel:05 24 89 09 30', mapsUrl: 'https://maps.google.com/?q=31.5134,-5.5342',   color: '#2D6A4F', bg: '#f0fdf4', icon: '🏔️' },
+  { ville: 'Agadir',     role: 'Agence succursale',   adresse: '18 Bab Al Madina Tilila, Agadir',  tel: '05 24 88 50 25', telHref: 'tel:05 24 89 09 30', mapsUrl: 'https://maps.google.com/?q=30.39542,-9.52030',  color: '#0057A8', bg: '#f0f7ff', icon: '🌊' },
+  { ville: 'Tinghir',   role: 'Agence succursale',   adresse: 'Tinghir',        tel: '05 24 88 50 25', telHref: 'tel:05 24 89 09 30', mapsUrl: 'https://maps.google.com/?q=31.5134,-5.5342',   color: '#2D6A4F', bg: '#f0fdf4', icon: '🏔️' },
 ]
 
 const catalogueLinks = [
