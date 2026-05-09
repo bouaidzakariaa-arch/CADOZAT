@@ -111,17 +111,6 @@ export default function Footer() {
             <p className="text-sm leading-relaxed mb-6 text-gray-400">
               Concessionnaire officiel des marques Isuzu et Karry dans la région de Souss-Massa et Drâa-Tafilalt.<br/>3 agences à Ouarzazate, Agadir et Tinghir.
             </p>
-            <div className="flex gap-3">
-              {['FB','LI','YT'].map(s => (
-                <a key={s} href="#"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all hover:scale-110"
-                  style={{ border:'1px solid #e2e8f0', color:'#94a3b8' }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#0057A8'; el.style.color='#fff'; el.style.borderColor='#0057A8' }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background=''; el.style.color='#94a3b8'; el.style.borderColor='#e2e8f0' }}>
-                  {s}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Catalogue */}
