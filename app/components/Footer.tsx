@@ -92,9 +92,6 @@ export default function Footer() {
           {/* Logo & desc */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden border border-gray-100" style={{ background:'#fff' }}>
-                <Image src="/images/logo.png" alt="CADOZAT" fill className="object-contain p-1" sizes="48px"/>
-              </div>
               <div>
                 <div className="font-black text-xl text-gray-900 leading-none">CADOZAT</div>
                 <div className="flex items-center gap-1.5 mt-0.5">
