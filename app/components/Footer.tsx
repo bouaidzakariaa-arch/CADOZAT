@@ -248,9 +248,6 @@ export default function Footer() {
         {/* Bottom bar */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              © 2025 <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 600 }}>CADOZAT</span> — Tous droits réservés
-            </p>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black tracking-widest" style={{ color: '#CC0000' }}>ISUZU</span>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
