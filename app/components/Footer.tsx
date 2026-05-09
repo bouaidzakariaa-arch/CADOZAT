@@ -198,7 +198,7 @@ export default function Footer() {
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/>
                   </svg>
                 </div>
-                Lun — Sam : 8h00 à 18h00
+                Lun — Ven 8h00 à 18h00 et Sam : 8h00 à 12h00
               </li>
               <li className="flex items-center gap-2.5 text-gray-400 text-xs">
                 <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background:'#fff5f5' }}>
