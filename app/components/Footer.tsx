@@ -239,15 +239,7 @@ export default function Footer() {
                 </Link>
               </div>
 
-              <div className="flex gap-2">
-                {[{ label: 'FB', color: '#1877F2', href: '#' }, { label: 'LI', color: '#0A66C2', href: '#' }, { label: 'YT', color: '#FF0000', href: '#' }].map(s => (
-                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-xs font-black transition-all hover:scale-110"
-                    style={{ background: s.color }}>
-                    {s.label}
-                  </a>
-                ))}
-              </div>
+              
             </div>
 
           </div>
