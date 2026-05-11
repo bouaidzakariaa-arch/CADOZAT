@@ -247,14 +247,12 @@ export default function Footer() {
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black tracking-widest" style={{ color: '#CC0000' }}>ISUZU</span>
+              <a href="https://www.isuzu.co.ma/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-widest" style={{ color: '#CC0000' }}>ISUZU</a>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
-              <span className="text-[10px] font-black tracking-widest" style={{ color: '#60a5fa' }}>KARRY</span>
-            </div>
+              <a href="https://www.karry.co.ma" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-widest" style={{ color: '#60a5fa' }}>KARRY</a>  </div>
           </div>
         </div>
       </div>
-
       {/* Ligne drapeau */}
       <div style={{ height: '3px', background: 'linear-gradient(90deg, #CC0000 0%, #0057A8 40%, #1B2B6B 70%, #2D6A4F 100%)' }} />
     </footer>
