@@ -11,7 +11,6 @@ interface Props {
 const MARQUE_CONFIG: Record<string, { color: string; dark: string; light: string; accent: string }> = {
   isuzu:     { color: '#CC0000', dark: '#990000', light: '#fff5f5', accent: '#0057A8' },
   karry:     { color: '#0057A8', dark: '#003f7a', light: '#f0f6ff', accent: '#1B2B6B' },
-  greatwall: { color: '#374151', dark: '#1f2937', light: '#f3f4f6', accent: '#0057A8' },
 }
 
 export default function BrochureForm({ modele, marque, nomModele }: Props) {

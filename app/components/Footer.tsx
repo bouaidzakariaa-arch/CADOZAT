@@ -98,10 +98,8 @@ export default function Footer() {
             <div>
               <div className="text-2xl font-black text-white mb-1 tracking-wide">CADOZAT</div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-black tracking-widest" style={{ color: '#CC0000' }}>ISUZU</span>
-                <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
-                <span className="text-[10px] font-black tracking-widest" style={{ color: '#60a5fa' }}>KARRY</span>
-              </div>
+              <a href="https://www.isuzu.co.ma/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-widest" style={{ color: '#CC0000' }}>ISUZU</a>                <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
+              <a href="https://www.karry.co.ma" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black tracking-widest" style={{ color: '#60a5fa' }}>KARRY</a>              </div>
             </div>
             <p className="text-sm mt-4 md:mt-0 max-w-sm" style={{ color: 'rgba(255,255,255,0.35)', lineHeight: '1.7' }}>
               Concessionnaire officiel Isuzu & Karry.<br />
