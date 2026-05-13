@@ -35,34 +35,6 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY
 const ADMIN_EMAIL    = process.env.ADMIN_EMAIL || 'bouaidzakariaa@gmail.com'
 const FROM_EMAIL     = 'noreply@cadozaat.com'
 
-// ─── GET — Récupérer les devis (paginé) ──────────────────────────
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url)
-    const page  = parseInt(searchParams.get('page') || '1')
-    const limit = 20
-    const skip  = (page - 1) * limit
-
-    const [devis, total] = await Promise.all([
-      prisma.devis.findMany({
-        orderBy: { createdAt: 'desc' },
-        skip,
-        take: limit,
-      }),
-      prisma.devis.count(),
-    ])
-
-    return NextResponse.json({
-      devis,
-      total,
-      pages: Math.ceil(total / limit),
-    })
-  } catch (error) {
-    console.error('[devis GET] ❌', error)
-    return NextResponse.json({ devis: [], total: 0, pages: 1 }, { status: 500 })
-  }
-}
-
 // ─── POST — Créer un devis ────────────────────────────────────────
 export async function POST(request: NextRequest) {
   try {
