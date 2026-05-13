@@ -6,13 +6,14 @@ const prisma = new PrismaClient()
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id     = parseInt(params.id)
+    const { id: idStr } = await params
+    const id = parseInt(idStr)
     const { statut } = await request.json()
 
-const validStatuts = ['EN_ATTENTE', 'EN_COURS', 'TRAITE', 'REFUSE']
+    const validStatuts = ['EN_ATTENTE', 'EN_COURS', 'TRAITE', 'REFUSE']
     if (!validStatuts.includes(statut)) {
       return NextResponse.json({ error: 'Statut invalide' }, { status: 400 })
     }
@@ -24,17 +25,17 @@ const validStatuts = ['EN_ATTENTE', 'EN_COURS', 'TRAITE', 'REFUSE']
 
     return NextResponse.json(devis)
   } catch (error) {
-    console.error('[devis PATCH] ❌', error)
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id)
+    const { id: idStr } = await params
+    const id = parseInt(idStr)
     await prisma.devis.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error) {
