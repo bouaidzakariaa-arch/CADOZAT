@@ -65,8 +65,8 @@ const vehicules: Vehicule[] = [
 
   // ── CITERNES ──
   { nom: 'Citerne pick-up 1 T',          desc: 'Citerne eau/lait 1 T sur pick-up Isuzu',                  cat: 'citerne',      specs: ['1 T', 'Pick-up', 'Isuzu'],   img: '/images/marche-public/citerne/citerne-eau4.png' },
-  { nom: 'Camion citerne 3 T',           desc: 'Camion citerne eau/lait 3 T sur 3,5 T',                   cat: 'citerne',      specs: ['3 T', '3,5 T', 'Isuzu'],     img: '/images/marche-public/citerne/citerne-eau4.png' },
-  { nom: 'Camion citerne 4 T',           desc: 'Camion citerne eau/lait 4 T sur 7,5 T',                   cat: 'citerne',      specs: ['4 T', '7,5 T', 'Isuzu'],     img: '/images/marche-public/citerne/citerne-eau4.png' },
+  { nom: 'Camion citerne 3 T',           desc: 'Camion citerne eau/lait 3 T sur 3,5 T',                   cat: 'citerne',      specs: ['3 T', '3,5 T', 'Isuzu'],     img: '/images/marche-public/citerne/3.5T.png' },
+  { nom: 'Camion citerne 4 T',           desc: 'Camion citerne eau/lait 4 T sur 7,5 T',                   cat: 'citerne',      specs: ['4 T', '7,5 T', 'Isuzu'],     img: '/images/marche-public/citerne/7.5T.png' },
   { nom: 'Camion citerne 5 T',           desc: 'Camion citerne eau/lait 5 T sur 9,5 T',                   cat: 'citerne',      specs: ['5 T', '9,5 T', 'Isuzu'],     img: '/images/marche-public/citerne/citerne-eau4.png' },
   { nom: 'Camion citerne 8 T',           desc: 'Camion citerne eau/lait 8 T sur 16 T',                    cat: 'citerne',      specs: ['8 T', '16 T', 'Isuzu'],      img: '/images/marche-public/citerne/citerne-eau4.png' },
   { nom: 'Camion citerne 10 T',          desc: 'Camion citerne eau/lait 10 T sur 18 T',                   cat: 'citerne',      specs: ['10 T', '18 T', 'Isuzu'],     img: '/images/marche-public/citerne/citerne-eau4.png' },
