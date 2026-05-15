@@ -213,11 +213,6 @@ export default function MarchePublicPage() {
                   <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
                   0524 885 025
                 </a>
-                <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#1B2B6B', fontWeight: 700, fontSize: '14px', padding: '14px 26px', borderRadius: '12px', border: '1.5px solid #c7d2fe', background: '#fff', textDecoration: 'none', transition: 'all 0.3s ease' }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = '#f0f4ff' }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = '#fff' }}>
-                  Nous contacter →
-                </Link>
               </div>
             </div>
 
