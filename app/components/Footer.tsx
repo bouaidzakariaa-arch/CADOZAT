@@ -225,11 +225,6 @@ export default function Footer() {
               </ul>
 
               <div className="flex flex-col gap-3 mb-6">
-                <Link href="/contact"
-                  className="text-center text-sm font-bold px-5 py-3 rounded-xl transition-all hover:bg-white hover:text-gray-900"
-                  style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }}>
-                  Nous contacter
-                </Link>
                 <Link href="/devis"
                   className="text-center text-white text-sm font-bold px-5 py-3 rounded-xl transition-all hover:brightness-110"
                   style={{ background: 'linear-gradient(135deg, #CC0000, #aa0000)', boxShadow: '0 4px 20px rgba(204,0,0,0.3)' }}>
