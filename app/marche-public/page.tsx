@@ -92,8 +92,8 @@ const vehicules: Vehicule[] = [
 
   // ── TRANSPORT SCOLAIRE ──
   { nom: 'Transport scolaire 17 places', desc: 'Minibus scolaire 17 places homologué',                     cat: 'transport',    specs: ['17 places', 'Scolaire', 'Homologué'] },
-  { nom: 'Transport scolaire 23 places', desc: 'Minibus scolaire 23 places homologué',                     cat: 'transport',    specs: ['23 places', 'Scolaire', 'Homologué'] },
-  { nom: 'Transport personnel 15 places',desc: 'Véhicule transport de personnel 15 places',                cat: 'transport',    specs: ['15 places', 'Personnel', 'Homologué'] },
+  { nom: 'Transport scolaire 23 places', desc: 'Minibus scolaire 23 places homologué',                     cat: 'transport',    specs: ['23 places', 'Scolaire', 'Homologué'], img: '/images/marche-public/citerne/TS.png' },
+  { nom: 'Transport personnel 15 places',desc: 'Véhicule transport de personnel 15 places',                cat: 'transport',    specs: ['15 places', 'Personnel', 'Homologué'], img: '/images/marche-public/citerne/TP.png'},
 ]
 
 function VehiculeCard({ v, index }: { v: Vehicule; index: number }) {
