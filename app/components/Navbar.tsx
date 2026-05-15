@@ -577,14 +577,18 @@ export default function Navbar() {
 
                 {/* CTAs mobile */}
                 <div className="pt-3 space-y-2 border-t" style={{ borderColor: 'rgba(0,0,0,.07)' }}>
-                  <Link href="/admin"
-                    className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold rounded-xl transition-all"
-                    style={{ color: '#2D6A4F', border: '1.5px solid rgba(45,106,79,.4)' }}
+                  
+                  {/* Avis clients — EN PREMIER */}
+                  <Link href="/avis-clients"
+                    className="block py-3 px-4 text-sm font-bold rounded-lg transition-all"
+                    style={{ color: '#374151' }}
                     onClick={() => setOuvert(false)}>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
+                    Avis clients
                   </Link>
+
+                  {/* SUPPRIMER le bouton admin (cadenas) — effacez ces lignes : */}
+                  {/* <Link href="/admin" ... > ... </Link> */}
+
                   <a href="tel:0524885025"
                     className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold rounded-xl transition-all"
                     style={{ color: '#0057A8', border: '1.5px solid rgba(0,87,168,.3)', background:'rgba(0,87,168,0.04)' }}>
@@ -593,6 +597,7 @@ export default function Navbar() {
                     </svg>
                     0524 885 025
                   </a>
+
                   <Link href="/devis"
                     className="flex items-center justify-center gap-2 py-3 text-sm font-extrabold text-white rounded-xl transition-all hover:opacity-90"
                     style={{ background: 'linear-gradient(135deg, #CC0000, #990000)', boxShadow: '0 2px 12px rgba(204,0,0,.35)' }}
@@ -602,13 +607,8 @@ export default function Navbar() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
-                  <Link href="/avis-clients"
-                    className="block py-3 px-4 text-sm font-bold rounded-lg transition-all"
-                    style={{ color: '#374151' }}
-                    onClick={() => setOuvert(false)}>
-                    Avis clients
-                  </Link>                
-                  </div>
+
+                </div>
               </div>
             </div>
           </div>
