@@ -188,10 +188,6 @@ export default function ServicesPage() {
                 <div style={{ width:'8px', height:'3px', background:'#e2e2e8', borderRadius:'2px' }} />
               </div>
 
-              <p className="h-in-3 mb-9" style={{ color:'#64748b', fontSize:'15px', lineHeight:1.75, maxWidth:'440px' }}>
-                3 ingénieurs, 3 techniciens électromécaniciens et 2 mécaniciens certifiés. Atelier fixe + atelier mobile. Pièces d'origine. 6 jours sur 7.
-              </p>
-
               <div className="h-in-4 flex flex-wrap gap-3">
                 <a href="tel:0524885025"
                   className="inline-flex items-center gap-2 font-black text-white text-sm px-7 py-3.5 rounded-xl transition-all hover:scale-105"
