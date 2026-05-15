@@ -280,6 +280,11 @@ export default function Navbar() {
                     Références
                   </Link>
                 </li>
+                <li>
+                <Link href="/avis-clients" className="nav-link" onClick={fermer}>
+                  Avis clients
+                </Link>
+              </li>
               </ul>
 
               {/* CTAs desktop */}
@@ -597,7 +602,13 @@ export default function Navbar() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
-                </div>
+                  <Link href="/avis-clients"
+                    className="block py-3 px-4 text-sm font-bold rounded-lg transition-all"
+                    style={{ color: '#374151' }}
+                    onClick={() => setOuvert(false)}>
+                    Avis clients
+                  </Link>                
+                  </div>
               </div>
             </div>
           </div>
