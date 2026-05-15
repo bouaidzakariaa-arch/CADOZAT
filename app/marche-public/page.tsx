@@ -51,7 +51,7 @@ const CAT_META: Record<Cat, { label: string; color: string; accent: string; icon
 
 const vehicules: Vehicule[] = [
   // ── BENNES ──
-  { nom: 'Pick-up avec benne',           desc: 'Benne 1 m³ sur châssis pick-up Isuzu',                    cat: 'benne',        specs: ['1 m³', 'Pick-up', 'Isuzu'] },
+  { nom: 'Pick-up avec benne',           desc: 'Benne 1 m³ sur châssis pick-up Isuzu',                    cat: 'benne',        specs: ['1 m³', 'Pick-up', 'Isuzu'],  img: '/images/marche-public/btp/pickup.jpeg' },
   { nom: 'Camion benne 3 m³',            desc: 'Benne basculante 3 m³ sur Isuzu 3,5 T',                   cat: 'benne',        specs: ['3 m³', '3,5 T', 'Isuzu'],    img: '/images/marche-public/btp/camion-benne1.jpeg' },
   { nom: 'Camion benne 5 m³',            desc: 'Benne basculante 5 m³ sur Isuzu 7,5 T',                   cat: 'benne',        specs: ['5 m³', '7,5 T', 'Isuzu'],    img: '/images/marche-public/btp/camion-benne1.jpeg' },
   { nom: 'Camion benne 8 m³',            desc: 'Benne basculante 8 m³ sur Isuzu 16 T',                    cat: 'benne',        specs: ['8 m³', '16 T', 'Isuzu'] },
