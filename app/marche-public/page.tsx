@@ -56,8 +56,8 @@ const vehicules: Vehicule[] = [
   { nom: 'Camion benne 5 m³',            desc: 'Benne basculante 5 m³ sur Isuzu 7,5 T',                   cat: 'benne',        specs: ['5 m³', '7,5 T', 'Isuzu'],    img: '/images/marche-public/btp/camion-benne1.jpeg' },
   { nom: 'Camion benne 8 m³',            desc: 'Benne basculante 8 m³ sur Isuzu 16 T',                    cat: 'benne',        specs: ['8 m³', '16 T', 'Isuzu'] },
   { nom: 'Camion benne 10 m³',           desc: 'Benne basculante 10 m³ sur Isuzu 18 T',                   cat: 'benne',        specs: ['10 m³', '18 T', 'Isuzu'] },
-  { nom: 'Camion benne Satellite 3 m³',     desc: 'Benne Satellite 3 m³ sur Iveco 3,5 T',                       cat: 'benne',        specs: ['3 m³', '3,5 T', 'Iveco'] },
-  { nom: 'Camion benne Satellite 5 m³',     desc: 'Benne Satellite 5 m³ sur Iveco 7,5 T',                       cat: 'benne',        specs: ['5 m³', '7,5 T', 'Iveco'] },
+  { nom: 'Camion benne Satellite 3 m³',     desc: 'Benne Satellite 3 m³ sur Iveco 3,5 T',                       cat: 'benne',        specs: ['3 m³', '3,5 T', 'Iveco'], img: '/images/marche-public/citerne/Benne-Satellite.jpg'},
+  { nom: 'Camion benne Satellite 5 m³',     desc: 'Benne Satellite 5 m³ sur Iveco 7,5 T',                       cat: 'benne',        specs: ['5 m³', '7,5 T', 'Iveco'], img: '/images/marche-public/citerne/Benne-Satellite1.png' },
   { nom: 'Benne tasseuse 7 m³',          desc: 'Collecte & compactage ordures 7 m³ sur Isuzu 7,5 T',      cat: 'benne',        specs: ['7 m³', '7,5 T', 'Isuzu'],    img: '/images/marche-public/environnement/benne-tasseuse1.jpg' },
   { nom: 'Benne tasseuse 9 m³',          desc: 'Collecte & compactage ordures 9 m³ sur 9,5 T',            cat: 'benne',        specs: ['9 m³', '9,5 T', 'Isuzu'],    img: '/images/marche-public/environnement/benne-tasseuse1.jpg' },
   { nom: 'Benne tasseuse 12 m³',         desc: 'Collecte & compactage ordures 12 m³ sur 16 T',            cat: 'benne',        specs: ['12 m³', '16 T', 'Isuzu'],    img: '/images/marche-public/environnement/benne-tasseuse1.jpg' },
@@ -79,16 +79,16 @@ const vehicules: Vehicule[] = [
   // ── NETTOYAGE & VOIRIE ──
   { nom: 'Camion nacelle 12 m',          desc: 'Travaux en hauteur — nacelle 12 m sur Iveco 3,5 T',        cat: 'voirie',       specs: ['12 m', '3,5 T', 'Iveco'],    img: '/images/marche-public/environnement/nacelle1.jpg' },
   { nom: 'Camion nacelle 16 m',          desc: 'Éclairage public & travaux — nacelle 16 m sur Isuzu 7,5 T',cat: 'voirie',       specs: ['16 m', '7,5 T', 'Isuzu'],    img: '/images/marche-public/environnement/nacelle1.jpg' },
-  { nom: 'Camion hydrocureur 5 m³',      desc: 'Curage & nettoyage réseaux — hydrocureur 5 m³ sur 7,5 T', cat: 'voirie',       specs: ['5 m³', '7,5 T', 'Isuzu'] },
+  { nom: 'Camion hydrocureur 5 m³',      desc: 'Curage & nettoyage réseaux — hydrocureur 5 m³ sur 7,5 T', cat: 'voirie',       specs: ['5 m³', '7,5 T', 'Isuzu'] ,    img: '/images/marche-public/environnement/hydrocureur.jpeg'},
 
   // ── AMPLIROLL ──
   { nom: 'Camion Ampliroll 5 T',         desc: 'Transport bennes amovibles — Ampliroll 5 T sur 7,5 T',     cat: 'ampliroll',    specs: ['5 T', '7,5 T', 'Isuzu'],     img: '/images/marche-public/environnement/multi-benne3.jpg' },
   { nom: 'Camion Ampliroll 10 T',        desc: 'Transport bennes amovibles — Ampliroll 10 T sur 16 T',     cat: 'ampliroll',    specs: ['10 T', '16 T', 'Isuzu'],     img: '/images/marche-public/environnement/multi-benne3.jpg' },
 
   // ── MÉDICAL ──
-  { nom: 'Ambulance fourgonnée',         desc: 'Ambulance équipée sur base fourgonnée',                    cat: 'medical',      specs: ['Fourgon', 'Équipée', 'Méd.'] },
-  { nom: 'Ambulance 4×4',                desc: 'Ambulance tout-terrain sur châssis 4×4',                   cat: 'medical',      specs: ['4×4', 'Tout-terrain', 'Méd.'] },
-  { nom: 'Unité mobile 3,5 T',           desc: 'Unité médicale mobile sur châssis 3,5 T',                  cat: 'medical',      specs: ['3,5 T', 'Mobile', 'Méd.'] },
+  { nom: 'Ambulance fourgonnée',         desc: 'Ambulance équipée sur base fourgonnée',                    cat: 'medical',      specs: ['Fourgon', 'Équipée', 'Méd.'],  img: '/images/marche-public/transport/Ambulance_four.jpg'},
+  { nom: 'Ambulance 4×4',                desc: 'Ambulance tout-terrain sur châssis 4×4',                   cat: 'medical',      specs: ['4×4', 'Tout-terrain', 'Méd.'], img: '/images/marche-public/transport/AMB44.png'},
+  { nom: 'Unité mobile 3,5 T',           desc: 'Unité médicale mobile sur châssis 3,5 T',                  cat: 'medical',      specs: ['3,5 T', 'Mobile', 'Méd.'],     img: '/images/marche-public/transport/unitémobile.jpeg'},
 
   // ── TRANSPORT SCOLAIRE ──
   { nom: 'Transport scolaire 17 places', desc: 'Minibus scolaire 17 places homologué',                     cat: 'transport',    specs: ['17 places', 'Scolaire', 'Homologué'] },
