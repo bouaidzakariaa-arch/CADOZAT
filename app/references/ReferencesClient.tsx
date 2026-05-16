@@ -48,7 +48,6 @@ const CLIENTS = [
   { nom: "Coca-Cola Maroc", logo: "/images/clients/coca-cola.png",    site: "https://www.coca-cola.com/ma/fr",       secteur: "Agroalimentaire" },
   { nom: "COPAG",           logo: "/images/clients/Copag.png",        site: "https://copag.ma/fr",                   secteur: "Agroalimentaire" },
   { nom: "HBS Maroc",       logo: "/images/clients/HBS.png",          site: "https://www.hsbmaroc.com/",             secteur: "Services" },
-  { nom: "HDS",             logo: "/images/clients/HDS.png",          site: null,                                    secteur: "Services" },
   { nom: "M2EA",            logo: "/images/clients/m2ea.png",         site: null,                                    secteur: "Industrie" },
   { nom: "Oulmes",          logo: "/images/clients/oulmes.png",       site: "https://www.oulmes.ma/",                secteur: "Agroalimentaire" },
   { nom: "Rafii",           logo: "/images/clients/Rafii.jpg",        site: "https://ma.linkedin.com/company/rafii", secteur: "Industrie" },
