@@ -88,7 +88,7 @@ const vehicules: Vehicule[] = [
   // ── MÉDICAL ──
   { nom: 'Ambulance fourgonnée',         desc: 'Ambulance équipée sur base fourgonnée',                    cat: 'medical',      specs: ['Fourgon', 'Équipée', 'Méd.'],  img: '/images/marche-public/transport/Ambulance_four.jpg'},
   { nom: 'Ambulance 4×4',                desc: 'Ambulance tout-terrain sur châssis 4×4',                   cat: 'medical',      specs: ['4×4', 'Tout-terrain', 'Méd.'], img: '/images/marche-public/transport/AMB44.png'},
-  { nom: 'Unité mobile 3,5 T',           desc: 'Unité médicale mobile sur châssis 3,5 T',                  cat: 'medical',      specs: ['3,5 T', 'Mobile', 'Méd.'],     img: '/images/marche-public/transport/unitémobile.jpeg'},
+  { nom: 'Unité mobile 3,5 T',           desc: 'Unité médicale mobile sur châssis 3,5 T',                  cat: 'medical',      specs: ['3,5 T', 'Mobile', 'Méd.'],     img: '/images/marche-public/transport/unitémobile.jpg'},
 
   // ── TRANSPORT SCOLAIRE ──
   { nom: 'Transport scolaire 17 places', desc: 'Minibus scolaire 17 places homologué',                     cat: 'transport',    specs: ['17 places', 'Scolaire', 'Homologué'] },
