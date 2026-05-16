@@ -32,7 +32,7 @@ function isRateLimited(ip: string): boolean {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const ADMIN_EMAIL    = process.env.ADMIN_EMAIL || 'bouaidzakariaa@gmail.com'
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL || 'CADOZAT99@hotmail.com'
 const FROM_EMAIL     = 'noreply@cadozaat.com'
 
 // ─── POST — Créer un devis ────────────────────────────────────────

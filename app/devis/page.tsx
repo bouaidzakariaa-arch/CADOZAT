@@ -306,19 +306,11 @@ function DevisForm() {
                   <textarea name="message" value={fd.message} onChange={onChange} onFocus={onFocus} onBlur={onBlur} placeholder="Précisez vos besoins, options souhaitées, délais..." style={{ ...inp, resize:'none', height:88 }}/>
                 </div>
 
-                <div style={{ display:'flex', alignItems:'flex-start', gap:10, marginBottom:14 }}>
-                  <input type="checkbox" name="newsletter" checked={fd.newsletter} onChange={onChange} style={{ marginTop:2, accentColor:'#0057A8', flexShrink:0 }}/>
-                  <span style={{ fontSize:12, color:'#aaa', lineHeight:1.6 }}>J&apos;accepte de recevoir les offres commerciales et actualités de CADOZAT par email.</span>
-                </div>
-
                 {error && <div style={{ padding:'12px 14px', background:'#fff5f5', border:'1px solid #fecaca', borderRadius:10, color:'#dc2626', fontSize:13, marginBottom:14 }}>{error}</div>}
 
                 <button type="submit" disabled={loading} style={{ width:'100%', padding:14, background:'linear-gradient(135deg, #CC0000, #aa0000)', color:'#fff', border:'none', borderRadius:12, fontSize:14, fontWeight:700, cursor:loading?'not-allowed':'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, fontFamily:'inherit', opacity:loading?0.7:1, boxShadow:'0 6px 22px rgba(204,0,0,0.28)', transition:'all .2s' }}>
                   {loading ? 'Envoi en cours…' : <>Envoyer ma demande <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></>}
                 </button>
-                <p style={{ fontSize:11, color:'#ccc', textAlign:'center', marginTop:10 }}>
-                  En soumettant, vous acceptez notre <Link href="/mentions-legales" style={{ color:'#0057A8', textDecoration:'none' }}>politique de confidentialité</Link>.
-                </p>
               </div>
             </div>
           </form>
