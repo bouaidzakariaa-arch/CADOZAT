@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     await resend.emails.send({
       from: 'Cadozat Bot <noreply@cadozaat.com>',
-      to: 'bouaidzakariaa@gmail.com',
+      to: 'CADOZAT99@hotmail.com',
       subject: `🚛 Nouveau devis (Chat) — ${vehicule} — ${nomComplet}`,
       html: `
         <!DOCTYPE html>
