@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: 'noreply@cadozaat.com',
-      to:   ['bouaidzakariaa@gmail.com'],
+      to:   ['CADOZAT99@hotmail.com'],
       subject: `📄 Brochure téléchargée — ${modele.toUpperCase()} — ${prenom} ${nom}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
